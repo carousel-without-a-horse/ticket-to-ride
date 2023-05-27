@@ -1,0 +1,50 @@
+{
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "prettier", "plugin:import/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier", "react-perf"],
+  "settings": {
+    "import/resolver": {
+      "typescript": {},
+      "project": "packages/*/tsconfig.json"
+    }
+  },
+  "rules": {
+    "@typescript-eslint/ban-ts-comment": 1,
+    "prettier/prettier": ["error"]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts?(x)"],
+      "extends": [
+        "plugin:import/typescript",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+      ],
+      "rules": {
+        "@typescript-eslint/consistent-type-imports": 2,
+        "@typescript-eslint/consistent-type-exports": 2,
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "typeAlias",
+            "format": ["PascalCase"],
+            "prefix": ["T"]
+          },
+          {
+            "selector": "interface",
+            "format": ["PascalCase"],
+            "prefix": ["I"]
+          }
+        ]
+      },
+      "parserOptions": {
+        "project": ["./tsconfig.json"] // Specify it only for TypeScript files
+      }
+    }
+  ]
+}
