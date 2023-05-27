@@ -1,11 +1,11 @@
 import type { FC } from 'react'
 
-import { Form } from '@/shared/components/form'
-import { Input } from '@/shared/components/input'
+import { Form } from '@/shared/ui/form'
+import { Input } from '@/shared/ui/input'
 
-import type { TInputItemProps } from './types'
+import type { TInputItem } from './types'
 
-export const InputItem: FC<TInputItemProps> = ({
+export const InputItem: FC<TInputItem> = ({
   label,
   name,
   tooltip,

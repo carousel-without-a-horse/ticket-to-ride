@@ -1,5 +1,5 @@
 import { UserOutlined } from '@ant-design/icons'
-import type { TTabsPropsItems, TUploadFile } from '@/shared/components'
+import type { TTabsItems, TUploadFile } from '@/shared/ui'
 import {
   Avatar,
   Space,
@@ -12,11 +12,11 @@ import {
   Form,
   InputItem,
   Card,
-} from '@/shared/components'
+} from '@/shared/ui'
 import { useState } from 'react'
-import type { TUploadProps } from '@/shared/components/upload/types'
+import type { TUpload } from '@/shared/ui/upload/types'
 
-const tabsItem: TTabsPropsItems = [
+const tabsItem: TTabsItems = [
   { id: '1', key: '1', label: 'Login' },
   { id: '2', key: '2', label: 'Register' },
 ]
@@ -62,7 +62,7 @@ const columns = [
 const Guide = () => {
   const [fileList, setFileList] = useState<TUploadFile[]>([])
 
-  const handleChange: TUploadProps['onChange'] = ({ fileList }) => {
+  const handleChange: TUpload['onChange'] = ({ fileList }) => {
     setFileList(fileList)
   }
 

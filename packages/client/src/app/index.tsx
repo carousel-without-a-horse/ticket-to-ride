@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ConfigProvider, theme } from 'antd'
 import ruRu from 'antd/lib/locale/ru_RU'
-import { Button, Layout } from '@/shared/components'
+import { Button, Layout } from '@/shared/ui'
 import Guide from '../pages/guide'
 import 'normalize.css'
 

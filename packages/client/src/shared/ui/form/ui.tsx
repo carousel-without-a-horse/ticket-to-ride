@@ -1,7 +1,6 @@
 import type { FormProps, FormItemProps } from 'antd'
 import { Form as LibForm } from 'antd'
 import type { PropsWithChildren, FC } from 'react'
-export * from './items'
 
 const DefaultForm = (formProps: PropsWithChildren<FormProps>) => (
   <LibForm
