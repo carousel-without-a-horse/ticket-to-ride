@@ -1,1 +1,1 @@
-export { InputItem } from './ui'
+export { FormInput } from './ui'

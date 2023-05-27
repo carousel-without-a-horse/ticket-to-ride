@@ -1,2 +1,2 @@
 export { Form } from './ui'
-export { InputItem } from './items/InputItem'
+export { FormInput } from './items/InputItem'

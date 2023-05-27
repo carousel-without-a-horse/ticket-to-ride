@@ -5,7 +5,7 @@ import type { TUpload, TUploadFile } from '@/shared/ui/Upload'
 import { Card } from '@/shared/ui/Card'
 import { Tabs } from '@/shared/ui/Tabs'
 import { Space } from '@/shared/ui/Space'
-import { Form, InputItem } from '@/shared/ui/Form'
+import { Form, FormInput } from '@/shared/ui/Form'
 import { Button } from '@/shared/ui/Button'
 import { Avatar } from '@/shared/ui/Avatar'
 import { Tag } from '@/shared/ui/Tag'
@@ -106,8 +106,8 @@ const Guide = () => {
         <Form
           onFinish={data => console.log('submit data', data)}
           onValuesChange={data => console.log(data)}>
-          <InputItem name="name" label="name" />
-          <InputItem name="nickname" label="nickname" />
+          <FormInput name="name" label="name" />
+          <FormInput name="nickname" label="nickname" />
           <Button type="primary" htmlType="submit">
             submit
           </Button>
