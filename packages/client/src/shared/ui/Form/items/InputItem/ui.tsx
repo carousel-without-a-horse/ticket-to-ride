@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
-import { Form } from '@/shared/ui/form'
-import { Input } from '@/shared/ui/input'
+import { Form } from '@/shared/ui/Form'
+import { Input } from '@/shared/ui/Input'
 
 import type { TInputItem } from './types'
 

@@ -1,20 +1,17 @@
 import { UserOutlined } from '@ant-design/icons'
-import type { TTabsItems, TUploadFile } from '@/shared/ui'
-import {
-  Avatar,
-  Space,
-  Button,
-  Tabs,
-  Tag,
-  Upload,
-  Table,
-  Content,
-  Form,
-  InputItem,
-  Card,
-} from '@/shared/ui'
+import type { TTabsItems } from '@/shared/ui/Tabs'
 import { useState } from 'react'
-import type { TUpload } from '@/shared/ui/upload/types'
+import type { TUpload, TUploadFile } from '@/shared/ui/Upload'
+import { Card } from '@/shared/ui/Card'
+import { Tabs } from '@/shared/ui/Tabs'
+import { Space } from '@/shared/ui/Space'
+import { Form, InputItem } from '@/shared/ui/Form'
+import { Button } from '@/shared/ui/Button'
+import { Avatar } from '@/shared/ui/Avatar'
+import { Tag } from '@/shared/ui/Tag'
+import { Upload } from '@/shared/ui/Upload'
+import { Table } from '@/shared/ui/Table'
+import { Content } from '@/shared/ui/Layout'
 
 const tabsItem: TTabsItems = [
   { id: '1', key: '1', label: 'Login' },

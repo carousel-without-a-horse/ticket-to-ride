@@ -15,9 +15,7 @@ const DefaultFormItem: FC<FormItemProps> = formItemProps => (
   <LibForm.Item labelAlign="left" {...formItemProps} />
 )
 
-const Form = Object.assign(DefaultForm, {
+export const Form = Object.assign(DefaultForm, {
   ...LibForm,
   Item: DefaultFormItem,
 }) as typeof LibForm
-
-export { Form }

@@ -2,7 +2,7 @@ import type { CardProps } from 'antd'
 import { Card as LibCard } from 'antd'
 import type { FC } from 'react'
 
-const Card: FC<CardProps> = props => {
+export const Card: FC<CardProps> = props => {
   return (
     <LibCard
       style={{
@@ -25,5 +25,3 @@ const Card: FC<CardProps> = props => {
     />
   )
 }
-
-export { Card }
