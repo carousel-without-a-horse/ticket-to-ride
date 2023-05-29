@@ -1,38 +1,13 @@
-import { useState } from 'react'
-import { ConfigProvider, theme } from 'antd'
-import ruRu from 'antd/lib/locale/ru_RU'
-import { Layout } from '@/shared/ui/Layout'
-import { Button } from '@/shared/ui/Button'
-import Guide from '../pages/guide'
 import 'normalize.css'
 
-const { defaultAlgorithm, darkAlgorithm } = theme
+import { withProviders } from './providers'
+import { RouterProvider } from 'react-router-dom'
+import type { FC } from 'react'
+import { router } from '@/app/router'
+import React from 'react'
 
-function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false)
-
-  const handleClick = () => {
-    setIsDarkMode(previousValue => !previousValue)
-  }
-
-  return (
-    <ConfigProvider
-      locale={ruRu}
-      theme={{
-        algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
-        token: {
-          colorBgLayout: isDarkMode ? '#000' : '#3993DD',
-          colorPrimary: isDarkMode ? '#29E7CD' : '#0062CC',
-        },
-      }}>
-      <Layout className="App">
-        <Button onClick={handleClick}>
-          Change Theme to {isDarkMode ? 'Light' : 'Dark'}
-        </Button>
-        <Guide />
-      </Layout>
-    </ConfigProvider>
-  )
+const App: FC = () => {
+  return <RouterProvider router={router} />
 }
 
-export default App
+export default withProviders(App)
