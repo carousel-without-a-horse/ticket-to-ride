@@ -1,4 +1,4 @@
 import compose from 'compose-function'
-import { withTheme } from './with-theme'
+import { withTheme } from './withTheme'
 
 export const withProviders = compose(withTheme)

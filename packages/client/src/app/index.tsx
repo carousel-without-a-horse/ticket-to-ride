@@ -1,21 +1,13 @@
-import { Layout, Content } from '@/shared/ui/Layout'
-
 import 'normalize.css'
 
 import { withProviders } from './providers'
-import { Outlet } from 'react-router-dom'
+import { RouterProvider } from 'react-router-dom'
 import type { FC } from 'react'
-import { Header } from '@/widgets/Header'
+import { router } from '@/app/router'
+import React from 'react'
 
 const App: FC = () => {
-  return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Header />
-      <Content>
-        <Outlet />
-      </Content>
-    </Layout>
-  )
+  return <RouterProvider router={router} />
 }
 
 export default withProviders(App)
