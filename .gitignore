@@ -3,3 +3,7 @@ node_modules/
 .idea
 dist
 tmp
+
+# VisualStudioCode
+.vscode
+!.vscode/settings.json
