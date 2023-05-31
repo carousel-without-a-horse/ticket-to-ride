@@ -25,6 +25,10 @@ const items = [
     key: ROUTES.forum,
     label: 'Форум',
   },
+  {
+    key: ROUTES.signIn,
+    label: 'Войти',
+  },
 ]
 export const Header = () => {
   const { token } = theme.useToken()
@@ -48,14 +52,16 @@ export const Header = () => {
         marginBottom: 50,
         display: 'flex',
         alignItems: 'center',
-      }}>
+      }}
+    >
       <div>Logo</div>
       <div
         style={{
           width: '100%',
           display: 'flex',
           alignItems: 'center',
-        }}>
+        }}
+      >
         <Menu
           mode="horizontal"
           selectedKeys={[selectedMenuItem]}
