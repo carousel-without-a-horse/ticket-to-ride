@@ -3,4 +3,5 @@ export enum ROUTES {
   about = '/about',
   rating = '/rating',
   forum = '/forum',
+  signIn = '/sign-in',
 }
