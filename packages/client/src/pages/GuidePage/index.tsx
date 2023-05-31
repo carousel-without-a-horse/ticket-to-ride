@@ -98,7 +98,8 @@ const GuidePage = () => {
             accept={'image/png, image/jpeg'}
             fileList={fileList}
             onChange={handleChange}
-            maxCount={1}>
+            maxCount={1}
+          >
             {fileList.length < 1 && '+ Upload'}
           </Upload>
         </Card>
@@ -106,7 +107,8 @@ const GuidePage = () => {
         <Card title="Form" style={{ marginBottom: 40 }}>
           <Form
             onFinish={data => console.log('submit data', data)}
-            onValuesChange={data => console.log(data)}>
+            onValuesChange={data => console.log(data)}
+          >
             <FormInput name="name" label="name" />
             <FormInput name="nickname" label="nickname" />
             <Button type="primary" htmlType="submit">
