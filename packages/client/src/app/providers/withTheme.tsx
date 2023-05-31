@@ -22,7 +22,8 @@ export const withTheme = (component: () => ReactNode) => () => {
           colorPrimary: isDarkMode ? '#29E7CD' : '#0062CC',
           colorBgContainer: isDarkMode ? '#000' : '#fff',
         },
-      }}>
+      }}
+    >
       <ThemeContext.Provider value={{ isDarkMode, toggleMode }}>
         {component()}
       </ThemeContext.Provider>
