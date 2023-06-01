@@ -4,7 +4,7 @@ import { DownOutlined } from '@ant-design/icons'
 import { Button } from '@/shared/ui/Button'
 import type { TDropdownProps } from '@/shared/ui/Dropdown'
 import { Dropdown } from '@/shared/ui/Dropdown'
-export type { TOperationsWithSelected } from './types'
+import type { TOperationsWithSelected } from './types'
 
 const iconDown = <DownOutlined rev={undefined} />
 
