@@ -2,14 +2,14 @@ import { Form, FormInput } from '@/shared/ui/Form'
 import { Button } from '@/shared/ui/Button'
 import { ROUTES } from '@/app/router/config'
 import { useNavigate } from 'react-router-dom'
-import authServices from '@/shared/services/authServices'
-import type { TSignInSent } from '@/shared/services/types'
+import index from '@/shared/services/authServices'
+import type { TSignInSent } from '@/shared/services/authServices/types'
 
 const SignInForm = () => {
   const navigate = useNavigate()
 
   const onSubmit = (data: TSignInSent) => {
-    authServices.signIn(data).then(console.debug).catch(console.error)
+    index.signIn(data).then(console.debug).catch(console.error)
   }
 
   return (
