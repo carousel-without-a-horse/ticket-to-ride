@@ -108,7 +108,8 @@ const RatingPage = () => {
           width: '100%',
           maxWidth: 1024,
           height: 'calc(100vh - (64px + 50px * 2))',
-        }}>
+        }}
+      >
         <Table
           dataSource={dataSource}
           columns={columns}
