@@ -32,7 +32,7 @@ const SignInForm = () => {
         type="link"
         onClick={event => {
           event.preventDefault()
-          // navigate(ROUTES.signUp)
+          navigate(ROUTES.signUp)
         }}
       >
         Регистрация
