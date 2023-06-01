@@ -57,13 +57,7 @@ const SignUpForm = () => {
       <Button type="primary" htmlType="submit">
         Зарегистрироваться
       </Button>
-      <Button
-        type="link"
-        onClick={event => {
-          event.preventDefault()
-          navigate(-1)
-        }}
-      >
+      <Button type="link" onClick={() => navigate(-1)}>
         &lt; Назад
       </Button>
     </Form>
