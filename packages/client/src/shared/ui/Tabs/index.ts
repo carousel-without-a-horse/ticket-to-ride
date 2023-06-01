@@ -1,2 +1,2 @@
-export { Tabs } from 'antd'
-export type { TTabsItems } from './types'
+export { Tabs } from './ui'
+export type { TTabsItems, TTabsProps } from './types'

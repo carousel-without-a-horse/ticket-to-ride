@@ -1,2 +1,2 @@
 export { Input } from 'antd'
-export type { TInput } from './types'
+export type { TInput, TInputRef, TTextArea } from './types'
