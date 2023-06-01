@@ -7,16 +7,19 @@ const columns = [
     title: '',
     dataIndex: 'num',
     key: 'num',
+    width: 60,
   },
   {
     title: 'Пользователь',
     dataIndex: 'user',
+    ellipsis: true,
     key: 'user',
   },
   {
     title: 'Баллы',
     dataIndex: 'scores',
     key: 'scores',
+    ellipsis: true,
   },
 ]
 
@@ -84,7 +87,7 @@ const dataSource = [
   {
     key: '11',
     num: '11',
-    user: 'Gregory',
+    user: 'Gregoryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy',
     scores: 3,
   },
   {
