@@ -19,8 +19,8 @@ export const Tabs: FC<TTabsProps> = ({
   )
 
   const activeKey = useMemo(() => {
-    return searchParams.get(TAB_PARAM_KEY) || undefined
-  }, [searchParams])
+    return searchParams.get(TAB_PARAM_KEY) || defaultActiveKey
+  }, [defaultActiveKey, searchParams])
 
   const handleChange = useCallback<TTabsOnChange>(
     key => {
