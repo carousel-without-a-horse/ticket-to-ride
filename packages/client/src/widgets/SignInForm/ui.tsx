@@ -28,13 +28,7 @@ const SignInForm = () => {
       <Button type="primary" htmlType="submit">
         Войти
       </Button>
-      <Button
-        type="link"
-        onClick={event => {
-          event.preventDefault()
-          // navigate(ROUTES.signUp)
-        }}
-      >
+      <Button type="link" onClick={() => navigate(ROUTES.signUp)}>
         Регистрация
       </Button>
     </Form>
