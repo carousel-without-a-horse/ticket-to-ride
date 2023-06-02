@@ -9,6 +9,11 @@ const authServices: TAuthService = {
       data: JSON.stringify(data),
     })
   },
+  signUp: async data => {
+    return httpService.post('/sign-up', {
+      data: JSON.stringify(data),
+    })
+  },
 }
 
 export default authServices
