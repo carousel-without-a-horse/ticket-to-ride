@@ -27,9 +27,8 @@ export const Tabs: FC<TTabsProps> = ({
       if (withQueryParams) {
         setSearchParams({ [TAB_PARAM_KEY]: key })
       }
-      if (onChange) {
-        onChange(key)
-      }
+
+      onChange?.(key)
     },
     [onChange, setSearchParams, withQueryParams]
   )

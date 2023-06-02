@@ -6,10 +6,14 @@ import { Input } from '@/shared/ui/Input'
 import type { TInputRef } from '@/shared/ui/Input'
 import type { TTags } from './types'
 
-const tagInputStyle: CSSProperties = {
-  width: 78,
-  verticalAlign: 'top',
+const styles: Record<string, CSSProperties> = {
+  input: {
+    width: 78,
+    verticalAlign: 'top',
+  },
+  button: { cursor: 'pointer' },
 }
+
 export const Tags: FC<TTags> = ({ value, onChange, disabled }) => {
   const tags = useMemo(() => value || [], [value])
   const [inputVisible, setInputVisible] = useState(false)
@@ -24,9 +28,7 @@ export const Tags: FC<TTags> = ({ value, onChange, disabled }) => {
 
   const handleClose = useCallback(
     (tag: string) => {
-      if (onChange) {
-        onChange(tags.filter(item => item !== tag))
-      }
+      onChange?.(tags.filter(item => item !== tag))
     },
     [onChange, tags]
   )
@@ -40,7 +42,7 @@ export const Tags: FC<TTags> = ({ value, onChange, disabled }) => {
   }, [])
 
   const handleInputConfirm = useCallback(() => {
-    if (onChange && inputValue && tags.indexOf(inputValue) === -1) {
+    if (onChange && inputValue && !tags.includes(inputValue)) {
       onChange([...tags, inputValue])
     }
     setInputVisible(false)
@@ -55,7 +57,7 @@ export const Tags: FC<TTags> = ({ value, onChange, disabled }) => {
           ref={inputRef}
           type="text"
           size="small"
-          style={tagInputStyle}
+          style={styles.input}
           value={inputValue}
           onChange={handleInputChange}
           onBlur={handleInputConfirm}
@@ -64,7 +66,7 @@ export const Tags: FC<TTags> = ({ value, onChange, disabled }) => {
       )
     }
     return (
-      <Tag onClick={showInput}>
+      <Tag onClick={showInput} style={styles.button}>
         <PlusOutlined rev={undefined} /> Добавить тег
       </Tag>
     )

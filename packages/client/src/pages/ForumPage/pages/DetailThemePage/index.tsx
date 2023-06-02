@@ -17,7 +17,7 @@ const iconEdit = <EditOutlined rev={undefined} />
 const styleActions: CSSProperties = { width: '100%', justifyContent: 'end' }
 
 const DetailThemePage = () => {
-  const [vote, setVote] = useState<boolean | undefined>(false)
+  const [vote, setVote] = useState<boolean | undefined>()
   const navigate = useNavigate()
 
   const handleEdit = useCallback(() => {

@@ -11,23 +11,23 @@ const styles = {
 export const Reply: FC<TReply> = ({ isOpen = false, style, onChange }) => {
   const { state: isShow, toggle: toggleShow, setFalse } = useToggle(isOpen)
 
+  if (isShow) {
+    return (
+      <Form style={style} onFinish={onChange}>
+        <FormTextarea name="value" />
+        <Space>
+          <Button type="primary" htmlType="submit">
+            Ответить
+          </Button>
+          <Button onClick={setFalse}>Отменить</Button>
+        </Space>
+      </Form>
+    )
+  }
+
   return (
-    <>
-      {isShow ? (
-        <Form style={style} onFinish={onChange}>
-          <FormTextarea name="value" />
-          <Space>
-            <Button type="primary" htmlType="submit">
-              Ответить
-            </Button>
-            <Button onClick={setFalse}>Отменить</Button>
-          </Space>
-        </Form>
-      ) : (
-        <Button style={styles.button} onClick={toggleShow}>
-          Ответить
-        </Button>
-      )}
-    </>
+    <Button style={styles.button} onClick={toggleShow}>
+      Ответить
+    </Button>
   )
 }

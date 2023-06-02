@@ -15,7 +15,7 @@ const stylesDefault: Record<string, CSSProperties> = {
     marginBottom: '40px',
     textAlign: 'center',
     fontSize: '38px',
-    lineHeight: '46px',
+    lineHeight: 1.21,
     padding: '0',
   },
   bodyStyle: {
