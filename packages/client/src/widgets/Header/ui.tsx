@@ -33,10 +33,6 @@ const items = [
     key: ROUTES.signUp,
     label: 'Регистрация',
   },
-  {
-    key: ROUTES.error,
-    label: 'Ошибка',
-  },
 ]
 export const Header = () => {
   const { token } = theme.useToken()
