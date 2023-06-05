@@ -1,18 +1,18 @@
 import { useCallback, useState } from 'react'
-import type { TUseToggle, TSetFalse, TSetTrue, TToggle } from './types'
+import type { TUseToggle, TToggleFunc } from './types'
 
 export const useToggle: TUseToggle = defaultState => {
   const [state, setState] = useState<boolean>(defaultState)
 
-  const setTrue = useCallback<TSetTrue>(() => {
+  const setTrue = useCallback<TToggleFunc>(() => {
     setState(true)
   }, [])
 
-  const setFalse = useCallback<TSetFalse>(() => {
+  const setFalse = useCallback<TToggleFunc>(() => {
     setState(false)
   }, [])
 
-  const toggle = useCallback<TToggle>(() => {
+  const toggle = useCallback<TToggleFunc>(() => {
     setState(value => !value)
   }, [])
 
