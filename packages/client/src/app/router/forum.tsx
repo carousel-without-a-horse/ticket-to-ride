@@ -2,14 +2,12 @@ import { withSuspense } from '@/shared/hocs'
 import { ROUTES } from '@/app/router/config'
 
 const Forum = withSuspense(() => import('@/pages/ForumPage'))
-const DetailTheme = withSuspense(
-  () => import('@/pages/ForumPage/pages/DetailThemePage')
-)
+const Theme = withSuspense(() => import('@/pages/ThemePage'))
 const CreateTheme = withSuspense(
-  () => import('@/pages/ForumPage/pages/CreateThemePage')
+  () => import('@/pages/ThemePage/pages/CreateThemePage')
 )
 const EditTheme = withSuspense(
-  () => import('@/pages/ForumPage/pages/EditThemePage')
+  () => import('@/pages/ThemePage/pages/EditThemePage')
 )
 
 export const forumRoutes = [
@@ -19,7 +17,7 @@ export const forumRoutes = [
   },
   {
     path: ROUTES.themeDetail,
-    element: <DetailTheme />,
+    element: <Theme />,
   },
   {
     path: ROUTES.themeNew,

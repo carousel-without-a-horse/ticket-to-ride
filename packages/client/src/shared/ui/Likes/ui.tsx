@@ -17,8 +17,8 @@ const iconDislikeFilled = <DislikeFilled rev={undefined} />
 
 export const Likes: FC<TLikes> = ({
   vote,
-  countLikes = 0,
-  countDislikes = 0,
+  likesCount = 0,
+  dislikesCount = 0,
   onChange,
 }) => {
   const handleLike = useCallback(() => {
@@ -41,11 +41,11 @@ export const Likes: FC<TLikes> = ({
     <Space>
       <Space size={2}>
         <Button type="text" icon={iconLike} onClick={handleLike} />
-        <span>{countLikes}</span>
+        <span>{likesCount}</span>
       </Space>
       <Space size={2}>
         <Button type="text" icon={iconDislike} onClick={handleDislike} />
-        <span>{countDislikes}</span>
+        <span>{dislikesCount}</span>
       </Space>
     </Space>
   )

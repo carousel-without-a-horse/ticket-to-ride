@@ -1,6 +1,6 @@
 export type TLikes = {
   vote?: boolean
-  countLikes?: number
-  countDislikes?: number
+  likesCount?: number
+  dislikesCount?: number
   onChange: (value?: boolean) => void
 }

@@ -6,10 +6,11 @@ import { Button } from '@/shared/ui/Button'
 import { Space } from '@/shared/ui/Space'
 import type { TThemeForm } from './types'
 
-const style: CSSProperties = { marginBottom: 40 }
-const styleWysiwyg: CSSProperties = {
-  width: 800,
+const styles: Record<string, CSSProperties> = {
+  wrapper: { marginBottom: 40 },
+  wysiwyg: { width: 800 },
 }
+
 const ThemeForm: FC<TThemeForm> = ({
   title,
   initialValues,
@@ -21,11 +22,11 @@ const ThemeForm: FC<TThemeForm> = ({
     navigate(-1)
   }
   return (
-    <Card title={title} style={style}>
+    <Card title={title} style={styles.wrapper}>
       <Form initialValues={initialValues} onFinish={onSubmit}>
         <FormInput name="name" label="Название" />
         <FormTags name="tags" label="Теги" />
-        <FormWysiwyg name="content" label="Содержимое" style={styleWysiwyg} />
+        <FormWysiwyg name="content" label="Содержимое" style={styles.wysiwyg} />
         <Space>
           <Button type="primary" htmlType="submit">
             {buttonSubmitText || 'Сохранить'}

@@ -12,8 +12,8 @@ export const data = [
       nisi possimus, quas recusandae reprehenderit saepe ullam unde voluptatum?`,
     vote: {
       vote: true,
-      countLikes: 5,
-      countDislikes: 1,
+      likesCount: 5,
+      dislikesCount: 1,
     },
   },
   {
@@ -29,8 +29,8 @@ export const data = [
       nisi possimus, quas recusandae reprehenderit saepe ullam unde voluptatum?`,
     vote: {
       vote: false,
-      countLikes: 12,
-      countDislikes: 4,
+      likesCount: 12,
+      dislikesCount: 4,
     },
   },
 ]

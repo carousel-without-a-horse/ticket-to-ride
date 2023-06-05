@@ -9,5 +9,5 @@ export type TDataType = {
   id: string
   theme: string
   author: string
-  comments: number
+  commentsCount: number
 }

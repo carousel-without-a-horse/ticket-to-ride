@@ -11,12 +11,12 @@ import { Divider } from '@/shared/ui/Divider'
 import { ROUTES } from '@/app/router/config'
 import { generateUrl } from '@/shared/utils/generateUrl'
 import { Comments } from '@/widgets/Comments'
-import { data } from '../../data'
+import { data } from './data'
 
 const iconEdit = <EditOutlined rev={undefined} />
 const styleActions: CSSProperties = { width: '100%', justifyContent: 'end' }
 
-const DetailThemePage = () => {
+const ThemePage = () => {
   const [vote, setVote] = useState<boolean | undefined>()
   const navigate = useNavigate()
 
@@ -46,4 +46,4 @@ const DetailThemePage = () => {
   )
 }
 
-export default DetailThemePage
+export default ThemePage

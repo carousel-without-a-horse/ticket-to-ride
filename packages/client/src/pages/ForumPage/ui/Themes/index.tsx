@@ -1,15 +1,14 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { FC, Key } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { PlusCircleOutlined } from '@ant-design/icons'
-import type { TTableColumnsType, TTableColumnType } from '@/shared/ui/Table'
+import type { TTableColumnsType } from '@/shared/ui/Table'
 import { Table } from '@/shared/ui/Table'
 import { Button } from '@/shared/ui/Button'
 import { Space } from '@/shared/ui/Space'
 import { ROUTES } from '@/app/router/config'
-import { generateUrl } from '@/shared/utils/generateUrl'
 import { OperationsWithSelected } from './ui/OperationsWithSelected'
-import { TableActions } from './ui/TableActions'
+import { columnsDefault, columnActions } from './utils/columns'
 import type { TThemes, TDataType } from './types'
 import { dataSource } from './data'
 
@@ -17,31 +16,6 @@ const iconPlus = <PlusCircleOutlined rev={undefined} />
 const style = {
   wrapper: { width: '100%', justifyContent: 'end', marginBottom: 15 },
   table: { width: '700px' },
-}
-
-const columnsDefault: TTableColumnsType<TDataType> = [
-  {
-    title: 'Тема',
-    dataIndex: 'theme',
-    render: (_, record) => {
-      const url = generateUrl(ROUTES.themeDetail, { id: record.id })
-      return <Link to={url}>{record.theme}</Link>
-    },
-  },
-  {
-    title: 'Автор',
-    dataIndex: 'author',
-  },
-  {
-    title: 'Ответы',
-    dataIndex: 'comments',
-  },
-]
-
-const columnActions: TTableColumnType<TDataType> = {
-  title: '',
-  dataIndex: 'actions',
-  render: (_, record) => <TableActions id={record.id} />,
 }
 
 export const Themes: FC<TThemes> = ({ type }) => {
