@@ -44,6 +44,10 @@ export const router = createBrowserRouter([
         path: ROUTES.error,
         element: <Error />,
       },
+      {
+        path: '*',
+        element: <Error />,
+      },
     ],
   },
 ])

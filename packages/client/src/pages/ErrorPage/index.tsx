@@ -8,9 +8,9 @@ import { Row } from '@/shared/ui/Row'
 
 const ErrorPage = () => {
   const navigate = useNavigate()
-  const [errorCode, setErrorCode] = useState<number>(400)
+  const [errorCode, setErrorCode] = useState<number>(404)
   const [errorMessage, setErrorMessage] = useState<string>(
-    'Что-то пошло не так'
+    'Страница не найдена'
   )
   return (
     <Row justify="center">
