@@ -4,7 +4,7 @@
     "es2020": true,
     "node": true
   },
-  "extends": ["eslint:recommended", "prettier", "plugin:import/recommended"],
+  "extends": ["eslint:recommended", "prettier", "plugin:import/recommended", "plugin:react-hooks/recommended"],
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "prettier", "react-perf"],
   "settings": {
@@ -15,7 +15,9 @@
   },
   "rules": {
     "@typescript-eslint/ban-ts-comment": 1,
-    "prettier/prettier": ["error"]
+    "prettier/prettier": ["error"],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error"
   },
   "overrides": [
     {

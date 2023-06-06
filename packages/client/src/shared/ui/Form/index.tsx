@@ -1,2 +1,5 @@
 export { Form } from './ui'
-export { FormInput } from './items/InputItem'
+export { FormInput } from './items/FormInput'
+export { FormTags } from './items/FormTags'
+export { FormWysiwyg } from './items/FormWysiwyg'
+export { FormTextarea } from './items/FormTextarea'
