@@ -5,6 +5,5 @@ export enum ROUTES {
   forum = '/forum',
   signIn = '/sign-in',
   signUp = '/sign-up',
-  clientError = '/client-error',
-  serverError = '/server-error',
+  error = '/error/:code',
 }

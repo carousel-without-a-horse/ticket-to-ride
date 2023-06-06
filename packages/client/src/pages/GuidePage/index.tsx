@@ -12,7 +12,7 @@ import { Tag } from '@/shared/ui/Tag'
 import { Upload } from '@/shared/ui/Upload'
 import { Table } from '@/shared/ui/Table'
 import { Content } from '@/shared/ui/Layout'
-import { Modal } from '@/shared/ui/Modal'
+import { success, error, warning } from '@/shared/utils/Notification'
 
 const tabsItem: TTabsItems = [
   { id: '1', key: '1', label: 'Login' },
@@ -58,25 +58,6 @@ const columns = [
   },
 ]
 
-const success = (message?: string) => {
-  Modal.success({
-    content: message || 'Все получилось!',
-  })
-}
-
-const error = (title?: string, message?: string) => {
-  Modal.error({
-    title: title || 'Ошибка',
-    content: message || 'Что-то пошло не так',
-  })
-}
-
-const warning = (title?: string, message?: string) => {
-  Modal.warning({
-    title: title || 'Предупреждение',
-    content: message || 'Что-то пошло не так',
-  })
-}
 const GuidePage = () => {
   const [fileList, setFileList] = useState<TUploadFile[]>([])
 

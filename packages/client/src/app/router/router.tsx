@@ -9,8 +9,7 @@ const Rating = withSuspense(() => import('@/pages/RatingPage'))
 const Forum = withSuspense(() => import('@/pages/ForumPage'))
 const SignIn = withSuspense(() => import('@/pages/SignInPage'))
 const SignUp = withSuspense(() => import('@/pages/SignUpPage'))
-const ClientErrorPage = withSuspense(() => import('@/pages/ClientErrorPage'))
-const ServerErrorPage = withSuspense(() => import('@/pages/ServerErrorPage'))
+const ErrorPage = withSuspense(() => import('@/pages/ErrorPage'))
 
 export const router = createBrowserRouter([
   {
@@ -42,16 +41,12 @@ export const router = createBrowserRouter([
         element: <SignUp />,
       },
       {
-        path: ROUTES.clientError,
-        element: <ClientErrorPage />,
-      },
-      {
-        path: ROUTES.serverError,
-        element: <ServerErrorPage />,
+        path: ROUTES.error,
+        element: <ErrorPage />,
       },
       {
         path: '*',
-        element: <ClientErrorPage />,
+        element: <ErrorPage />,
       },
     ],
   },

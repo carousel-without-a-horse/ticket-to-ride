@@ -1,18 +1,23 @@
 import { Button } from '@/shared/ui/Button'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Text } from '@/shared/ui/Text'
 import { PageTitle } from '@/shared/ui/PageTitle'
 import { Space } from '@/shared/ui/Space'
 import { Row } from '@/shared/ui/Row'
 
-const ServerErrorPage = () => {
+const ErrorPage = () => {
   const navigate = useNavigate()
+  const { code = 404 } = useParams()
+  const message =
+    code === '500'
+      ? 'Произошла ошибка! Мы уже работаем над её исправлением!'
+      : 'Страница не найдена'
   return (
     <Row justify="center">
       <Space direction="vertical" align="center">
-        <PageTitle type="success">500</PageTitle>
+        <PageTitle type="success">{code}</PageTitle>
         <Text strong style={{ color: 'white' }}>
-          Произошла ошибка! Мы уже работаем над её исправлением!
+          {message}
         </Text>
         <Button ghost onClick={() => navigate(-1)}>
           Вернуться назад
@@ -22,4 +27,4 @@ const ServerErrorPage = () => {
   )
 }
 
-export default ServerErrorPage
+export default ErrorPage
