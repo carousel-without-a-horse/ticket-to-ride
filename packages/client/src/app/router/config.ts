@@ -8,4 +8,5 @@ export enum ROUTES {
   themeNew = '/theme/new',
   themeDetail = '/theme/:id',
   themeEdit = '/theme/:id/edit',
+  profile = '/profile',
 }

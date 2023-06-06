@@ -9,6 +9,7 @@ const About = withSuspense(() => import('@/pages/AboutPage'))
 const Rating = withSuspense(() => import('@/pages/RatingPage'))
 const SignIn = withSuspense(() => import('@/pages/SignInPage'))
 const SignUp = withSuspense(() => import('@/pages/SignUpPage'))
+const Profile = withSuspense(() => import('@/pages/ProfilePage'))
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: ROUTES.signUp,
         element: <SignUp />,
+      },
+      {
+        path: ROUTES.profile,
+        element: <Profile />,
       },
       ...forumRoutes,
     ],
