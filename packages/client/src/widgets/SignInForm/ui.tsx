@@ -3,18 +3,14 @@ import { Button } from '@/shared/ui/Button'
 import { ROUTES } from '@/app/router/config'
 import { useNavigate } from 'react-router-dom'
 import authServices from '@/shared/services/authServices'
-import * as yup from 'yup'
 import useForm from '@/shared/hooks/useForm'
-
-const schema = yup.object().shape({
-  login: yup.string().required('Пожалуйста, введите ваш логин'),
-  password: yup.string().required('Пожалуйста, введите ваш пароль'),
-})
+import schema from './schema'
+import type { TUseForm } from './types'
 
 const SignInForm = () => {
   const navigate = useNavigate()
 
-  const { formField } = useForm<yup.InferType<typeof schema>>({
+  const { formField } = useForm<TUseForm>({
     name: 'sign-in',
     schema,
     onSubmit: data => {

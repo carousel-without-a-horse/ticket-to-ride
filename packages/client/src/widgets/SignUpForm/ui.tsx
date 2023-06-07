@@ -2,52 +2,14 @@ import { Form, FormInput } from '@/shared/ui/Form'
 import { Button } from '@/shared/ui/Button'
 import { useNavigate } from 'react-router-dom'
 import authServices from '@/shared/services/authServices'
-import * as yup from 'yup'
 import useForm from '@/shared/hooks/useForm'
-
-const schema = yup.object().shape({
-  firstName: yup.string().required('Пожалуйста, введите ваше имя'),
-  login: yup.string().required('Пожалуйста, введите ваш логин'),
-  email: yup
-    .string()
-    .email('Некорретный формат электронной почты')
-    .required('Пожалуйста, введите вашу электронную почту'),
-  phone: yup
-    .string()
-    .required('Пожалуйста, введите ваш телефон')
-    .matches(
-      /^((8|\+7)[- ]?)?(\(?\d{3}\)?[- ]?)?[\d\- ]{7,10}$/,
-      'Некорректный формат номера телефона'
-    ),
-  password: yup
-    .string()
-    .required('Пожалуйста, введите ваш пароль')
-
-    .min(8, 'Пароль должен содержать минимум 8 символов')
-    .max(32, 'Пароль должен содержать максимум 32 символа')
-    .matches(
-      /[a-z]+/,
-      'Пароль должен содержать как минимум одну строчную букву'
-    )
-    .matches(
-      /[A-Z]+/,
-      'Пароль должен содержать как минимум одну заглавную букву'
-    )
-    .matches(/\d+/, 'Пароль должен содержать как минимум одну цифру')
-    .matches(
-      /[!@#%^&*)(+=._-]/,
-      'Пароль должен содержать как минимум один спецсимвол'
-    ),
-  passwordRepeat: yup
-    .string()
-    .required('Пожалуйста, повторите ваш пароль')
-    .oneOf([yup.ref('password')], 'Пароли должны совпадать'),
-})
+import schema from './schema'
+import type { TUseForm } from './types'
 
 const SignUpForm = () => {
   const navigate = useNavigate()
 
-  const { formField } = useForm<yup.InferType<typeof schema>>({
+  const { formField } = useForm<TUseForm>({
     name: 'sign-up',
     schema,
     onSubmit: data => {
