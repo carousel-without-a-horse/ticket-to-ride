@@ -22,6 +22,7 @@ const RatingPage = () => {
           columns={columns}
           pagination={false}
           style={{ width: '100%', maxWidth: 1024 }}
+          scroll={{ y: 550 }}
         />
       </Card>
     </Content>
