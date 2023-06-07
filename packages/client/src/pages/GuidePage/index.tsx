@@ -14,7 +14,7 @@ import { Table } from '@/shared/ui/Table'
 import { Content } from '@/shared/ui/Layout'
 import { Reply } from '@/shared/ui/Reply'
 import { Likes } from '@/shared/ui/Likes'
-import { success, error, warning } from '@/shared/utils/notification'
+import { success, error, warning } from '@/shared/utils/notification/intex'
 
 const tabsItem: TTabsItems = [
   { id: '1', key: '1', label: 'Login' },
