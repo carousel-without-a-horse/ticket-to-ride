@@ -1,0 +1,78 @@
+import { useCallback } from 'react'
+import Form from 'antd/lib/form'
+import type { ChangeEvent, FormEventHandler } from 'react'
+import type * as Yup from 'yup'
+import type { FormListFieldData } from 'antd/lib/form'
+import type { FieldData } from 'rc-field-form/es/interface'
+import type { TUseFormReturn, TUserFormProps } from './types'
+
+const validateMapErrorToFields = (event: Yup.ValidationError) => {
+  return event.inner.map(({ path, errors }) => {
+    const name = path
+      ?.replace(/[[]/g, '.')
+      .replace(/[\]]/g, '')
+      .split('.')
+      .map((p: string) => (/^\d+$/.test(p) ? Number(p) : p))
+
+    return { name, errors }
+  })
+}
+
+const useForm = <T extends Record<string, any>>({
+  name,
+  form: propsForm,
+  schema,
+  onSubmit,
+  hasValidationOnChange = true,
+}: TUserFormProps<T>): TUseFormReturn<T> => {
+  const [form] = Form.useForm<T>(propsForm)
+  const { getFieldsValue } = form
+
+  const onChange: FormEventHandler<HTMLFormElement> = useCallback(
+    event => {
+      const arrIdField = (event as unknown as ChangeEvent).target.id.split('_')
+      const fieldName = arrIdField
+        .slice(1, arrIdField.length)
+        .map((p: string) => (/^\d+$/.test(p) ? Number(p) : p))
+
+      if (hasValidationOnChange) {
+        schema
+          .validateAt(fieldName.toString(), getFieldsValue())
+          .catch((errorEvent: Yup.ValidationError) => {
+            const { path, errors } = errorEvent
+
+            form.setFields([{ name: path as string, errors: errors }])
+          })
+      }
+
+      const errors =
+        form
+          .getFieldsError()
+          .find(err => fieldName.every(n => err.name.includes(n)))?.errors ?? []
+      if (errors.length) form.setFields([{ name: fieldName, errors: [] }])
+    },
+    [form, getFieldsValue, hasValidationOnChange, schema]
+  )
+
+  const onFinish = useCallback(
+    (data: T) => {
+      if (!schema) return onSubmit(data, null)
+
+      schema
+        .validate(data, { abortEarly: false })
+        .then(() => onSubmit(data, null))
+        .catch(event => {
+          const fields = validateMapErrorToFields(event as Yup.ValidationError)
+          form.setFields(fields as FieldData[])
+          onSubmit(null, event as FormListFieldData)
+        })
+    },
+    [form, onSubmit, schema]
+  )
+
+  return {
+    formField: { name, form, onFinish, onChange },
+  }
+}
+
+export default useForm
