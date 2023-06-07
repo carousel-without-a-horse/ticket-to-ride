@@ -1,4 +1,4 @@
-export interface IColumn {
+export type TColumn = {
   title: string
   dataIndex: string
   key: string
@@ -6,13 +6,13 @@ export interface IColumn {
   width?: number
 }
 
-export type TColumns = IColumn[]
+export type TColumns = TColumn[]
 
-export interface IDataRow {
+export type TDataRow = {
   key: string
   num: string
   user: string
   scores: number
 }
 
-export type TDataSource = IDataRow[]
+export type TDataSource = TDataRow[]
