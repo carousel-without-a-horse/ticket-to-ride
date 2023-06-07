@@ -12,6 +12,8 @@ import { Tag } from '@/shared/ui/Tag'
 import { Upload } from '@/shared/ui/Upload'
 import { Table } from '@/shared/ui/Table'
 import { Content } from '@/shared/ui/Layout'
+import { Reply } from '@/shared/ui/Reply'
+import { Likes } from '@/shared/ui/Likes'
 import { success, error, warning } from '@/shared/utils/notification'
 
 const tabsItem: TTabsItems = [
@@ -58,6 +60,11 @@ const columns = [
   },
 ]
 
+const style = {
+  card: { marginBottom: 40 },
+  table: { width: 700 },
+}
+
 const GuidePage = () => {
   const [fileList, setFileList] = useState<TUploadFile[]>([])
 
@@ -68,7 +75,7 @@ const GuidePage = () => {
   return (
     <>
       <Content>
-        <Card title="UI" style={{ marginBottom: 40 }}>
+        <Card title="UI" style={style.card}>
           <h2>Tabs</h2>
           <Tabs items={tabsItem} />
           <h2>Buttons</h2>
@@ -110,9 +117,14 @@ const GuidePage = () => {
           >
             {fileList.length < 1 && '+ Upload'}
           </Upload>
+          <h2>Like and reply</h2>
+          <Space align="start" size="large">
+            <Likes onChange={data => console.log('data', data)} />
+            <Reply onChange={data => console.log('data', data)} />
+          </Space>
         </Card>
 
-        <Card title="Form" style={{ marginBottom: 40 }}>
+        <Card title="Form" style={style.card}>
           <Form
             onFinish={data => console.log('submit data', data)}
             onValuesChange={data => console.log(data)}
@@ -124,12 +136,12 @@ const GuidePage = () => {
             </Button>
           </Form>
         </Card>
-        <Card title="Table" style={{ marginBottom: 40 }}>
+        <Card title="Table" style={style.card}>
           <Table
             dataSource={dataSource}
             columns={columns}
             pagination={false}
-            style={{ width: '700px' }}
+            style={style.table}
           />
         </Card>
       </Content>
