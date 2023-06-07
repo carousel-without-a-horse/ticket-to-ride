@@ -1,3 +1,5 @@
+import type { TUploadFile } from '@/shared/ui/Upload'
+
 export type TPasswordSent = {
   oldPassword: string
   newPassword: string
@@ -14,6 +16,6 @@ export type TUserSent = {
 export type TUserService = {
   changeUserProfile: (data: TUserSent) => Promise<unknown>
   changeUserPassword: (data: TPasswordSent) => Promise<unknown>
-  changeAvatar: (data: FormData) => Promise<unknown>
+  changeAvatar: (data: TUploadFile) => Promise<unknown>
   getUser: (id: number) => Promise<unknown>
 }

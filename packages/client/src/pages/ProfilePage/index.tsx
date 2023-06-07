@@ -1,9 +1,9 @@
 import { Card } from '@/shared/ui/Card'
-import { ProfileForm } from '@/widgets/ProfileForm'
+import { ProfileForm } from '@/pages/ProfilePage/ui/ProfileForm'
 import { PROFILE_TYPES } from './lib/constants'
 import type { TTabsItems } from '@/shared/ui/Tabs'
 import { Tabs } from '@/shared/ui/Tabs'
-import { PasswordForm } from '@/widgets/PasswordForm'
+import { PasswordForm } from '@/pages/ProfilePage/ui/PasswordForm'
 
 const tabsItem: TTabsItems = [
   {

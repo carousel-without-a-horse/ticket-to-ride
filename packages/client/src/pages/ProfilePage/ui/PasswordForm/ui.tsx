@@ -12,7 +12,7 @@ const PasswordForm = () => {
     newPassword: '',
   })
 
-  const onUpdateField = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const nextFormState = {
       ...form,
       [e.target.name]: e.target.value,
@@ -31,7 +31,7 @@ const PasswordForm = () => {
     <Form layout="vertical" style={{ minWidth: '30vw' }} onFinish={onFinish}>
       <FormInput
         initialValue={form.oldPassword}
-        onChange={e => onUpdateField(e)}
+        onChange={e => handleChange(e)}
         label="Старый пароль"
         name="oldPassword"
         inputType="password"
@@ -41,7 +41,7 @@ const PasswordForm = () => {
       />
       <FormInput
         initialValue={form.newPassword}
-        onChange={e => onUpdateField(e)}
+        onChange={e => handleChange(e)}
         label="Пароль"
         name="newPassword"
         inputType="password"

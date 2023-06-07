@@ -19,7 +19,7 @@ const ProfileForm = () => {
     phone: user.phone,
   })
 
-  const onUpdateField = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const nextFormState = {
       ...form,
       [e.target.name]: e.target.value,
@@ -36,8 +36,12 @@ const ProfileForm = () => {
 
   const [fileList, setFileList] = useState<TUploadFile[]>([])
 
-  const handleChange: TUpload['onChange'] = ({ fileList }) => {
+  const handleChangeAvatar: TUpload['onChange'] = ({ fileList }) => {
     setFileList(fileList)
+    userServices
+      .changeAvatar(fileList[0])
+      .then(console.debug)
+      .catch(console.error)
   }
 
   return (
@@ -46,7 +50,7 @@ const ProfileForm = () => {
         <div>
           <FormInput
             initialValue={form.firstName}
-            onChange={e => onUpdateField(e)}
+            onChange={e => handleChange(e)}
             label="Имя"
             name="firstName"
             rules={[
@@ -55,13 +59,13 @@ const ProfileForm = () => {
           />
           <FormInput
             initialValue={form.secondName}
-            onChange={e => onUpdateField(e)}
+            onChange={e => handleChange(e)}
             label="Фамилия"
             name="secondName"
           />
           <FormInput
             initialValue={form.login}
-            onChange={e => onUpdateField(e)}
+            onChange={e => handleChange(e)}
             label="Логин"
             name="login"
             rules={[
@@ -70,7 +74,7 @@ const ProfileForm = () => {
           />
           <FormInput
             initialValue={form.email}
-            onChange={e => onUpdateField(e)}
+            onChange={e => handleChange(e)}
             label="Почта"
             name="email"
             type="email"
@@ -83,7 +87,7 @@ const ProfileForm = () => {
           />
           <FormInput
             initialValue={form.phone}
-            onChange={e => onUpdateField(e)}
+            onChange={e => handleChange(e)}
             label="Телефон"
             name="phone"
             type="tel"
@@ -98,7 +102,7 @@ const ProfileForm = () => {
             listType="picture-card"
             accept={'image/png, image/jpeg'}
             fileList={fileList}
-            onChange={handleChange}
+            onChange={handleChangeAvatar}
             maxCount={1}
           >
             {fileList.length < 1 && '+ Upload'}

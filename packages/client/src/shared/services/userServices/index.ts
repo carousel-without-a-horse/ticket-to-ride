@@ -16,7 +16,7 @@ const userServices: TUserService = {
   },
   changeAvatar: async data => {
     return httpService.put('/profile/avatar', {
-      data: JSON.stringify(data),
+      data,
     })
   },
   getUser: async id => {
