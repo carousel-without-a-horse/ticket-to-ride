@@ -12,7 +12,7 @@ import { Tag } from '@/shared/ui/Tag'
 import { Upload } from '@/shared/ui/Upload'
 import { Table } from '@/shared/ui/Table'
 import { Content } from '@/shared/ui/Layout'
-import { success, error, warning } from '@/shared/utils/Notification'
+import { success, error, warning } from '@/shared/utils/notification'
 
 const tabsItem: TTabsItems = [
   { id: '1', key: '1', label: 'Login' },
