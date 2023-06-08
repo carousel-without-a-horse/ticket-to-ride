@@ -13,8 +13,6 @@ const RatingPage = () => {
           marginBottom: 50,
           width: '100%',
           maxWidth: 1024,
-          height: 'calc(100vh - (64px + 50px * 2))',
-          overflow: 'auto',
         }}
       >
         <Table
@@ -22,7 +20,7 @@ const RatingPage = () => {
           columns={columns}
           pagination={false}
           style={{ width: '100%', maxWidth: 1024 }}
-          scroll={{ y: 550 }}
+          scroll={{ y: '45vh' }}
         />
       </Card>
     </Content>
