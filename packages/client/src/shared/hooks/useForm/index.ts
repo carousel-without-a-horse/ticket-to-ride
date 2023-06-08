@@ -35,6 +35,12 @@ const useForm = <T extends Record<string, any>>({
         .slice(1, arrIdField.length)
         .map((p: string) => (/^\d+$/.test(p) ? Number(p) : p))
 
+      const errors =
+        form
+          .getFieldsError()
+          .find(err => fieldName.every(n => err.name.includes(n)))?.errors ?? []
+      if (errors.length) form.setFields([{ name: fieldName, errors: [] }])
+
       if (hasValidationOnChange) {
         schema
           .validateAt(fieldName.toString(), getFieldsValue())
@@ -44,12 +50,6 @@ const useForm = <T extends Record<string, any>>({
             form.setFields([{ name: path as string, errors: errors }])
           })
       }
-
-      const errors =
-        form
-          .getFieldsError()
-          .find(err => fieldName.every(n => err.name.includes(n)))?.errors ?? []
-      if (errors.length) form.setFields([{ name: fieldName, errors: [] }])
     },
     [form, getFieldsValue, hasValidationOnChange, schema]
   )
