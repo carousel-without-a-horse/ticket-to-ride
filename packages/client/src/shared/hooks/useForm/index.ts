@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import Form from 'antd/lib/form'
+import { Form } from '@/shared/ui/Form'
 import type { ChangeEvent, FormEventHandler } from 'react'
 import type * as Yup from 'yup'
 import type { FormListFieldData } from 'antd/lib/form'
