@@ -1,8 +1,8 @@
-import * as yup from 'yup'
+import { object, string } from 'yup'
 
-const schema = yup.object().shape({
-  login: yup.string().required('Пожалуйста, введите ваш логин'),
-  password: yup.string().required('Пожалуйста, введите ваш пароль'),
+const schema = object().shape({
+  login: string().required('Пожалуйста, введите ваш логин'),
+  password: string().required('Пожалуйста, введите ваш пароль'),
 })
 
 export default schema

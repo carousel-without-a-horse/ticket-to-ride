@@ -1,11 +1,11 @@
 import type { FormEventHandler } from 'react'
-import type * as Yup from 'yup'
+import type { AnyObject, ObjectSchema } from 'yup'
 import type { FormListFieldData, FormInstance } from 'antd/lib/form'
 
-export type TUserFormProps<T extends Yup.AnyObject> = {
+export type TUserFormProps<T extends AnyObject> = {
   name: string
   form?: FormInstance<T>
-  schema: Yup.ObjectSchema<T>
+  schema: ObjectSchema<T>
   onSubmit: (data: T | null, error: FormListFieldData | null) => void
   hasValidationOnChange?: boolean
 }

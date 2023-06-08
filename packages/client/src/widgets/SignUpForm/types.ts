@@ -1,4 +1,4 @@
-import type * as yup from 'yup'
+import type { InferType } from 'yup'
 import type schema from './schema'
 
-export type TUseForm = yup.InferType<typeof schema>
+export type TUseForm = InferType<typeof schema>

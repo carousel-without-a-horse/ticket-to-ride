@@ -1,12 +1,12 @@
 import { useCallback } from 'react'
 import { Form } from '@/shared/ui/Form'
 import type { ChangeEvent, FormEventHandler } from 'react'
-import type * as Yup from 'yup'
+import type { ValidationError } from 'yup'
 import type { FormListFieldData } from 'antd/lib/form'
 import type { FieldData } from 'rc-field-form/es/interface'
 import type { TUseFormReturn, TUserFormProps } from './types'
 
-const validateMapErrorToFields = (event: Yup.ValidationError) => {
+const validateMapErrorToFields = (event: ValidationError) => {
   return event.inner.map(({ path, errors }) => {
     const name = path
       ?.replace(/[[]/g, '.')
@@ -38,7 +38,7 @@ const useForm = <T extends Record<string, any>>({
       if (hasValidationOnChange) {
         schema
           .validateAt(fieldName.toString(), getFieldsValue())
-          .catch((errorEvent: Yup.ValidationError) => {
+          .catch((errorEvent: ValidationError) => {
             const { path, errors } = errorEvent
 
             form.setFields([{ name: path as string, errors: errors }])
@@ -62,7 +62,7 @@ const useForm = <T extends Record<string, any>>({
         .validate(data, { abortEarly: false })
         .then(() => onSubmit(data, null))
         .catch(event => {
-          const fields = validateMapErrorToFields(event as Yup.ValidationError)
+          const fields = validateMapErrorToFields(event as ValidationError)
           form.setFields(fields as FieldData[])
           onSubmit(null, event as FormListFieldData)
         })
