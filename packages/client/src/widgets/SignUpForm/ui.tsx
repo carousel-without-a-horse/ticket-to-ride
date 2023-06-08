@@ -9,7 +9,7 @@ import type { TUseForm } from './types'
 const SignUpForm = () => {
   const navigate = useNavigate()
 
-  const { formField } = useForm<TUseForm>({
+  const formProps = useForm<TUseForm>({
     name: 'sign-up',
     schema,
     onSubmit: data => {
@@ -20,7 +20,7 @@ const SignUpForm = () => {
   })
 
   return (
-    <Form layout="vertical" style={{ minWidth: '30vw' }} {...formField}>
+    <Form layout="vertical" style={{ minWidth: '30vw' }} {...formProps}>
       <FormInput label="Имя" name="firstName" />
       <FormInput label="Фамилия" name="secondName" />
       <FormInput label="Логин" name="login" />

@@ -10,7 +10,7 @@ import type { TUseForm } from './types'
 const SignInForm = () => {
   const navigate = useNavigate()
 
-  const { formField } = useForm<TUseForm>({
+  const formProps = useForm<TUseForm>({
     name: 'sign-in',
     schema,
     onSubmit: data => {
@@ -21,7 +21,7 @@ const SignInForm = () => {
   })
 
   return (
-    <Form layout="vertical" style={{ minWidth: '30vw' }} {...formField}>
+    <Form layout="vertical" style={{ minWidth: '30vw' }} {...formProps}>
       <FormInput label="Логин" name="login" />
       <FormInput label="Пароль" name="password" inputType="password" />
       <Button type="primary" htmlType="submit">

@@ -11,10 +11,8 @@ export type TUseFormProps<T extends AnyObject> = {
 }
 
 export type TUseFormReturn<T> = {
-  formField: {
-    name: string
-    form: FormInstance<T>
-    onFinish: (values: T) => void
-    onChange: FormEventHandler<HTMLFormElement>
-  }
+  name: string
+  form: FormInstance<T>
+  onFinish: (values: T) => void
+  onChange: FormEventHandler<HTMLFormElement>
 }

@@ -70,9 +70,7 @@ const useForm = <T extends Record<string, any>>({
     [form, onSubmit, schema]
   )
 
-  return {
-    formField: { name, form, onFinish, onChange },
-  }
+  return { name, form, onFinish, onChange }
 }
 
 export default useForm
