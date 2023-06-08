@@ -1,8 +1,38 @@
 import * as yup from 'yup'
+import patterns from '@/shared/constants/patterns'
 
 const schema = yup.object().shape({
-  firstName: yup.string().required('Пожалуйста, введите ваше имя'),
-  login: yup.string().required('Пожалуйста, введите ваш логин'),
+  firstName: yup
+    .string()
+    .required('Пожалуйста, введите ваше имя')
+    .matches(
+      patterns.latinCyrillicDash.regExp,
+      patterns.latinCyrillicDash.message
+    )
+    .matches(
+      patterns.firstLetterUpperCase.regExp,
+      patterns.firstLetterUpperCase.message
+    ),
+  secondName: yup
+    .string()
+    .required('Пожалуйста, введите вашу фамилию')
+    .matches(
+      patterns.latinCyrillicDash.regExp,
+      patterns.latinCyrillicDash.message
+    )
+    .matches(
+      patterns.firstLetterUpperCase.regExp,
+      patterns.firstLetterUpperCase.message
+    ),
+  login: yup
+    .string()
+    .required('Пожалуйста, введите ваш логин')
+    .min(3, 'Логин должен содержать минимум 3 символа')
+    .max(20, 'Логин должен содержать максимум 20 символов')
+    .matches(
+      patterns.lettersNumbersDashUnderscore.regExp,
+      patterns.lettersNumbersDashUnderscore.message
+    ),
   email: yup
     .string()
     .email('Некорретный формат электронной почты')
@@ -10,28 +40,24 @@ const schema = yup.object().shape({
   phone: yup
     .string()
     .required('Пожалуйста, введите ваш телефон')
-    .matches(
-      /^((8|\+7)[- ]?)?(\(?\d{3}\)?[- ]?)?[\d\- ]{7,10}$/,
-      'Некорректный формат номера телефона'
-    ),
+    .matches(patterns.phone.regExp, patterns.phone.message),
   password: yup
     .string()
     .required('Пожалуйста, введите ваш пароль')
-
     .min(8, 'Пароль должен содержать минимум 8 символов')
-    .max(32, 'Пароль должен содержать максимум 32 символа')
+    .max(40, 'Пароль должен содержать максимум 40 символа')
     .matches(
-      /[a-z]+/,
-      'Пароль должен содержать как минимум одну строчную букву'
+      patterns.atLeastOneLowerCase.regExp,
+      patterns.atLeastOneLowerCase.message
     )
     .matches(
-      /[A-Z]+/,
-      'Пароль должен содержать как минимум одну заглавную букву'
+      patterns.atLeastOneUpperCase.regExp,
+      patterns.atLeastOneUpperCase.message
     )
     .matches(/\d+/, 'Пароль должен содержать как минимум одну цифру')
     .matches(
-      /[!@#%^&*)(+=._-]/,
-      'Пароль должен содержать как минимум один спецсимвол'
+      patterns.atLeastOneSpecialChar.regExp,
+      patterns.atLeastOneSpecialChar.message
     ),
   passwordRepeat: yup
     .string()
