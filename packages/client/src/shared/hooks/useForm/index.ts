@@ -47,7 +47,9 @@ const useForm = <T extends Record<string, any>>({
           .catch((errorEvent: ValidationError) => {
             const { path, errors } = errorEvent
 
-            form.setFields([{ name: path as string, errors: errors }])
+            if (typeof path !== 'undefined') {
+              form.setFields([{ name: path, errors }])
+            }
           })
       }
     },
@@ -56,8 +58,6 @@ const useForm = <T extends Record<string, any>>({
 
   const onFinish = useCallback(
     (data: T) => {
-      if (!schema) return onSubmit(data, null)
-
       schema
         .validate(data, { abortEarly: false })
         .then(() => onSubmit(data, null))
@@ -73,4 +73,4 @@ const useForm = <T extends Record<string, any>>({
   return { name, form, onFinish, onChange }
 }
 
-export default useForm
+export { useForm }

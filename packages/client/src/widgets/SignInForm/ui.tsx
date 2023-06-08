@@ -3,7 +3,7 @@ import { Button } from '@/shared/ui/Button'
 import { ROUTES } from '@/app/router/config'
 import { useNavigate } from 'react-router-dom'
 import authServices from '@/shared/services/authServices'
-import useForm from '@/shared/hooks/useForm'
+import { useForm } from '@/shared/hooks'
 import schema from './schema'
 import type { TUseForm } from './types'
 
