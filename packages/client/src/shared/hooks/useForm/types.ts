@@ -2,7 +2,7 @@ import type { FormEventHandler } from 'react'
 import type { AnyObject, ObjectSchema } from 'yup'
 import type { FormListFieldData, FormInstance } from 'antd/lib/form'
 
-export type TUserFormProps<T extends AnyObject> = {
+export type TUseFormProps<T extends AnyObject> = {
   name: string
   form?: FormInstance<T>
   schema: ObjectSchema<T>

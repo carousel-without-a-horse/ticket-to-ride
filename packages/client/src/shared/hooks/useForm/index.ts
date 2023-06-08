@@ -4,7 +4,7 @@ import type { ChangeEvent, FormEventHandler } from 'react'
 import type { ValidationError } from 'yup'
 import type { FormListFieldData } from 'antd/lib/form'
 import type { FieldData } from 'rc-field-form/es/interface'
-import type { TUseFormReturn, TUserFormProps } from './types'
+import type { TUseFormReturn, TUseFormProps } from './types'
 
 const validateMapErrorToFields = (event: ValidationError) => {
   return event.inner.map(({ path, errors }) => {
@@ -24,7 +24,7 @@ const useForm = <T extends Record<string, any>>({
   schema,
   onSubmit,
   hasValidationOnChange = true,
-}: TUserFormProps<T>): TUseFormReturn<T> => {
+}: TUseFormProps<T>): TUseFormReturn<T> => {
   const [form] = Form.useForm<T>(propsForm)
   const { getFieldsValue } = form
 
