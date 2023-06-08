@@ -22,12 +22,12 @@ const ProfileForm = () => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const nextFormState = {
       ...form,
-      [e.target.name]: e.target.value,
+      [e.target.id]: e.target.value,
     }
     setForm(nextFormState)
   }
 
-  const onFinish = () => {
+  const handleFinish = () => {
     userServices
       .changeUserProfile(form)
       .then(console.debug)
@@ -45,12 +45,16 @@ const ProfileForm = () => {
   }
 
   return (
-    <Form layout="vertical" style={{ minWidth: '30vw' }} onFinish={onFinish}>
+    <Form
+      layout="vertical"
+      style={{ minWidth: '30vw' }}
+      onFinish={handleFinish}
+    >
       <Space direction="horizontal">
         <div>
           <FormInput
             initialValue={form.firstName}
-            onChange={e => handleChange(e)}
+            onInput={handleChange}
             label="Имя"
             name="firstName"
             rules={[
@@ -59,13 +63,13 @@ const ProfileForm = () => {
           />
           <FormInput
             initialValue={form.secondName}
-            onChange={e => handleChange(e)}
+            onInput={handleChange}
             label="Фамилия"
             name="secondName"
           />
           <FormInput
             initialValue={form.login}
-            onChange={e => handleChange(e)}
+            onInput={handleChange}
             label="Логин"
             name="login"
             rules={[
@@ -74,7 +78,7 @@ const ProfileForm = () => {
           />
           <FormInput
             initialValue={form.email}
-            onChange={e => handleChange(e)}
+            onInput={handleChange}
             label="Почта"
             name="email"
             type="email"
@@ -87,7 +91,7 @@ const ProfileForm = () => {
           />
           <FormInput
             initialValue={form.phone}
-            onChange={e => handleChange(e)}
+            onInput={handleChange}
             label="Телефон"
             name="phone"
             type="tel"
