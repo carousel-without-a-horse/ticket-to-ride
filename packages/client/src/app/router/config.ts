@@ -4,6 +4,7 @@ export enum ROUTES {
   rating = '/rating',
   signIn = '/sign-in',
   signUp = '/sign-up',
+  game = '/game',
   forum = '/forum',
   themeNew = '/theme/new',
   themeDetail = '/theme/:id',
