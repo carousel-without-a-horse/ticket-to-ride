@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import { Form } from '@/shared/ui/Form'
+import type { FormListFieldData } from '@/shared/ui/Form'
 import type { ChangeEvent, FormEventHandler } from 'react'
-import type { ValidationError } from 'yup'
-import type { FormListFieldData } from 'antd/lib/form'
+import { ValidationError } from 'yup'
 import type { FieldData } from 'rc-field-form/es/interface'
 import type { TUseFormReturn, TUseFormProps } from './types'
 
@@ -62,8 +62,10 @@ const useForm = <T extends Record<string, any>>({
         .validate(data, { abortEarly: false })
         .then(() => onSubmit(data, null))
         .catch(event => {
-          const fields = validateMapErrorToFields(event as ValidationError)
-          form.setFields(fields as FieldData[])
+          if (event instanceof ValidationError) {
+            const fields = validateMapErrorToFields(event)
+            form.setFields(fields as FieldData[])
+          }
           onSubmit(null, event as FormListFieldData)
         })
     },
