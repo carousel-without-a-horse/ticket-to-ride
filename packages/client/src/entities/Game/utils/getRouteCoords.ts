@@ -1,16 +1,18 @@
-import { cities } from './cities'
-import { gameSetup } from './gameSetup'
+import { cities } from '@/widgets/Game/data/cities'
+import { gameSetup } from '@/widgets/Game/data/gameSetup'
 
-import type { TCityKey } from './cities'
+import type { TCityKey } from '@/widgets/Game/data/cities'
 
 // Определение координат крайних точек прямой
 // учитывая радиус города
 const getRouteCoords = (nearbyCities: TCityKey[]) => {
   // Определяем координаты городов
-  const x1 = cities[nearbyCities[0]].x
-  const y1 = cities[nearbyCities[0]].y
-  const x2 = cities[nearbyCities[1]].x
-  const y2 = cities[nearbyCities[1]].y
+  const firstCity = nearbyCities[0]
+  const secondCity = nearbyCities[1]
+  const x1 = cities[firstCity].x
+  const y1 = cities[firstCity].y
+  const x2 = cities[secondCity].x
+  const y2 = cities[secondCity].y
 
   const routeLength = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
 

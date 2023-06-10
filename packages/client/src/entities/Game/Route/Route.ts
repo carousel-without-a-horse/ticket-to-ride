@@ -1,10 +1,11 @@
 import { colors } from '@/app/providers/colors'
 
-import getRouteCoords from '../getRouteCoords'
-import { gameSetup } from '../gameSetup'
+import getRouteCoords from '../utils/getRouteCoords'
+import { gameSetup } from '../../../widgets/Game/data/gameSetup'
 
-import type { IRoute } from '../routes'
-import getDistanceToLine from '../getDistanceToLine'
+import type { IRoute } from '../../../widgets/Game/data/routes'
+import getDistanceToLine from '../utils/getDistanceToLine'
+import { renderTrain } from '../utils/renderTrain'
 
 interface IPassedProps extends IRoute {
   name: string
@@ -18,9 +19,10 @@ interface IProps extends IPassedProps {
   color: string
 }
 
-class Route {
+export class Route {
   props: Required<IProps>
-  mouseover = false
+  isMouseover = false
+  isRouteLaid = false
   canvas?: HTMLCanvasElement
   ctx?: CanvasRenderingContext2D
 
@@ -66,14 +68,17 @@ class Route {
     ctx.beginPath()
     ctx.moveTo(currentX, currentY)
 
-    // if (this.mouseover) {
-    //   const endX = x2 - gapDX
-    //   const endY = y2 - gapDY
-
-    //   ctx.lineTo(endX, endY)
-    // } else {
     // Рисование сегментов пути
     for (let i = 0; i < segmentsCount; i++) {
+      // Рисуем паровозики, если маршрут проложен
+      if (this.isRouteLaid) {
+        const segmentCenterX = currentX + segmentDX / 2
+        const segmentCenterY = currentY + segmentDY / 2
+
+        const angle = Math.atan2(dY, dX)
+        renderTrain(ctx, { x: segmentCenterX, y: segmentCenterY }, angle)
+      }
+
       const segmentEndX = currentX + segmentDX
       const segmentEndY = currentY + segmentDY
 
@@ -84,7 +89,6 @@ class Route {
 
       ctx.moveTo(currentX, currentY)
     }
-    // }
 
     ctx.strokeStyle = this.props.color
     ctx.lineWidth = gameSetup.route.width
@@ -94,10 +98,12 @@ class Route {
 
   changeColor(color: string) {
     this.props.color = color
-    if (this.ctx && this.canvas) this.draw(this.ctx, this.canvas)
+    if (this.ctx && this.canvas) {
+      this.draw(this.ctx, this.canvas)
+    }
   }
 
-  onHover(mouseX: number, mouseY: number) {
+  isMouseOnRoute(mouseX: number, mouseY: number) {
     const x1 = this.props.x1
     const y1 = this.props.y1
     const x2 = this.props.x2
@@ -105,20 +111,33 @@ class Route {
 
     const distance = getDistanceToLine(mouseX, mouseY, x1, y1, x2, y2)
 
-    if (distance <= gameSetup.route.hoverDistance) {
-      if (!this.mouseover) {
-        this.mouseover = true
-        this.changeColor(colors.game.black)
+    return distance <= gameSetup.route.hoverDistance
+  }
 
-        if (this.canvas) this.canvas.style.cursor = 'pointer'
+  onHover(mouseX: number, mouseY: number) {
+    if (!this.canvas) return
+
+    if (this.isMouseOnRoute(mouseX, mouseY) && !this.isRouteLaid) {
+      if (!this.isMouseover) {
+        this.isMouseover = true
+        this.changeColor(gameSetup.route.hoverColor)
+
+        this.canvas.style.cursor = 'pointer'
       }
-    } else if (this.mouseover) {
-      this.mouseover = false
+    } else if (this.isMouseover) {
+      this.isMouseover = false
       this.changeColor(colors.game[this.props.paths[0]])
 
-      if (this.canvas) this.canvas.style.cursor = 'default'
+      this.canvas.style.cursor = 'default'
+    }
+  }
+
+  onClick(mouseX: number, mouseY: number) {
+    if (this.isMouseOnRoute(mouseX, mouseY)) {
+      if (!this.isRouteLaid && this.ctx && this.canvas) {
+        this.isRouteLaid = true
+        this.draw(this.ctx, this.canvas)
+      }
     }
   }
 }
-
-export default Route

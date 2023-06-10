@@ -12,9 +12,9 @@ const getDistanceToLine = (
   const D = y2 - y1
 
   const dot = A * C + B * D
-  const len_sq = C * C + D * D
+  const lenSq = C * C + D * D
   let param = -1
-  if (len_sq != 0) param = dot / len_sq
+  if (lenSq != 0) param = dot / lenSq
 
   let xx, yy
 

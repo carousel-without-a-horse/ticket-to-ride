@@ -1,25 +1,21 @@
 import { colors } from '@/app/providers/colors'
+
+import { gameSetup } from '@/widgets/Game/data/gameSetup'
+
 import { IconCity } from '@/shared/images/game'
-import { gameSetup } from '../gameSetup'
 
-interface IProps {
-  x: number
-  y: number
-  name: string
-  radius?: number
-  color?: string
-}
+import type { IProps } from './types'
 
-class City {
+export class City {
   props: Required<IProps>
-  mouseover = false
+  isMouseover = false
   ctx?: CanvasRenderingContext2D
 
   constructor(props: IProps) {
     this.props = {
+      radius: gameSetup.city.radius,
+      color: colors.game.gray,
       ...props,
-      radius: props.radius || gameSetup.city.radius,
-      color: props.color || colors.game.gray,
     }
   }
 
@@ -35,17 +31,11 @@ class City {
       const dx = x - radius / 2
       const dy = y - radius / 2
 
-      // ctx.clearRect(x - radius - 2, y - radius - 2, radius * 2 + 4, radius * 2 + 4)
-
       ctx.beginPath()
       ctx.arc(x, y, radius, 0, 2 * Math.PI)
       ctx.fillStyle = this.props.color
       ctx.lineWidth = 1
       ctx.strokeStyle = colors.game.black
-      // ctx.shadowColor = 'rgba(0, 0, 0, 0.96)' // цвет тени
-      // ctx.shadowOffsetX = 0 // смещение тени по оси X
-      // ctx.shadowOffsetY = 0 // смещение тени по оси Y
-      // ctx.shadowBlur = 2 // радиус размытия тени
       ctx.fill()
       ctx.stroke()
       ctx.closePath()
@@ -69,17 +59,16 @@ class City {
     )
 
     if (distance <= radius) {
-      if (!this.mouseover) {
-        this.mouseover = true
-        this.changeColor(colors.game.red)
+      if (!this.isMouseover) {
+        this.isMouseover = true
+        this.changeColor(gameSetup.city.hoverColor)
 
+        // TODO: отображать попап с названием города
         console.log('Hover city:', this.props.name)
       }
-    } else if (this.mouseover) {
-      this.mouseover = false
+    } else if (this.isMouseover) {
+      this.isMouseover = false
       this.changeColor(colors.game.gray)
     }
   }
 }
-
-export default City

@@ -1,82 +1,61 @@
-import { useEffect, useReducer, useRef } from 'react'
-import { cities } from './cities'
-import { gameSetup } from './gameSetup'
-import { routes } from './routes'
-import { renderTrain } from './renderTrain'
-import City from './elements/City'
-import Route from './elements/Route'
+import { Draft } from './Draft'
+import { Players } from './Players'
+import { Map } from './Map'
 
-// const initialState = {
-//   routes
-// }
+import type { CSSProperties } from 'react'
 
-// const reducer = (state: typeof initialState, action) => {
-//   switch (action.type) {
-//     case 'highLightRoute':
-//       return {
-//         ...state,
-//         routes: {
-//           ...routes,
-//           routes[action.payload.routeName]: action.payload.routeBody
-//         }
-//       }
+import { colors } from '@/app/providers/colors'
 
-//     default:
-//       break;
-//   }
-// }
+const styles: Record<string, CSSProperties> = {
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '1180px',
+    height: '900px',
+    padding: '10px',
+    maxWidth: '1180px',
+    backgroundColor: colors.game.background,
+    borderRadius: 8,
+  },
+  bottomPanel: {
+    height: 150,
+    backgroundColor: 'green',
+  },
+}
+
+const mainPanelStyles: Record<string, CSSProperties> = {
+  wrapper: {
+    display: 'flex',
+    height: 720,
+    marginBottom: 10,
+  },
+  leftColumn: {
+    width: 1000,
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    marginRight: 10,
+  },
+}
 
 export const Game = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  return (
+    <div style={styles.wrapper}>
+      <div style={mainPanelStyles.wrapper}>
+        <div style={mainPanelStyles.leftColumn}>
+          <Players />
 
-  const citiesElements = useRef(
-    Object.entries(cities).map(
-      ([name, coords]) =>
-        new City({
-          name,
-          x: coords.x,
-          y: coords.y,
-        })
-    )
+          <Map />
+        </div>
+
+        <Draft />
+      </div>
+
+      <div style={styles.bottomPanel}>
+        <div>Menu</div>
+        <div>Routes cards</div>
+        <div>Hand cards</div>
+      </div>
+    </div>
   )
-
-  const routesElements = useRef(
-    Object.entries(routes).map(
-      ([name, route]) =>
-        new Route({
-          ...route,
-          name,
-        })
-    )
-  )
-
-  // const [state, dispatch] = useReducer(reducer, initialState);
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-
-    if (canvas) {
-      const ctx = canvas.getContext('2d')
-
-      if (ctx) {
-        // Рисуем города
-        citiesElements.current.forEach(city => city.draw(ctx))
-
-        // Рисуем маршруты
-        routesElements.current.forEach(route => route.draw(ctx, canvas))
-      }
-
-      canvas.addEventListener('mousemove', event => {
-        // Получаем координаты курсора мыши
-        const mouseX = event.clientX - canvas.offsetLeft
-        const mouseY = event.clientY - canvas.offsetTop
-
-        citiesElements.current.forEach(city => city.onHover(mouseX, mouseY))
-
-        routesElements.current.forEach(route => route.onHover(mouseX, mouseY))
-      })
-    }
-  }, [])
-
-  return <canvas ref={canvasRef} width={1000} height={630} />
 }
