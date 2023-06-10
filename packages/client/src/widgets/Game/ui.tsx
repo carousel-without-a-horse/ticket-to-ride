@@ -1,6 +1,6 @@
-import { Draft } from './Draft'
-import { Players } from './Players'
-import { Map } from './Map'
+import { Draft } from './ui/Draft'
+import { Players } from './ui/Players'
+import { Map } from './ui/Map'
 
 import type { CSSProperties } from 'react'
 
