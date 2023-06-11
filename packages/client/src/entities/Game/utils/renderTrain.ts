@@ -42,8 +42,7 @@ export const renderTrain = (
     ctx.fill()
 
     // Рисуем картинку паровозика
-    const imgWidth = gameSetup.train.imgWidth
-    const imgHeight = gameSetup.train.imgHeight
+    const { imgWidth, imgHeight } = gameSetup.train
 
     const imgDX = imgWidth / 2
     const imgDY = imgHeight / 2

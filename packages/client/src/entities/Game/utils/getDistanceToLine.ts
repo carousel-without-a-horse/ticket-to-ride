@@ -13,8 +13,7 @@ const getDistanceToLine = (
 
   const dot = A * C + B * D
   const lenSq = C * C + D * D
-  let param = -1
-  if (lenSq != 0) param = dot / lenSq
+  const param = lenSq === 0 ? -1 : dot / lenSq
 
   let xx, yy
 
