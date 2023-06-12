@@ -1,11 +1,12 @@
+// Получение расстояния от точки до прямой
 const getDistanceToLine = (
-  x: number,
-  y: number,
-  x1: number,
-  y1: number,
-  x2: number,
-  y2: number
-) => {
+  x: number, // х координата точки
+  y: number, // у координата точки
+  x1: number, // х координата начальной точки прямой
+  y1: number, // у координата начальной точки прямой
+  x2: number, // х координата конечной точки прямой
+  y2: number // у координата конечной точки прямой
+): number => {
   const A = x - x1
   const B = y - y1
   const C = x2 - x1

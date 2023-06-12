@@ -3,9 +3,16 @@ import { gameSetup } from '@/widgets/Game/data/gameSetup'
 
 import type { TCityKey } from '@/widgets/Game/data/cities'
 
+interface IReturn {
+  x1: number
+  y1: number
+  x2: number
+  y2: number
+}
+
 // Определение координат крайних точек прямой
 // учитывая радиус города
-const getRouteCoords = (nearbyCities: TCityKey[]) => {
+const getRouteCoords = (nearbyCities: TCityKey[]): IReturn => {
   // Определяем координаты городов
   const firstCity = nearbyCities[0]
   const secondCity = nearbyCities[1]

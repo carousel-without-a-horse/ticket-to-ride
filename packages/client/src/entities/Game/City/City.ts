@@ -8,8 +8,8 @@ import type { IProps } from './types'
 
 export class City {
   props: Required<IProps>
-  isMouseover = false
-  ctx?: CanvasRenderingContext2D
+  private isMouseover = false
+  private ctx?: CanvasRenderingContext2D
 
   constructor(props: IProps) {
     this.props = {

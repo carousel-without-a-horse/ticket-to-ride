@@ -1,11 +1,11 @@
 import { colors } from '@/app/providers/colors'
 
-import getRouteCoords from '../utils/getRouteCoords'
-import { gameSetup } from '../../../widgets/Game/data/gameSetup'
+import { gameSetup } from '@/widgets/Game/data/gameSetup'
+import type { IRoute } from '@/widgets/Game/data/routes'
 
-import type { IRoute } from '../../../widgets/Game/data/routes'
-import getDistanceToLine from '../utils/getDistanceToLine'
-import { renderTrain } from '../utils/renderTrain'
+import getRouteCoords from '@/entities/Game/utils/getRouteCoords'
+import getDistanceToLine from '@/entities/Game/utils/getDistanceToLine'
+import { renderTrain } from '@/entities/Game/utils/renderTrain'
 
 interface IPassedProps extends IRoute {
   name: string
@@ -20,11 +20,11 @@ interface IProps extends IPassedProps {
 }
 
 export class Route {
-  props: Required<IProps>
-  isMouseover = false
-  isRouteLaid = false
-  canvas?: HTMLCanvasElement
-  ctx?: CanvasRenderingContext2D
+  private props: Required<IProps>
+  private isMouseover = false
+  private isRouteLaid = false
+  private canvas?: HTMLCanvasElement
+  private ctx?: CanvasRenderingContext2D
 
   constructor(passedProps: IPassedProps) {
     const routeCoords = getRouteCoords(passedProps.cities)
@@ -40,10 +40,7 @@ export class Route {
     this.ctx = ctx
     this.canvas = canvas
 
-    const x1 = this.props.x1
-    const y1 = this.props.y1
-    const x2 = this.props.x2
-    const y2 = this.props.y2
+    const { x1, y1, x2, y2 } = this.props
 
     const dX = x2 - x1
     const dY = y2 - y1
@@ -104,10 +101,7 @@ export class Route {
   }
 
   isMouseOnRoute(mouseX: number, mouseY: number) {
-    const x1 = this.props.x1
-    const y1 = this.props.y1
-    const x2 = this.props.x2
-    const y2 = this.props.y2
+    const { x1, y1, x2, y2 } = this.props
 
     const distance = getDistanceToLine(mouseX, mouseY, x1, y1, x2, y2)
 

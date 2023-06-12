@@ -6,7 +6,7 @@ export const renderTrain = (
   ctx: CanvasRenderingContext2D,
   { x, y }: { x: number; y: number },
   angle: number
-) => {
+): void => {
   const img = new Image()
   img.src = IconTrain
   img.onload = () => {
