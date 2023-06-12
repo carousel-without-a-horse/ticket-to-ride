@@ -14,5 +14,9 @@ export default defineConfig({
   define: {
     __SERVER_PORT__: process.env.SERVER_PORT,
   },
-  plugins: [react(), tsconfigPaths(), VitePWA({ registerType: 'autoUpdate' })],
+  plugins: [
+    react(),
+    tsconfigPaths(),
+    VitePWA({ registerType: 'autoUpdate', devOptions: { enabled: true } }),
+  ],
 })
