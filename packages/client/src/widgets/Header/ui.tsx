@@ -1,43 +1,50 @@
 import type { TMenuSelectEventHandler } from '@/shared/ui/Menu'
 import { Header as LayoutHeader } from '@/shared/ui/Layout'
-
+import { Space } from '@/shared/ui/Space'
 import { Menu } from '@/shared/ui/Menu'
-import { ThemeSwitcher } from '@/widgets/ThemeSwitcher'
+
+import { ThemeSwitcher } from '@/features/ThemeSwitcher'
+import { LangSelect } from '@/features/LangSelect'
+
 import { theme } from 'antd'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ROUTES } from '@/app/router/config'
 import { useEffect, useState } from 'react'
+import { t } from 'i18next'
+import { useTranslateOutside } from '@/shared/hooks'
 
-const items = [
+const getItems = () => [
   {
     key: ROUTES.root,
-    label: 'Guide',
+    label: t('pages.guide'),
   },
   {
     key: ROUTES.about,
-    label: 'Об игре',
+    label: t('pages.about'),
   },
   {
     key: ROUTES.rating,
-    label: 'Рейтинг игроков',
+    label: t('pages.rating'),
   },
   {
     key: ROUTES.forum,
-    label: 'Форум',
+    label: t('pages.forum'),
   },
   {
     key: ROUTES.signIn,
-    label: 'Войти',
+    label: t('pages.login'),
   },
   {
     key: ROUTES.signUp,
-    label: 'Регистрация',
+    label: t('pages.signup'),
   },
 ]
 export const Header = () => {
   const { token } = theme.useToken()
   const navigate = useNavigate()
   const location = useLocation()
+  const menuItems = useTranslateOutside(getItems)
+
   const [selectedMenuItem, setSelectedMenuItem] = useState<string>(
     location.pathname
   )
@@ -69,11 +76,14 @@ export const Header = () => {
         <Menu
           mode="horizontal"
           selectedKeys={[selectedMenuItem]}
-          items={items}
+          items={menuItems}
           style={{ flexGrow: 1, justifyContent: 'flex-end', borderBottom: 0 }}
           onSelect={handleSelect}
         />
-        <ThemeSwitcher />
+        <Space>
+          <ThemeSwitcher />
+          <LangSelect />
+        </Space>
       </div>
     </LayoutHeader>
   )

@@ -1,13 +1,14 @@
+import { t } from 'i18next'
 import { Link } from 'react-router-dom'
 import type { TTableColumnsType, TTableColumnType } from '@/shared/ui/Table'
 import { generateUrl } from '@/shared/utils/generateUrl'
 import { ROUTES } from '@/app/router/config'
+import type { TTheme } from '@/entities/theme'
 import { TableActions } from '../ui/TableActions'
-import type { TDataType } from '../types'
 
-export const columnsDefault: TTableColumnsType<TDataType> = [
+export const getColumnsDefault: () => TTableColumnsType<TTheme> = () => [
   {
-    title: 'Тема',
+    title: t('forum.table.header.theme'),
     dataIndex: 'theme',
     render: (_, record) => {
       const url = generateUrl(ROUTES.themeDetail, { id: record.id })
@@ -15,16 +16,16 @@ export const columnsDefault: TTableColumnsType<TDataType> = [
     },
   },
   {
-    title: 'Автор',
+    title: t('forum.table.header.author'),
     dataIndex: 'author',
   },
   {
-    title: 'Ответы',
+    title: t('forum.table.header.commentsCount'),
     dataIndex: 'commentsCount',
   },
 ]
 
-export const columnActions: TTableColumnType<TDataType> = {
+export const columnActions: TTableColumnType<TTheme> = {
   title: '',
   dataIndex: 'actions',
   render: (_, record) => <TableActions id={record.id} />,

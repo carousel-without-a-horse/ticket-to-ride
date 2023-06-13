@@ -1,16 +1,19 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { FC, Key } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { PlusCircleOutlined } from '@ant-design/icons'
 import type { TTableColumnsType } from '@/shared/ui/Table'
-import { Table } from '@/shared/ui/Table'
 import { Button } from '@/shared/ui/Button'
 import { Space } from '@/shared/ui/Space'
+import { useTranslateOutside } from '@/shared/hooks'
+import { themeServices } from '@/entities/theme'
+import { QueryTable } from '@/features/QueryTable'
+import type { TTheme } from '@/entities/theme'
 import { ROUTES } from '@/app/router/config'
 import { OperationsWithSelected } from './ui/OperationsWithSelected'
-import { columnsDefault, columnActions } from './utils/columns'
-import type { TThemes, TDataType } from './types'
-import { dataSource } from './data'
+import { getColumnsDefault, columnActions } from './utils'
+import type { TThemes } from './types'
 
 const iconPlus = <PlusCircleOutlined rev={undefined} />
 const style = {
@@ -19,9 +22,11 @@ const style = {
 }
 
 export const Themes: FC<TThemes> = ({ type }) => {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const [isMyThemes, setIsMyThemes] = useState(false)
   const [selectedItem, setSelectedItem] = useState<string[]>([])
+  const columnsDefault = useTranslateOutside(getColumnsDefault)
 
   useEffect(() => {
     setIsMyThemes(type === 'my')
@@ -31,12 +36,9 @@ export const Themes: FC<TThemes> = ({ type }) => {
     if (!isMyThemes) return
     return {
       type: 'checkbox' as const,
-      onChange: (selectedRowKeys: Key[], data: TDataType[]) => {
+      onChange: (selectedRowKeys: Key[], data: TTheme[]) => {
         setSelectedItem(data.map(item => item.id))
       },
-      getCheckboxProps: (record: TDataType) => ({
-        id: record.id,
-      }),
     }
   }, [isMyThemes])
 
@@ -44,9 +46,9 @@ export const Themes: FC<TThemes> = ({ type }) => {
     navigate(ROUTES.themeNew)
   }, [navigate])
 
-  const columns = useMemo<TTableColumnsType<TDataType>>(() => {
+  const columns = useMemo<TTableColumnsType<TTheme>>(() => {
     return isMyThemes ? [...columnsDefault, columnActions] : columnsDefault
-  }, [isMyThemes])
+  }, [columnsDefault, isMyThemes])
 
   return (
     <>
@@ -55,14 +57,14 @@ export const Themes: FC<TThemes> = ({ type }) => {
           <OperationsWithSelected selectedItems={selectedItem} />
         )}
         <Button type="primary" icon={iconPlus} onClick={handleAddTheme}>
-          Добавить тему
+          {t('forum.addTheme')}
         </Button>
       </Space>
-      <Table
+      <QueryTable
         rowSelection={rowSelection}
-        dataSource={dataSource}
+        queryKey={['themes']}
+        queryFn={themeServices.getAll}
         columns={columns}
-        pagination={false}
         style={style.table}
       />
     </>

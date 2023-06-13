@@ -1,0 +1,56 @@
+{
+  "pages": {
+    "guide": "Guide",
+    "about": "About",
+    "rating": "Rating",
+    "forum": "Forum",
+    "login": "Login",
+    "signup": "Signup"
+  },
+  "forum": {
+    "title": "Forum",
+    "themes": {
+      "my": "My themes",
+      "all": "All themes"
+    },
+    "addTheme": "Add theme",
+    "table": {
+      "header": {
+        "theme": "Theme",
+        "author": "Author",
+        "commentsCount": "Answers"
+      }
+    }
+  },
+  "theme": {
+    "info": {
+      "author": "Author"
+    },
+    "editTheme": "Edit",
+    "titles": {
+      "newTheme": "New theme",
+      "editTheme": "Edit theme"
+    },
+    "form": {
+      "name": "Name",
+      "tags": "Tags",
+      "content": "Content",
+      "save": "Save",
+      "create": "Create",
+      "cancel": "Cancel"
+    }
+  },
+  "reply": {
+    "submit": "Reply",
+    "cancel": "Cancel"
+  },
+  "table": {
+    "loader": {
+      "more": "Loading more...",
+      "new": "Load Newer",
+      "finish": "Nothing more to load",
+      "error": "Data not loaded, please try again or contact support",
+      "retry": "Repeat request"
+    }
+  }
+}

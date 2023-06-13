@@ -1,4 +1,5 @@
 import type { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/shared/ui/Button'
 import { Space } from '@/shared/ui/Space'
 import { useToggle } from '@/shared/hooks'
@@ -10,6 +11,7 @@ const styles = {
 }
 export const Reply: FC<TReply> = ({ isOpen = false, style, onChange }) => {
   const { state: isShow, toggle: toggleShow, setFalse } = useToggle(isOpen)
+  const { t } = useTranslation()
 
   if (isShow) {
     return (
@@ -17,9 +19,9 @@ export const Reply: FC<TReply> = ({ isOpen = false, style, onChange }) => {
         <FormTextarea name="value" />
         <Space>
           <Button type="primary" htmlType="submit">
-            Ответить
+            {t('reply.submit')}
           </Button>
-          <Button onClick={setFalse}>Отменить</Button>
+          <Button onClick={setFalse}>{t('reply.cancel')}</Button>
         </Space>
       </Form>
     )
@@ -27,7 +29,7 @@ export const Reply: FC<TReply> = ({ isOpen = false, style, onChange }) => {
 
   return (
     <Button style={styles.button} onClick={toggleShow}>
-      Ответить
+      {t('reply.submit')}
     </Button>
   )
 }
