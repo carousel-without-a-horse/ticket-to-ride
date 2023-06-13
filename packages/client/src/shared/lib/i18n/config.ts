@@ -4,7 +4,7 @@ import { initReactI18next } from 'react-i18next'
 import ru from './locales/ru.json'
 import en from './locales/en.json'
 
-await use(initReactI18next).init({
+void use(initReactI18next).init({
   compatibilityJSON: 'v3',
   resources: {
     ru: { translation: ru },

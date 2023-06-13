@@ -22,14 +22,14 @@ app.get('/themes', (req, res) => {
 
   setTimeout(() => {
     res.json(data)
-  }, 2000)
+  }, 1000)
 })
 
 app.get('/themes/:id', (_, res) => {
   const data = getMockTheme()
   setTimeout(() => {
     res.json(data)
-  }, 2000)
+  }, 1000)
 })
 
 app.listen(port, () => {
