@@ -16,7 +16,7 @@
     "addTheme": "Добавить тему",
     "table": {
       "header": {
-        "theme": "Темы",
+        "name": "Темы",
         "author": "Автор",
         "commentsCount": "Ответы"
       }

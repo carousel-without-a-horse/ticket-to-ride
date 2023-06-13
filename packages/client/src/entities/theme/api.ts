@@ -12,7 +12,7 @@ export const themeServices: TThemeService = {
       })
       .then(res => res.data)
   },
-  item: async ({ id }) => {
+  getItem: async ({ id }) => {
     return await httpService
       .get<TThemeDetail>(`/themes/${id}`)
       .then(res => res.data)

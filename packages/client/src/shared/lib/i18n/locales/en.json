@@ -16,7 +16,7 @@
     "addTheme": "Add theme",
     "table": {
       "header": {
-        "theme": "Theme",
+        "name": "Theme",
         "author": "Author",
         "commentsCount": "Answers"
       }

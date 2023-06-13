@@ -15,9 +15,9 @@ export const withTheme = (component: () => ReactNode) =>
         theme={{
           algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
           token: {
-            colorBgLayout: isDarkMode ? '#222' : '#3993DD',
+            colorBgLayout: isDarkMode ? '#222222' : '#3993DD',
             colorPrimary: isDarkMode ? '#29E7CD' : '#0062CC',
-            colorBgContainer: isDarkMode ? '#000' : '#fff',
+            colorBgContainer: isDarkMode ? '#000000' : '#FFFFFF',
           },
         }}
       >

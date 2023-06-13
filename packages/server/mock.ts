@@ -16,7 +16,7 @@ export const getMockThemes = (id?: number) => {
     .map((_, i) => {
       return {
         id: i + cursor,
-        theme: 'Theme ' + (i + cursor) + ` (server time: ${Date.now()})`,
+        name: 'Theme ' + (i + cursor) + ` (server time: ${Date.now()})`,
         author: generateName(),
         commentsCount: generateCommentsCount(),
       }
@@ -29,7 +29,6 @@ export const getMockThemes = (id?: number) => {
 
 export const getMockTheme = () => ({
   id: Date.now(),
-  theme: 'Theme',
   author: {
     name: generateName(),
     id: Date.now(),

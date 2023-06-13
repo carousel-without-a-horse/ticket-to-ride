@@ -6,6 +6,7 @@ import { Table } from '@/shared/ui/Table'
 import { Space } from '@/shared/ui/Space'
 import { Button } from '@/shared/ui/Button'
 import type { TQueryTableProps, TDefaultData } from './types'
+import { getFetchingDescription } from './utils'
 
 export const QueryTable = <Data extends TDefaultData>({
   queryKey,
@@ -57,15 +58,13 @@ export const QueryTable = <Data extends TDefaultData>({
         </Space>
       )
     }
-    return (
-      <span ref={ref}>
-        {isFetchingNextPage
-          ? t('table.loader.more')
-          : hasNextPage
-          ? t('table.loader.new')
-          : t('table.loader.finish')}
-      </span>
+
+    const fetchingDescription = getFetchingDescription(
+      isFetchingNextPage,
+      hasNextPage
     )
+
+    return <span ref={ref}>{fetchingDescription}</span>
   }
 
   return (

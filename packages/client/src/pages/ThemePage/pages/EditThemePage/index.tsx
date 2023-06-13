@@ -21,7 +21,7 @@ const EditThemePage = () => {
 
   const { data, isLoading } = useQuery({
     queryKey: ['theme', id],
-    queryFn: () => themeServices.item({ id: id!.toString() }),
+    queryFn: () => themeServices.getItem({ id: id!.toString() }),
   })
 
   if (isLoading) {

@@ -34,7 +34,7 @@ const ThemePage = () => {
 
   const { data, isLoading } = useQuery({
     queryKey: ['theme', id],
-    queryFn: () => themeServices.item({ id: id!.toString() }),
+    queryFn: () => themeServices.getItem({ id: id!.toString() }),
   })
 
   const handleEdit = useCallback(() => {
@@ -52,7 +52,7 @@ const ThemePage = () => {
   }
 
   return (
-    <Card title={data.theme}>
+    <Card title={data.name}>
       <p>
         {t('theme.info.author')}: {data.author.name}
       </p>

@@ -2,14 +2,14 @@ import type { TInfiniteQuery } from '@/shared/types/query'
 
 export type TTheme = {
   id: string
-  theme: string
+  name: string
   author: string
   commentsCount: number
 }
 
 export type TThemeDetail = {
   id: string
-  theme: string
+  name: string
   author: {
     id: string
     name: string
@@ -20,5 +20,5 @@ export type TThemeDetail = {
 
 export type TThemeService = {
   getAll: (props: { pageParam?: number }) => Promise<TInfiniteQuery<TTheme>>
-  item: (props: { id: string }) => Promise<TThemeDetail>
+  getItem: (props: { id: string }) => Promise<TThemeDetail>
 }

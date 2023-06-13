@@ -25,7 +25,7 @@ export const Themes: FC<TThemes> = ({ type }) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [isMyThemes, setIsMyThemes] = useState(false)
-  const [selectedItem, setSelectedItem] = useState<string[]>([])
+  const [selectedItems, setSelectedItems] = useState<string[]>([])
   const columnsDefault = useTranslateOutside(getColumnsDefault)
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export const Themes: FC<TThemes> = ({ type }) => {
     return {
       type: 'checkbox' as const,
       onChange: (selectedRowKeys: Key[], data: TTheme[]) => {
-        setSelectedItem(data.map(item => item.id))
+        setSelectedItems(data.map(item => item.id))
       },
     }
   }, [isMyThemes])
@@ -53,8 +53,8 @@ export const Themes: FC<TThemes> = ({ type }) => {
   return (
     <>
       <Space style={style.wrapper}>
-        {isMyThemes && selectedItem.length > 0 && (
-          <OperationsWithSelected selectedItems={selectedItem} />
+        {isMyThemes && selectedItems.length > 0 && (
+          <OperationsWithSelected selectedItems={selectedItems} />
         )}
         <Button type="primary" icon={iconPlus} onClick={handleAddTheme}>
           {t('forum.addTheme')}
