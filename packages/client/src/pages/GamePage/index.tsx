@@ -12,7 +12,7 @@ const styles: Record<string, CSSProperties> = {
   },
 }
 
-const AboutPage = () => {
+const GamePage = () => {
   return (
     <Layout style={styles.layout}>
       <Game />
@@ -20,4 +20,4 @@ const AboutPage = () => {
   )
 }
 
-export default AboutPage
+export default GamePage
