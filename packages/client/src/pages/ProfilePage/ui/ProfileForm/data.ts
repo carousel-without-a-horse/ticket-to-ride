@@ -1,4 +1,6 @@
-export const user = {
+import type { TUser } from './type'
+
+export const user: TUser = {
   id: 123,
   first_name: 'Petya',
   second_name: 'Pupkin',
