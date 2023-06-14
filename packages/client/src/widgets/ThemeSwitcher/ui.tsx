@@ -1,6 +1,7 @@
+import { BulbFilled, BulbOutlined } from '@ant-design/icons'
+
 import { Switch } from '@/shared/ui/Switch'
 import { useThemeContext } from '@/shared/contexts'
-import { BulbFilled, BulbOutlined } from '@ant-design/icons'
 
 const iconBulbOutlined = <BulbOutlined rev={undefined} />
 const iconBulbFilled = <BulbFilled rev={undefined} />

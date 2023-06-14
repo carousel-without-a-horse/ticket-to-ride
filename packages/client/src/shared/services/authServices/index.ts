@@ -1,4 +1,5 @@
 import { httpService } from '@/shared/services/httpService'
+
 import type { TAuthService } from './types'
 
 httpService.defaults.baseURL = '/api/auth'

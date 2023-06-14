@@ -1,9 +1,11 @@
 import { useMemo } from 'react'
-import type { FC } from 'react'
 import { DownOutlined } from '@ant-design/icons'
+
 import { Button } from '@/shared/ui/Button'
-import type { TDropdownProps } from '@/shared/ui/Dropdown'
 import { Dropdown } from '@/shared/ui/Dropdown'
+
+import type { TDropdownProps } from '@/shared/ui/Dropdown'
+import type { FC } from 'react'
 import type { TOperationsWithSelected } from './types'
 
 const iconDown = <DownOutlined rev={undefined} />

@@ -1,8 +1,7 @@
-import type { FC } from 'react'
-
 import { Form } from '@/shared/ui/Form'
 import { Input } from '@/shared/ui/Input'
 
+import type { FC } from 'react'
 import type { TFormTextarea } from './types'
 
 export const FormTextarea: FC<TFormTextarea> = ({

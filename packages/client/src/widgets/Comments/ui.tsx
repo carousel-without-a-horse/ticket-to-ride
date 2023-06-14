@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useState } from 'react'
-import type { FC } from 'react'
+
 import { data } from './data'
-import type { TComment, TComments, TOnReply, TOnVote } from './types'
 import { Comment } from './ui/Comment'
+
+import type { FC } from 'react'
+import type { TComment, TComments, TOnReply, TOnVote } from './types'
 
 export const Comments: FC<TComments> = ({ id, entity }) => {
   const [comments, setComments] = useState<TComment[]>([])

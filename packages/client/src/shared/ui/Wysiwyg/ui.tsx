@@ -1,5 +1,6 @@
-import type { CSSProperties, FC } from 'react'
 import ReactQuill from 'react-quill'
+
+import type { CSSProperties, FC } from 'react'
 import type { TWysiwyg } from './types'
 import 'react-quill/dist/quill.snow.css'
 

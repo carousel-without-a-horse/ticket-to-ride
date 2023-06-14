@@ -1,16 +1,19 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import type { FC, Key } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { PlusCircleOutlined } from '@ant-design/icons'
-import type { TTableColumnsType } from '@/shared/ui/Table'
+
+import { OperationsWithSelected } from './ui/OperationsWithSelected'
+import { columnsDefault, columnActions } from './utils/columns'
+import { dataSource } from './data'
+
 import { Table } from '@/shared/ui/Table'
 import { Button } from '@/shared/ui/Button'
 import { Space } from '@/shared/ui/Space'
 import { ROUTES } from '@/app/router/config'
-import { OperationsWithSelected } from './ui/OperationsWithSelected'
-import { columnsDefault, columnActions } from './utils/columns'
+
 import type { TThemes, TDataType } from './types'
-import { dataSource } from './data'
+import type { TTableColumnsType } from '@/shared/ui/Table'
+import type { FC, Key } from 'react'
 
 const iconPlus = <PlusCircleOutlined rev={undefined} />
 const style = {
