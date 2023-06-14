@@ -1,8 +1,10 @@
 import { useCallback } from 'react'
+import { ValidationError } from 'yup'
+
 import { Form } from '@/shared/ui/Form'
+
 import type { FormListFieldData } from '@/shared/ui/Form'
 import type { ChangeEvent, FormEventHandler } from 'react'
-import { ValidationError } from 'yup'
 import type { FieldData } from 'rc-field-form/es/interface'
 import type { TUseFormReturn, TUseFormProps } from './types'
 

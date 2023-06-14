@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import type { ChangeEvent, CSSProperties, FC } from 'react'
 import { PlusOutlined } from '@ant-design/icons'
+
 import { Tag } from '@/shared/ui/Tag'
 import { Input } from '@/shared/ui/Input'
+
+import type { ChangeEvent, CSSProperties, FC } from 'react'
 import type { TInputRef } from '@/shared/ui/Input'
 import type { TTags } from './types'
 

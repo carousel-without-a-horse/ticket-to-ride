@@ -1,9 +1,11 @@
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+
 import { Form, FormInput } from '@/shared/ui/Form'
 import { Button } from '@/shared/ui/Button'
-import { useNavigate } from 'react-router-dom'
-import type { ChangeEvent } from 'react'
-import { useState } from 'react'
 import userServices from '@/shared/services/userServices'
+
+import type { ChangeEvent } from 'react'
 
 const PasswordForm = () => {
   const navigate = useNavigate()

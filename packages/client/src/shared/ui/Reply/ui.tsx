@@ -1,8 +1,9 @@
-import type { FC } from 'react'
 import { Button } from '@/shared/ui/Button'
 import { Space } from '@/shared/ui/Space'
 import { useToggle } from '@/shared/hooks'
 import { Form, FormTextarea } from '@/shared/ui/Form'
+
+import type { FC } from 'react'
 import type { TReply } from './types'
 
 const styles = {

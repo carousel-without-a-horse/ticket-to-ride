@@ -1,11 +1,10 @@
 import { colors } from '@/app/providers/colors'
-
 import { gameSetup } from '@/widgets/Game/data/gameSetup'
-import type { IRoute } from '@/widgets/Game/data/routes'
-
 import getRouteCoords from '@/entities/Game/utils/getRouteCoords'
 import getDistanceToLine from '@/entities/Game/utils/getDistanceToLine'
 import { renderTrain } from '@/entities/Game/utils/renderTrain'
+
+import type { IRoute } from '@/widgets/Game/data/routes'
 
 interface IPassedProps extends IRoute {
   name: string

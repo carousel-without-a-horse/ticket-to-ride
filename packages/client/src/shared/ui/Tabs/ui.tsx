@@ -1,7 +1,8 @@
-import type { FC } from 'react'
 import { useCallback, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { Tabs as LibTabs } from 'antd'
+
+import type { FC } from 'react'
 import type { TTabsProps, TTabsOnChange } from './types'
 
 const TAB_PARAM_KEY = 'tab'

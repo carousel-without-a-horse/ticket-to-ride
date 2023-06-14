@@ -1,5 +1,6 @@
-import { Button } from '@/shared/ui/Button'
 import { useNavigate, useParams } from 'react-router-dom'
+
+import { Button } from '@/shared/ui/Button'
 import { Text } from '@/shared/ui/Text'
 import { PageTitle } from '@/shared/ui/PageTitle'
 import { Space } from '@/shared/ui/Space'

@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
+
 import { ROUTES } from '@/app/router/config'
 import { withSuspense } from '@/shared/hocs'
 import { forumRoutes } from '@/app/router/forum'

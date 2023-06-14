@@ -1,9 +1,11 @@
-import type { CSSProperties, FC } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import { Card } from '@/shared/ui/Card'
 import { Form, FormInput, FormTags, FormWysiwyg } from '@/shared/ui/Form'
 import { Button } from '@/shared/ui/Button'
 import { Space } from '@/shared/ui/Space'
+
+import type { CSSProperties, FC } from 'react'
 import type { TThemeForm } from './types'
 
 const styles: Record<string, CSSProperties> = {

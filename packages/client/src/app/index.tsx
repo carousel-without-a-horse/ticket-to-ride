@@ -1,10 +1,13 @@
 import 'normalize.css'
 
-import { withProviders } from './providers'
 import { RouterProvider } from 'react-router-dom'
-import type { FC } from 'react'
-import { router } from '@/app/router'
 import React from 'react'
+
+import { router } from '@/app/router'
+
+import { withProviders } from './providers'
+
+import type { FC } from 'react'
 
 const App: FC = () => {
   return <RouterProvider router={router} />

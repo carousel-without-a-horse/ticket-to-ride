@@ -1,7 +1,5 @@
 import { colors } from '@/app/providers/colors'
-
 import { gameSetup } from '@/widgets/Game/data/gameSetup'
-
 import { IconCity } from '@/shared/images/game'
 
 import type { IProps } from './types'

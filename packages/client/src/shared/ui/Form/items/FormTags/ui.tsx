@@ -1,8 +1,7 @@
-import type { FC } from 'react'
-
 import { Form } from '@/shared/ui/Form'
 import { Tags } from '@/shared/ui/Tags'
 
+import type { FC } from 'react'
 import type { TFormTags } from './types'
 
 export const FormTags: FC<TFormTags> = ({

@@ -1,13 +1,16 @@
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+
 import { Form, FormInput } from '@/shared/ui/Form'
 import { Button } from '@/shared/ui/Button'
-import { useNavigate } from 'react-router-dom'
-import { user } from './data'
-import type { ChangeEvent } from 'react'
-import { useState } from 'react'
 import userServices from '@/shared/services/userServices'
-import type { TUpload, TUploadFile } from '@/shared/ui/Upload'
 import { Upload } from '@/shared/ui/Upload'
 import { Space } from '@/shared/ui/Space'
+
+import { user } from './data'
+
+import type { ChangeEvent } from 'react'
+import type { TUpload, TUploadFile } from '@/shared/ui/Upload'
 
 const ProfileForm = () => {
   const navigate = useNavigate()

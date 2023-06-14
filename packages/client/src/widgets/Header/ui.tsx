@@ -1,12 +1,13 @@
-import type { TMenuSelectEventHandler } from '@/shared/ui/Menu'
-import { Header as LayoutHeader } from '@/shared/ui/Layout'
-
-import { Menu } from '@/shared/ui/Menu'
-import { ThemeSwitcher } from '@/widgets/ThemeSwitcher'
 import { theme } from 'antd'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { ROUTES } from '@/app/router/config'
 import { useEffect, useState } from 'react'
+
+import { Header as LayoutHeader } from '@/shared/ui/Layout'
+import { Menu } from '@/shared/ui/Menu'
+import { ThemeSwitcher } from '@/widgets/ThemeSwitcher'
+import { ROUTES } from '@/app/router/config'
+
+import type { TMenuSelectEventHandler } from '@/shared/ui/Menu'
 
 const items = [
   {
