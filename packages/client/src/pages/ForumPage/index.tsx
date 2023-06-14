@@ -1,8 +1,8 @@
-import { Themes } from './ui/Themes'
-import { THEME_TYPES } from './lib/constants'
-
 import { Card } from '@/shared/ui/Card'
 import { Tabs } from '@/shared/ui/Tabs'
+
+import { Themes } from './ui/Themes'
+import { THEME_TYPES } from './lib/constants'
 
 import type { CSSProperties } from 'react'
 import type { TTabsItems } from '@/shared/ui/Tabs'

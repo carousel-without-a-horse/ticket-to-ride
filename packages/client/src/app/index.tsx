@@ -3,9 +3,9 @@ import 'normalize.css'
 import { RouterProvider } from 'react-router-dom'
 import React from 'react'
 
-import { withProviders } from './providers'
-
 import { router } from '@/app/router'
+
+import { withProviders } from './providers'
 
 import type { FC } from 'react'
 

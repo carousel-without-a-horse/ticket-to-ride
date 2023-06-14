@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 
-import schema from './schema'
-
 import { Form, FormInput } from '@/shared/ui/Form'
 import { Button } from '@/shared/ui/Button'
 import authServices from '@/shared/services/authServices'
 import { useForm } from '@/shared/hooks'
+
+import schema from './schema'
 
 import type { TUseForm } from './types'
 

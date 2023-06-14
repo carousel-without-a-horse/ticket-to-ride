@@ -2,14 +2,14 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { PlusCircleOutlined } from '@ant-design/icons'
 
-import { OperationsWithSelected } from './ui/OperationsWithSelected'
-import { columnsDefault, columnActions } from './utils/columns'
-import { dataSource } from './data'
-
 import { Table } from '@/shared/ui/Table'
 import { Button } from '@/shared/ui/Button'
 import { Space } from '@/shared/ui/Space'
 import { ROUTES } from '@/app/router/config'
+
+import { dataSource } from './data'
+import { columnsDefault, columnActions } from './utils/columns'
+import { OperationsWithSelected } from './ui/OperationsWithSelected'
 
 import type { TThemes, TDataType } from './types'
 import type { TTableColumnsType } from '@/shared/ui/Table'

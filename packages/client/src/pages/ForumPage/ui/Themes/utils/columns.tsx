@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 
-import { TableActions } from '../ui/TableActions'
-
 import { generateUrl } from '@/shared/utils/generateUrl'
 import { ROUTES } from '@/app/router/config'
+
+import { TableActions } from '../ui/TableActions'
 
 import type { TTableColumnsType, TTableColumnType } from '@/shared/ui/Table'
 import type { TDataType } from '../types'

@@ -2,8 +2,6 @@ import { useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { EditOutlined } from '@ant-design/icons'
 
-import { data } from './data'
-
 import { Card } from '@/shared/ui/Card'
 import { Tags } from '@/shared/ui/Tags'
 import { Space } from '@/shared/ui/Space'
@@ -13,6 +11,8 @@ import { Divider } from '@/shared/ui/Divider'
 import { ROUTES } from '@/app/router/config'
 import { generateUrl } from '@/shared/utils/generateUrl'
 import { Comments } from '@/widgets/Comments'
+
+import { data } from './data'
 
 import type { CSSProperties } from 'react'
 
