@@ -1,10 +1,10 @@
+import { colors } from '@/app/providers/colors'
+
 import { Draft } from './ui/Draft'
 import { Players } from './ui/Players'
 import { Map } from './ui/Map'
 
 import type { CSSProperties } from 'react'
-
-import { colors } from '@/app/providers/colors'
 
 const styles: Record<string, CSSProperties> = {
   wrapper: {

@@ -1,9 +1,11 @@
-import type { CSSProperties, FC } from 'react'
 import { useCallback, useMemo } from 'react'
+
 import { Avatar } from '@/shared/ui/Avatar'
 import { Space } from '@/shared/ui/Space'
 import { Reply } from '@/shared/ui/Reply'
 import { Likes } from '@/shared/ui/Likes'
+
+import type { CSSProperties, FC } from 'react'
 import type { TReply } from '@/shared/ui/Reply'
 import type { TLikes } from '@/shared/ui/Likes'
 import type { TComment } from '../../types'

@@ -1,7 +1,6 @@
-import { UserOutlined } from '@ant-design/icons'
-import type { TTabsItems } from '@/shared/ui/Tabs'
 import { useState } from 'react'
-import type { TUpload, TUploadFile } from '@/shared/ui/Upload'
+import { UserOutlined } from '@ant-design/icons'
+
 import { Card } from '@/shared/ui/Card'
 import { Tabs } from '@/shared/ui/Tabs'
 import { Space } from '@/shared/ui/Space'
@@ -14,6 +13,10 @@ import { Table } from '@/shared/ui/Table'
 import { Content } from '@/shared/ui/Layout'
 import { Reply } from '@/shared/ui/Reply'
 import { Likes } from '@/shared/ui/Likes'
+import { success, error, warning } from '@/shared/utils/notification/intex'
+
+import type { TUpload, TUploadFile } from '@/shared/ui/Upload'
+import type { TTabsItems } from '@/shared/ui/Tabs'
 
 const tabsItem: TTabsItems = [
   { id: '1', key: '1', label: 'Login' },
@@ -98,6 +101,12 @@ const GuidePage = () => {
               </a>
             </Tag>
             <Tag closable>Tag 2</Tag>
+          </Space>
+          <h2>Modal</h2>
+          <Space>
+            <Button onClick={() => success()}>Success</Button>
+            <Button onClick={() => error()}>Error</Button>
+            <Button onClick={() => warning()}>Warning</Button>
           </Space>
           <h2>Upload</h2>
           <Upload
