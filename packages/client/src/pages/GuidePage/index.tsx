@@ -14,6 +14,7 @@ import { Table } from '@/shared/ui/Table'
 import { Content } from '@/shared/ui/Layout'
 import { Reply } from '@/shared/ui/Reply'
 import { Likes } from '@/shared/ui/Likes'
+import { success, error, warning } from '@/shared/utils/notification/intex'
 
 const tabsItem: TTabsItems = [
   { id: '1', key: '1', label: 'Login' },
@@ -98,6 +99,12 @@ const GuidePage = () => {
               </a>
             </Tag>
             <Tag closable>Tag 2</Tag>
+          </Space>
+          <h2>Modal</h2>
+          <Space>
+            <Button onClick={() => success()}>Success</Button>
+            <Button onClick={() => error()}>Error</Button>
+            <Button onClick={() => warning()}>Warning</Button>
           </Space>
           <h2>Upload</h2>
           <Upload
