@@ -49,17 +49,17 @@
             "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
             "newlines-between": "always",
             "pathGroups": [
-          {
-            "pattern": "@prd-crossmip/**",
-            "group": "external",
-            "position": "after"
-          },
-          {
-            "pattern": ".*/**/*.pcss",
-            "group": "sibling",
-            "position": "after"
-          }
-          ]
+              {
+                "pattern": "@prd-crossmip/**",
+                "group": "external",
+                "position": "after"
+              },
+              {
+                "pattern": ".*/**/*.pcss",
+                "group": "sibling",
+                "position": "after"
+              }
+            ]
           }
         ]
       },
