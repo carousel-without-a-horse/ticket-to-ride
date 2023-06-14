@@ -6,36 +6,16 @@ import { Button } from '@/shared/ui/Button'
 import userServices from '@/shared/services/userServices'
 import { Upload } from '@/shared/ui/Upload'
 import { Space } from '@/shared/ui/Space'
+import { useForm } from '@/shared/hooks'
 
 import { user } from './data'
+import schema from './schema'
 
-import type { ChangeEvent } from 'react'
 import type { TUpload, TUploadFile } from '@/shared/ui/Upload'
+import type { TUseForm } from './types'
 
 const ProfileForm = () => {
   const navigate = useNavigate()
-  const [form, setForm] = useState({
-    firstName: user.first_name,
-    secondName: user.second_name,
-    login: user.login,
-    email: user.email,
-    phone: user.phone,
-  })
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const nextFormState = {
-      ...form,
-      [e.target.id]: e.target.value,
-    }
-    setForm(nextFormState)
-  }
-
-  const handleFinish = () => {
-    userServices
-      .changeUserProfile(form)
-      .then(console.debug)
-      .catch(console.error)
-  }
 
   const [fileList, setFileList] = useState<TUploadFile[]>([])
 
@@ -47,84 +27,65 @@ const ProfileForm = () => {
       .catch(console.error)
   }
 
+  const formProps = useForm<TUseForm>({
+    name: 'profile',
+    schema,
+    onSubmit: data => {
+      if (data) {
+        userServices
+          .changeUserProfile(data)
+          .then(console.debug)
+          .catch(console.error)
+      }
+    },
+  })
+
   return (
-    <Form
-      layout="vertical"
-      style={{ minWidth: '30vw' }}
-      onFinish={handleFinish}
-    >
-      <Space direction="horizontal">
-        <div>
-          <FormInput
-            initialValue={form.firstName}
-            onInput={handleChange}
-            label="Имя"
-            name="firstName"
-            rules={[
-              { required: true, message: 'Пожалуйста, введите ваше имя' },
-            ]}
-          />
-          <FormInput
-            initialValue={form.secondName}
-            onInput={handleChange}
-            label="Фамилия"
-            name="secondName"
-          />
-          <FormInput
-            initialValue={form.login}
-            onInput={handleChange}
-            label="Логин"
-            name="login"
-            rules={[
-              { required: true, message: 'Пожалуйста, введите ваш логин' },
-            ]}
-          />
-          <FormInput
-            initialValue={form.email}
-            onInput={handleChange}
-            label="Почта"
-            name="email"
-            type="email"
-            rules={[
-              {
-                required: true,
-                message: 'Пожалуйста, введите вашу электронную почту',
-              },
-            ]}
-          />
-          <FormInput
-            initialValue={form.phone}
-            onInput={handleChange}
-            label="Телефон"
-            name="phone"
-            type="tel"
-            rules={[
-              { required: true, message: 'Пожалуйста, введите ваш телефон' },
-            ]}
-          />
-        </div>
-        <div>
-          <Upload
-            name="avatar"
-            listType="picture-card"
-            accept={'image/png, image/jpeg'}
-            fileList={fileList}
-            onChange={handleChangeAvatar}
-            maxCount={1}
-          >
-            {fileList.length < 1 && '+ Upload'}
-          </Upload>
-        </div>
-      </Space>
-      <div>
+    <Space direction="horizontal">
+      <Form layout="vertical" style={{ minWidth: '30vw' }} {...formProps}>
+        <FormInput
+          initialValue={user.first_name}
+          label="Имя"
+          name="firstName"
+        />
+        <FormInput
+          initialValue={user.second_name}
+          label="Фамилия"
+          name="secondName"
+        />
+        <FormInput initialValue={user.login} label="Логин" name="login" />
+        <FormInput
+          initialValue={user.email}
+          label="Почта"
+          name="email"
+          type="email"
+        />
+        <FormInput
+          initialValue={user.phone}
+          label="Телефон"
+          name="phone"
+          type="tel"
+        />
         <Button type="primary" htmlType="submit">
           Сохранить
         </Button>
         <Button type="link" onClick={() => navigate(-1)}>
           &lt; Назад
         </Button>
+      </Form>
+      <div>
+        <Upload
+          name="avatar"
+          listType="picture-card"
+          accept={'image/png, image/jpeg'}
+          fileList={fileList}
+          onChange={handleChangeAvatar}
+          maxCount={1}
+        >
+          {fileList.length < 1 && '+ Upload'}
+        </Upload>
       </div>
-    </Form>
+    </Space>
   )
 }
 

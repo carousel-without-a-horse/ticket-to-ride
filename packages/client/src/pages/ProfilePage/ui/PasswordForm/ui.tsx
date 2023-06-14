@@ -1,65 +1,42 @@
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
 
 import { Form, FormInput } from '@/shared/ui/Form'
 import { Button } from '@/shared/ui/Button'
 import userServices from '@/shared/services/userServices'
+import { useForm } from '@/shared/hooks'
 
-import type { ChangeEvent } from 'react'
+import schema from './schema'
+
+import type { TUseForm } from './types'
 
 const PasswordForm = () => {
   const navigate = useNavigate()
-  const [form, setForm] = useState({
-    oldPassword: '',
-    newPassword: '',
+
+  const formProps = useForm<TUseForm>({
+    name: 'password-form',
+    schema,
+    onSubmit: data => {
+      if (data) {
+        userServices
+          .changeUserPassword(data)
+          .then(console.debug)
+          .catch(console.error)
+      }
+    },
   })
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const nextFormState = {
-      ...form,
-      [e.target.id]: e.target.value,
-    }
-    setForm(nextFormState)
-  }
-
-  const handleFinish = () => {
-    userServices
-      .changeUserPassword(form)
-      .then(console.debug)
-      .catch(console.error)
-  }
-
   return (
-    <Form
-      layout="vertical"
-      style={{ minWidth: '30vw' }}
-      onFinish={handleFinish}
-    >
+    <Form layout="vertical" style={{ minWidth: '30vw' }} {...formProps}>
       <FormInput
-        initialValue={form.oldPassword}
-        onInput={handleChange}
         label="Старый пароль"
         name="oldPassword"
         inputType="password"
-        rules={[
-          { required: true, message: 'Пожалуйста, введите ваш старый пароль' },
-        ]}
       />
+      <FormInput label="Пароль" name="newPassword" inputType="password" />
       <FormInput
-        initialValue={form.newPassword}
-        onInput={handleChange}
-        label="Пароль"
-        name="newPassword"
-        inputType="password"
-        rules={[{ required: true, message: 'Пожалуйста, введите ваш пароль' }]}
-      />
-      <FormInput
-        name="repeatPassword"
+        name="passwordRepeat"
         label="Подтвердите пароль"
         inputType="password"
-        rules={[
-          { required: true, message: 'Пожалуйста, повторите ваш пароль' },
-        ]}
       />
       <Button type="primary" htmlType="submit">
         Сохранить
