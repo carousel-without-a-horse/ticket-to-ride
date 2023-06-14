@@ -34,6 +34,10 @@ const items = [
     key: ROUTES.signUp,
     label: 'Регистрация',
   },
+  {
+    key: ROUTES.profile,
+    label: 'Профиль',
+  },
 ]
 export const Header = () => {
   const { token } = theme.useToken()

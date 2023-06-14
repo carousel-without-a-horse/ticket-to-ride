@@ -46,16 +46,7 @@
         "import/order": [
           "error",
           {
-            "groups": [
-              "external",
-              "index",
-              "sibling",
-              "parent",
-              "internal",
-              "builtin",
-              "object",
-              "type"
-            ],
+            "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
             "newlines-between": "always",
             "pathGroups": [
           {
