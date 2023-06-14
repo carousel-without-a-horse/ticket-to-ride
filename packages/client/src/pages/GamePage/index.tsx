@@ -1,7 +1,8 @@
 import { Layout } from '@/shared/ui/Layout'
 import { Game } from '@/widgets/Game'
+import { Button } from 'antd'
 
-import type { CSSProperties } from 'react'
+import { type CSSProperties, useRef } from 'react'
 
 const styles: Record<string, CSSProperties> = {
   layout: {
@@ -13,9 +14,24 @@ const styles: Record<string, CSSProperties> = {
 }
 
 const AboutPage = () => {
+  const gameRef = useRef<HTMLDivElement>(null)
+
+  const handleClick = () => {
+    const element = gameRef.current
+    if (element?.requestFullscreen) {
+      element
+        .requestFullscreen()
+        .then(() => console.log('in full screen'))
+        .catch(err => console.log(err))
+    }
+  }
+
   return (
     <Layout style={styles.layout}>
-      <Game />
+      <Button onClick={handleClick}>На полный экран</Button>
+      <div ref={gameRef}>
+        <Game />
+      </div>
     </Layout>
   )
 }
