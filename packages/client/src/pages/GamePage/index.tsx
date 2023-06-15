@@ -1,4 +1,5 @@
 import { type CSSProperties, useRef, useEffect } from 'react'
+
 import { Layout } from '@/shared/ui/Layout'
 import { Game } from '@/widgets/Game'
 
