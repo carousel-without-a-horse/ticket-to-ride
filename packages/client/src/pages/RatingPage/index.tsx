@@ -1,6 +1,7 @@
 import { Card } from '@/shared/ui/Card'
 import { Table } from '@/shared/ui/Table'
 import { Content } from '@/shared/ui/Layout'
+
 import { dataSource } from './data'
 import { columns } from './utils/columns'
 
