@@ -1,6 +1,5 @@
 import { Layout } from '@/shared/ui/Layout'
 import { Game } from '@/widgets/Game'
-import { Button } from 'antd'
 
 import { type CSSProperties, useRef, useEffect } from 'react'
 
