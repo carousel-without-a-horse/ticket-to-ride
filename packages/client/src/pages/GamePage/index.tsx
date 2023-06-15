@@ -2,7 +2,7 @@ import { Layout } from '@/shared/ui/Layout'
 import { Game } from '@/widgets/Game'
 import { Button } from 'antd'
 
-import { type CSSProperties, useRef } from 'react'
+import { type CSSProperties, useRef, useEffect } from 'react'
 
 const styles: Record<string, CSSProperties> = {
   layout: {
@@ -16,23 +16,31 @@ const styles: Record<string, CSSProperties> = {
 const AboutPage = () => {
   const gameRef = useRef<HTMLDivElement>(null)
 
-  const handleClick = () => {
-    const element = gameRef.current
-    if (element?.requestFullscreen) {
-      element
-        .requestFullscreen()
-        .then(() => console.log('in full screen'))
-        .catch(err => console.log(err))
+  useEffect(() => {
+    const handleFButton = (event: KeyboardEvent) => {
+      if (event.key === 'f') {
+        const element = gameRef.current
+        if (element?.requestFullscreen) {
+          element
+            .requestFullscreen()
+            .then(() => console.log('in full screen'))
+            .catch(err => console.log(err))
+        }
+      }
     }
-  }
+    window.addEventListener('keydown', handleFButton)
+
+    return () => {
+      window.removeEventListener('keydown', handleFButton)
+    }
+  }, [])
 
   return (
-    <Layout style={styles.layout}>
-      <Button onClick={handleClick}>На полный экран</Button>
-      <div ref={gameRef}>
+    <div ref={gameRef}>
+      <Layout style={styles.layout}>
         <Game />
-      </div>
-    </Layout>
+      </Layout>
+    </div>
   )
 }
 
