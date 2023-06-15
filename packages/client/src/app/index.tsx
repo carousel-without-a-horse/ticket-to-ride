@@ -2,6 +2,9 @@ import 'normalize.css'
 
 import { RouterProvider } from 'react-router-dom'
 import React from 'react'
+import startServiceWorker from '@/shared/utils/startServiceWorker'
+
+startServiceWorker()
 
 import { router } from '@/app/router'
 
