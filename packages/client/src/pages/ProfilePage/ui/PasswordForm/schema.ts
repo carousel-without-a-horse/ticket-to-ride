@@ -21,7 +21,7 @@ const schema = object().shape({
       patterns.atLeastOneSpecialChar.message
     ),
   newPassword: string()
-    .required('Пожалуйста, введите ваш пароль')
+    .required('Пожалуйста, введите ваш новый пароль')
     .min(8, 'Пароль должен содержать минимум 8 символов')
     .max(40, 'Пароль должен содержать максимум 40 символа')
     .matches(
@@ -38,7 +38,7 @@ const schema = object().shape({
       patterns.atLeastOneSpecialChar.message
     ),
   passwordRepeat: string()
-    .required('Пожалуйста, повторите ваш пароль')
+    .required('Пожалуйста, повторите ваш новый пароль')
     .oneOf([ref('newPassword')], 'Пароли должны совпадать'),
 })
 

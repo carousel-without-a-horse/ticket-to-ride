@@ -77,7 +77,7 @@ const ProfileForm = () => {
         <Upload
           name="avatar"
           listType="picture-card"
-          accept={'image/png, image/jpeg'}
+          accept="image/png, image/jpeg"
           fileList={fileList}
           onChange={handleChangeAvatar}
           maxCount={1}
