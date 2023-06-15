@@ -35,11 +35,9 @@ const AboutPage = () => {
   }, [])
 
   return (
-    <div ref={gameRef}>
-      <Layout style={styles.layout}>
-        <Game />
-      </Layout>
-    </div>
+    <Layout style={styles.layout} ref={gameRef}>
+      <Game />
+    </Layout>
   )
 }
 
