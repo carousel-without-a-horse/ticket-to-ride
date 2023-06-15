@@ -1,8 +1,9 @@
-import { Layout, Content } from '@/shared/ui/Layout'
-
 import { Outlet } from 'react-router-dom'
-import type { FC } from 'react'
+
+import { Layout, Content } from '@/shared/ui/Layout'
 import { Header } from '@/widgets/Header'
+
+import type { FC } from 'react'
 
 const BaseLayout: FC = () => {
   return (

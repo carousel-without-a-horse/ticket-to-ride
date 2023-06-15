@@ -1,5 +1,6 @@
-import type { ComponentType, ReactElement } from 'react'
 import { forwardRef, lazy, memo, Suspense } from 'react'
+
+import type { ComponentType, ReactElement } from 'react'
 
 export const withSuspense = (
   lazyComponent: () => Promise<{ default: ComponentType<any> }>,

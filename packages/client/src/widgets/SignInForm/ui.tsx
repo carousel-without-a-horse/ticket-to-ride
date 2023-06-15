@@ -1,30 +1,32 @@
+import { useNavigate } from 'react-router-dom'
+
 import { Form, FormInput } from '@/shared/ui/Form'
 import { Button } from '@/shared/ui/Button'
 import { ROUTES } from '@/app/router/config'
-import { useNavigate } from 'react-router-dom'
 import authServices from '@/shared/services/authServices'
-import type { TSignInSent } from '@/shared/services/authServices/types'
+import { useForm } from '@/shared/hooks'
+
+import schema from './schema'
+
+import type { TUseForm } from './types'
 
 const SignInForm = () => {
   const navigate = useNavigate()
 
-  const onSubmit = (data: TSignInSent) => {
-    authServices.signIn(data).then(console.debug).catch(console.error)
-  }
+  const formProps = useForm<TUseForm>({
+    name: 'sign-in',
+    schema,
+    onSubmit: data => {
+      if (data) {
+        authServices.signIn(data).then(console.debug).catch(console.error)
+      }
+    },
+  })
 
   return (
-    <Form layout="vertical" style={{ minWidth: '30vw' }} onFinish={onSubmit}>
-      <FormInput
-        label="Логин"
-        name="login"
-        rules={[{ required: true, message: 'Пожалуйста, введите ваш логин' }]}
-      />
-      <FormInput
-        label="Пароль"
-        name="password"
-        inputType="password"
-        rules={[{ required: true, message: 'Пожалуйста, введите ваш пароль' }]}
-      />
+    <Form layout="vertical" style={{ minWidth: '30vw' }} {...formProps}>
+      <FormInput label="Логин" name="login" />
+      <FormInput label="Пароль" name="password" inputType="password" />
       <Button type="primary" htmlType="submit">
         Войти
       </Button>

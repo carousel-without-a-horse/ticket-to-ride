@@ -1,10 +1,10 @@
-import type { CSSProperties, FC } from 'react'
+import { useMemo } from 'react'
 
 import { Form } from '@/shared/ui/Form'
 import { Input } from '@/shared/ui/Input'
 
+import type { CSSProperties, FC } from 'react'
 import type { TFormInput } from './types'
-import { useMemo } from 'react'
 
 const styleInput: CSSProperties = {
   width: 420,

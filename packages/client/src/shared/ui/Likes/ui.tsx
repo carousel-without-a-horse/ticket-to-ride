@@ -1,14 +1,16 @@
 import { useCallback, useMemo } from 'react'
-import type { FC } from 'react'
 import {
   LikeOutlined,
   DislikeOutlined,
   DislikeFilled,
   LikeFilled,
 } from '@ant-design/icons'
-import type { TLikes } from './types'
+
 import { Button } from '@/shared/ui/Button'
 import { Space } from '@/shared/ui/Space'
+
+import type { TLikes } from './types'
+import type { FC } from 'react'
 
 const iconLikeOutlined = <LikeOutlined rev={undefined} />
 const iconLikeFilled = <LikeFilled rev={undefined} />

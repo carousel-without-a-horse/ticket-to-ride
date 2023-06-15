@@ -1,8 +1,10 @@
-import type { ReactNode } from 'react'
 import { useState } from 'react'
 import ruRu from 'antd/lib/locale/ru_RU'
 import { ConfigProvider, theme } from 'antd'
+
 import { ThemeContext } from '@/shared/contexts'
+
+import type { ReactNode } from 'react'
 const { defaultAlgorithm, darkAlgorithm } = theme
 
 export const withTheme = (component: () => ReactNode) => () => {

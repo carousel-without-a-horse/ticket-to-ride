@@ -6,6 +6,7 @@ const SignInPage = () => {
   return (
     <Card>
       <PageTitle>Добро пожаловать</PageTitle>
+
       <SignInForm />
     </Card>
   )
