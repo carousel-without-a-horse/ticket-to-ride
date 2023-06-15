@@ -1,7 +1,6 @@
+import { type CSSProperties, useRef, useEffect } from 'react'
 import { Layout } from '@/shared/ui/Layout'
 import { Game } from '@/widgets/Game'
-
-import { type CSSProperties, useRef, useEffect } from 'react'
 
 const styles: Record<string, CSSProperties> = {
   layout: {
