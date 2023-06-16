@@ -9,24 +9,25 @@ import { ROUTES } from '@/app/router/config'
 import { dataSource } from './data'
 import { columns } from './utils/columns'
 
+const cardStyle = {
+  marginBottom: 50,
+  width: '100%',
+  maxWidth: 1024,
+}
+
+const tableStyle = { width: '100%', maxWidth: 1024, marginBottom: 40 }
+
 const EndGame = () => {
   const navigate = useNavigate()
 
   return (
     <Content>
-      <Card
-        title="Рейтинг Игроков"
-        style={{
-          marginBottom: 50,
-          width: '100%',
-          maxWidth: 1024,
-        }}
-      >
+      <Card title="Результаты" style={cardStyle}>
         <Table
           dataSource={dataSource}
           columns={columns}
           pagination={false}
-          style={{ width: '100%', maxWidth: 1024, marginBottom: 40 }}
+          style={tableStyle}
           scroll={{ y: '45vh' }}
         />
         <Button
