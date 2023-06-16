@@ -1,8 +1,8 @@
-import type { CSSProperties } from 'react'
-
-import type { IProps } from './types'
 import { IconCoin, IconHeadTrain } from '@/shared/images/game'
 import { characters } from '@/widgets/Game/data/characters'
+
+import type { CSSProperties } from 'react'
+import type { IProps } from './types'
 
 const styles: Record<string, CSSProperties> = {
   wrapper: {
