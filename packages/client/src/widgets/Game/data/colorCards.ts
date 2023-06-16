@@ -1,5 +1,7 @@
 import { colors } from '@/app/providers/colors'
 
+export type TColorCardKey = keyof typeof colorCards
+
 export const colorCards = {
   black: {
     color: colors.game.black,

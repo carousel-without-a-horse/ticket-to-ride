@@ -22,7 +22,6 @@ const styles: Record<string, CSSProperties> = {
   },
   bottomPanel: {
     height: 150,
-    backgroundColor: 'green',
     display: 'flex',
   },
 }
