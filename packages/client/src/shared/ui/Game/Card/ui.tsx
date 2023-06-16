@@ -1,16 +1,22 @@
+import { useState } from 'react'
+
 import { colors } from '@/app/providers/colors'
-import type { CSSProperties } from 'react'
 import { colorCards } from '@/widgets/Game/data/colorCards'
 import { IconRainbow } from '@/shared/images/game'
+
+import stylesIm from './styles.module.pcss'
+
 import type { IProps } from './types'
+import type { CSSProperties } from 'react'
+
+const { text: textColor, greenCold } = colors.game
 
 const styles: Record<string, CSSProperties> = {
   card: {
     width: 130,
     height: 70,
     borderRadius: 6,
-    border: `1px solid ${colors.game.text}`,
-    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+    cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -18,14 +24,21 @@ const styles: Record<string, CSSProperties> = {
 }
 
 export const Card = ({ type }: IProps) => {
+  const [isSelected, setIsSelected] = useState(false)
+
   const { color } = colorCards[type]
+  const borderWidth = isSelected ? 4 : 1
+  const borderColor = isSelected ? greenCold : textColor
 
   return (
     <div
       style={{
         ...styles.card,
         backgroundColor: color,
+        border: `${borderWidth}px solid ${borderColor}`,
       }}
+      className={stylesIm.card}
+      onClick={() => setIsSelected(prev => !prev)}
     >
       {type === 'rainbow' && <img src={IconRainbow} alt="IconRainbow" />}
     </div>

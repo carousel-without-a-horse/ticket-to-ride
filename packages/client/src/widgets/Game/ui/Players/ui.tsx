@@ -1,4 +1,5 @@
 import { Player } from '@/shared/ui/Game/Player'
+
 import type { CSSProperties } from 'react'
 
 const styles: Record<string, CSSProperties> = {

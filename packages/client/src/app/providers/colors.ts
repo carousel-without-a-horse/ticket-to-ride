@@ -5,6 +5,7 @@ export const colors = {
     // Base colors
     black: '#1E1E1E',
     blue: '#0062CC',
+    blueMedium: '#5DA1D9',
     cyan: '#009B95',
     gray: '#B2C3D5',
     green: '#40C203',
