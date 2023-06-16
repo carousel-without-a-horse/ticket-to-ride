@@ -1,52 +1,58 @@
 import { theme } from 'antd'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { t } from 'i18next'
 
 import { Header as LayoutHeader } from '@/shared/ui/Layout'
+import { Space } from '@/shared/ui/Space'
 import { Menu } from '@/shared/ui/Menu'
-import { ThemeSwitcher } from '@/widgets/ThemeSwitcher'
+import { ThemeSwitcher } from '@/features/ThemeSwitcher'
+import { LangSelect } from '@/features/LangSelect'
 import { ROUTES } from '@/app/router/config'
+import { useTranslationRefresh } from '@/shared/hooks'
 
 import type { TMenuSelectEventHandler } from '@/shared/ui/Menu'
 
-const items = [
+const getItems = () => [
   {
     key: ROUTES.startGame,
     label: 'Начать игру',
   },
   {
     key: ROUTES.root,
-    label: 'Guide',
+    label: t('pages.guide'),
   },
   {
     key: ROUTES.about,
-    label: 'Об игре',
+    label: t('pages.about'),
   },
   {
     key: ROUTES.rating,
-    label: 'Рейтинг игроков',
+    label: t('pages.rating'),
   },
   {
     key: ROUTES.forum,
-    label: 'Форум',
+    label: t('pages.forum'),
   },
   {
     key: ROUTES.signIn,
-    label: 'Войти',
+    label: t('pages.login'),
   },
   {
     key: ROUTES.signUp,
-    label: 'Регистрация',
+    label: t('pages.signup'),
   },
   {
     key: ROUTES.profile,
-    label: 'Профиль',
+    label: t('pages.profile'),
   },
 ]
 export const Header = () => {
   const { token } = theme.useToken()
   const navigate = useNavigate()
   const location = useLocation()
+  const menuItems = useTranslationRefresh(getItems)
+
   const [selectedMenuItem, setSelectedMenuItem] = useState<string>(
     location.pathname
   )
@@ -78,11 +84,14 @@ export const Header = () => {
         <Menu
           mode="horizontal"
           selectedKeys={[selectedMenuItem]}
-          items={items}
+          items={menuItems}
           style={{ flexGrow: 1, justifyContent: 'flex-end', borderBottom: 0 }}
           onSelect={handleSelect}
         />
-        <ThemeSwitcher />
+        <Space>
+          <ThemeSwitcher />
+          <LangSelect />
+        </Space>
       </div>
     </LayoutHeader>
   )

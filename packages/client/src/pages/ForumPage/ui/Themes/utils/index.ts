@@ -1,1 +1,1 @@
-export { columnsDefault, columnActions } from './columns'
+export { getColumnsDefault, columnActions } from './columns'

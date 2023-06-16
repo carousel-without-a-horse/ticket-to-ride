@@ -1,16 +1,16 @@
 import 'normalize.css'
+import '@/shared/lib/i18n/config'
+
 import { RouterProvider } from 'react-router-dom'
 
-import startServiceWorker from '@/shared/utils/startServiceWorker'
 import { router } from '@/app/router'
+import startServiceWorker from '@/shared/utils/startServiceWorker'
 
 import { withProviders } from './providers'
 
-import type { FC } from 'react'
-
 startServiceWorker()
 
-const App: FC = () => {
+const App = () => {
   return <RouterProvider router={router} />
 }
 

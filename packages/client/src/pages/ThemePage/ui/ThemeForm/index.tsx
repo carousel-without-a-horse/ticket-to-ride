@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 import { Card } from '@/shared/ui/Card'
 import { Form, FormInput, FormTags, FormWysiwyg } from '@/shared/ui/Form'
@@ -20,20 +21,25 @@ const ThemeForm: FC<TThemeForm> = ({
   onSubmit,
 }) => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   const handleCancel = () => {
     navigate(-1)
   }
   return (
     <Card title={title} style={styles.wrapper}>
       <Form initialValues={initialValues} onFinish={onSubmit}>
-        <FormInput name="name" label="Название" />
-        <FormTags name="tags" label="Теги" />
-        <FormWysiwyg name="content" label="Содержимое" style={styles.wysiwyg} />
+        <FormInput name="name" label={t('theme.form.name')} />
+        <FormTags name="tags" label={t('theme.form.tags')} />
+        <FormWysiwyg
+          name="content"
+          label={t('theme.form.content')}
+          style={styles.wysiwyg}
+        />
         <Space>
           <Button type="primary" htmlType="submit">
-            {buttonSubmitText || 'Сохранить'}
+            {buttonSubmitText || t('theme.form.save')}
           </Button>
-          <Button onClick={handleCancel}>Отменить</Button>
+          <Button onClick={handleCancel}>{t('theme.form.cancel')}</Button>
         </Space>
       </Form>
     </Card>
