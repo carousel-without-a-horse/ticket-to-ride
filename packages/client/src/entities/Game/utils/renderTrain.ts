@@ -1,5 +1,4 @@
 import { gameSetup } from '@/widgets/Game/data/gameSetup'
-
 import { IconTrain } from '@/shared/images/game'
 
 export const renderTrain = (

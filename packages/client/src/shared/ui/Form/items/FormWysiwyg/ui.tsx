@@ -1,8 +1,7 @@
-import type { FC } from 'react'
-
 import { Form } from '@/shared/ui/Form'
 import { Wysiwyg } from '@/shared/ui/Wysiwyg'
 
+import type { FC } from 'react'
 import type { TFormWysiwyg } from './types'
 
 export const FormWysiwyg: FC<TFormWysiwyg> = ({

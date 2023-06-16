@@ -1,7 +1,8 @@
-import type { CardProps } from 'antd'
 import { Card as LibCard } from 'antd'
-import type { CSSProperties, FC } from 'react'
 import { useMemo } from 'react'
+
+import type { CardProps } from 'antd'
+import type { CSSProperties, FC } from 'react'
 
 const stylesDefault: Record<string, CSSProperties> = {
   common: {

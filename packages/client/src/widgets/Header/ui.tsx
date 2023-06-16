@@ -1,17 +1,17 @@
-import type { TMenuSelectEventHandler } from '@/shared/ui/Menu'
+import { theme } from 'antd'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { t } from 'i18next'
+
 import { Header as LayoutHeader } from '@/shared/ui/Layout'
 import { Space } from '@/shared/ui/Space'
 import { Menu } from '@/shared/ui/Menu'
-
 import { ThemeSwitcher } from '@/features/ThemeSwitcher'
 import { LangSelect } from '@/features/LangSelect'
-
-import { theme } from 'antd'
-import { useLocation, useNavigate } from 'react-router-dom'
 import { ROUTES } from '@/app/router/config'
-import { useEffect, useState } from 'react'
-import { t } from 'i18next'
 import { useTranslationRefresh } from '@/shared/hooks'
+
+import type { TMenuSelectEventHandler } from '@/shared/ui/Menu'
 
 const getItems = () => [
   {
@@ -37,6 +37,10 @@ const getItems = () => [
   {
     key: ROUTES.signUp,
     label: t('pages.signup'),
+  },
+  {
+    key: ROUTES.profile,
+    label: 'Профиль',
   },
 ]
 export const Header = () => {

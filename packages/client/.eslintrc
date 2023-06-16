@@ -12,7 +12,7 @@
     "plugin:@tanstack/eslint-plugin-query/recommended"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "prettier", "react-perf"],
+  "plugins": ["@typescript-eslint", "prettier", "react-perf", "import"],
   "settings": {
     "import/resolver": {
       "typescript": {},
@@ -47,6 +47,25 @@
             "selector": "interface",
             "format": ["PascalCase"],
             "prefix": ["I"]
+          }
+        ],
+        "import/order": [
+          "error",
+          {
+            "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
+            "newlines-between": "always",
+            "pathGroups": [
+              {
+                "pattern": "@prd-crossmip/**",
+                "group": "external",
+                "position": "after"
+              },
+              {
+                "pattern": ".*/**/*.pcss",
+                "group": "sibling",
+                "position": "after"
+              }
+            ]
           }
         ]
       },

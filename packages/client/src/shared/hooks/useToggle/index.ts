@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react'
+
 import type { TUseToggle, TToggleFunc } from './types'
 
 export const useToggle: TUseToggle = defaultState => {

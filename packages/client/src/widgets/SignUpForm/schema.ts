@@ -1,4 +1,5 @@
 import { object, string, ref } from 'yup'
+
 import patterns from '@/shared/constants/patterns'
 
 const schema = object().shape({
