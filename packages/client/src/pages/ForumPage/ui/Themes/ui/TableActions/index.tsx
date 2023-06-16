@@ -6,12 +6,12 @@ import { Button } from '@/shared/ui/Button'
 import { Space } from '@/shared/ui/Space'
 import { generateUrl } from '@/shared/utils/generateUrl'
 
-import type { TDataType } from '../../types'
+import type { TTheme } from '@/entities/theme'
 
 const iconEdit = <EditOutlined rev={undefined} />
 const iconDelete = <DeleteOutlined rev={undefined} />
 
-export const TableActions = ({ id }: { id: TDataType['id'] }) => {
+export const TableActions = ({ id }: { id: TTheme['id'] }) => {
   const navigate = useNavigate()
   const handleEdit = () => {
     const url = generateUrl(ROUTES.themeEdit, { id })

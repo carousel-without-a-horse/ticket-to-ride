@@ -4,6 +4,7 @@ dotenv.config()
 
 import express from 'express'
 import { createClientAndConnect } from './db'
+import { getMockThemes, getMockTheme } from './mock'
 
 const app = express()
 app.use(cors())
@@ -13,6 +14,22 @@ createClientAndConnect()
 
 app.get('/', (_, res) => {
   res.json('👋 Howdy from the server :)')
+})
+
+app.get('/themes', (req, res) => {
+  const cursor = req.query.cursor ? parseInt(req.query.cursor.toString()) : 0
+  const data = getMockThemes(cursor)
+
+  setTimeout(() => {
+    res.json(data)
+  }, 1000)
+})
+
+app.get('/themes/:id', (_, res) => {
+  const data = getMockTheme()
+  setTimeout(() => {
+    res.json(data)
+  }, 1000)
 })
 
 app.listen(port, () => {

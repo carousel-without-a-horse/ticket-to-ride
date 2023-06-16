@@ -1,0 +1,1 @@
+export { getFetchingDescription } from './getFetchingDescription'

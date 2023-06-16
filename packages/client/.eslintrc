@@ -4,7 +4,13 @@
     "es2020": true,
     "node": true
   },
-  "extends": ["eslint:recommended", "prettier", "plugin:import/recommended", "plugin:react-hooks/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "plugin:import/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended"
+  ],
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "prettier", "react-perf", "import"],
   "settings": {
