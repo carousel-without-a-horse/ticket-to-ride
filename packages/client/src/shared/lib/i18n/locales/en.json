@@ -5,7 +5,8 @@
     "rating": "Rating",
     "forum": "Forum",
     "login": "Login",
-    "signup": "Signup"
+    "signup": "Signup",
+    "profile": "Profile"
   },
   "forum": {
     "title": "Forum",

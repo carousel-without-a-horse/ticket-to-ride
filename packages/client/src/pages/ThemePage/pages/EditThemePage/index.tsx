@@ -1,12 +1,14 @@
 import { useTranslation } from 'react-i18next'
-import ThemeForm from '../../ui/ThemeForm'
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router'
-import { themeServices } from '@/entities/theme'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+import { themeServices } from '@/entities/theme'
 import { ROUTES } from '@/app/router/config'
 import { SkeletonThemeForm } from '@/pages/ThemePage/ui/SkeletonThemeForm'
+
+import ThemeForm from '../../ui/ThemeForm'
 
 const EditThemePage = () => {
   const { id } = useParams()

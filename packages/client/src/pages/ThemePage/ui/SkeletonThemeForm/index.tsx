@@ -1,5 +1,6 @@
-import { Card } from '@/shared/ui/Card'
 import { Skeleton } from 'antd'
+
+import { Card } from '@/shared/ui/Card'
 
 const style = {
   width: 1000,

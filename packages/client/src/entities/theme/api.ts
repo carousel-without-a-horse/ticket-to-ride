@@ -1,4 +1,5 @@
 import { httpService } from '@/shared/services/httpService'
+
 import type { TThemeService, TTheme, TThemeDetail } from './types'
 import type { TInfiniteQuery } from '@/shared/types/query'
 

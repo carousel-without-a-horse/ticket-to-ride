@@ -40,7 +40,7 @@ const getItems = () => [
   },
   {
     key: ROUTES.profile,
-    label: 'Профиль',
+    label: t('pages.profile'),
   },
 ]
 export const Header = () => {

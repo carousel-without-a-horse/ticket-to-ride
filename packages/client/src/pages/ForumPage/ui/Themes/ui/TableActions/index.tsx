@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
+
 import { ROUTES } from '@/app/router/config'
 import { Button } from '@/shared/ui/Button'
 import { Space } from '@/shared/ui/Space'
 import { generateUrl } from '@/shared/utils/generateUrl'
+
 import type { TTheme } from '@/entities/theme'
 
 const iconEdit = <EditOutlined rev={undefined} />

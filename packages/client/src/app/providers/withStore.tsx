@@ -1,5 +1,6 @@
-import type { ReactNode } from 'react'
 import { store, StoreContext } from '@/shared/store'
+
+import type { ReactNode } from 'react'
 
 export const withStore = (component: () => ReactNode) => () => {
   return (

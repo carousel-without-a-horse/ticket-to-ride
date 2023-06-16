@@ -1,13 +1,15 @@
 import { t } from 'i18next'
-import type { CSSProperties } from 'react'
 import { useTranslation } from 'react-i18next'
+
 import { Card } from '@/shared/ui/Card'
-import type { TTabsItems } from '@/shared/ui/Tabs'
 import { Tabs } from '@/shared/ui/Tabs'
 import { useTranslationRefresh } from '@/shared/hooks'
 
 import { Themes } from './ui/Themes'
 import { THEME_TYPES } from './lib/constants'
+
+import type { TTabsItems } from '@/shared/ui/Tabs'
+import type { CSSProperties } from 'react'
 
 const style: CSSProperties = {
   marginBottom: 40,

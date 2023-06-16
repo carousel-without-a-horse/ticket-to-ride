@@ -1,10 +1,10 @@
 import { useParams } from 'react-router'
-import type { CSSProperties } from 'react'
 import { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { EditOutlined } from '@ant-design/icons'
 import { useQuery } from '@tanstack/react-query'
+
 import { ROUTES } from '@/app/router/config'
 import { Card } from '@/shared/ui/Card'
 import { Tags } from '@/shared/ui/Tags'
@@ -15,7 +15,10 @@ import { Divider } from '@/shared/ui/Divider'
 import { generateUrl } from '@/shared/utils/generateUrl'
 import { Comments } from '@/widgets/Comments'
 import { themeServices } from '@/entities/theme'
+
 import { SkeletonThemeForm } from './ui/SkeletonThemeForm'
+
+import type { CSSProperties } from 'react'
 
 const iconEdit = <EditOutlined rev={undefined} />
 const styleActions: CSSProperties = { width: '100%', justifyContent: 'end' }

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
+
 import { Button } from '@/shared/ui/Button'
 import { Tooltip } from '@/shared/ui/Tooltip'
 import { useStore } from '@/shared/store'

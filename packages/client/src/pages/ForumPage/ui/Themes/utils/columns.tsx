@@ -1,10 +1,13 @@
 import { t } from 'i18next'
 import { Link } from 'react-router-dom'
-import type { TTableColumnsType, TTableColumnType } from '@/shared/ui/Table'
+
 import { generateUrl } from '@/shared/utils/generateUrl'
 import { ROUTES } from '@/app/router/config'
-import type { TTheme } from '@/entities/theme'
+
 import { TableActions } from '../ui/TableActions'
+
+import type { TTheme } from '@/entities/theme'
+import type { TTableColumnsType, TTableColumnType } from '@/shared/ui/Table'
 
 export const getColumnsDefault: () => TTableColumnsType<TTheme> = () => [
   {

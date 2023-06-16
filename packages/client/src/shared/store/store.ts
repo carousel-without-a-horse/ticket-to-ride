@@ -1,6 +1,7 @@
 import { makeAutoObservable } from 'mobx'
-import type { TLanguages, TThemeModes } from './types'
 import { createContext, useContext } from 'react'
+
+import type { TLanguages, TThemeModes } from './types'
 
 export const store = makeAutoObservable(
   {

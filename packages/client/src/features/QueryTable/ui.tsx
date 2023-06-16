@@ -2,11 +2,14 @@ import { useTranslation } from 'react-i18next'
 import { useCallback, useEffect, useMemo } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { useInfiniteQuery } from '@tanstack/react-query'
+
 import { Table } from '@/shared/ui/Table'
 import { Space } from '@/shared/ui/Space'
 import { Button } from '@/shared/ui/Button'
-import type { TQueryTableProps, TDefaultData } from './types'
+
 import { getFetchingDescription } from './utils'
+
+import type { TQueryTableProps, TDefaultData } from './types'
 
 export const QueryTable = <Data extends TDefaultData>({
   queryKey,
