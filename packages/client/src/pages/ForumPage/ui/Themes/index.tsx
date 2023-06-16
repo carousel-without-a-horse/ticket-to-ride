@@ -6,7 +6,7 @@ import { PlusCircleOutlined } from '@ant-design/icons'
 import type { TTableColumnsType } from '@/shared/ui/Table'
 import { Button } from '@/shared/ui/Button'
 import { Space } from '@/shared/ui/Space'
-import { useTranslateOutside } from '@/shared/hooks'
+import { useTranslationRefresh } from '@/shared/hooks'
 import { themeServices } from '@/entities/theme'
 import { QueryTable } from '@/features/QueryTable'
 import type { TTheme } from '@/entities/theme'
@@ -26,7 +26,7 @@ export const Themes: FC<TThemes> = ({ type }) => {
   const navigate = useNavigate()
   const [isMyThemes, setIsMyThemes] = useState(false)
   const [selectedItems, setSelectedItems] = useState<string[]>([])
-  const columnsDefault = useTranslateOutside(getColumnsDefault)
+  const columnsDefault = useTranslationRefresh(getColumnsDefault)
 
   useEffect(() => {
     setIsMyThemes(type === 'my')

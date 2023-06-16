@@ -1,3 +1,3 @@
 export { useToggle } from './useToggle'
-export { useTranslateOutside } from './useTranslateOutside'
+export { useTranslationRefresh } from './useTranslationRefresh'
 export { useForm } from './useForm'

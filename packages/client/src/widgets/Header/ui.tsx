@@ -11,7 +11,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { ROUTES } from '@/app/router/config'
 import { useEffect, useState } from 'react'
 import { t } from 'i18next'
-import { useTranslateOutside } from '@/shared/hooks'
+import { useTranslationRefresh } from '@/shared/hooks'
 
 const getItems = () => [
   {
@@ -43,7 +43,7 @@ export const Header = () => {
   const { token } = theme.useToken()
   const navigate = useNavigate()
   const location = useLocation()
-  const menuItems = useTranslateOutside(getItems)
+  const menuItems = useTranslationRefresh(getItems)
 
   const [selectedMenuItem, setSelectedMenuItem] = useState<string>(
     location.pathname

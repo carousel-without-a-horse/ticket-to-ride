@@ -3,8 +3,8 @@ import type { TThemeService, TTheme, TThemeDetail } from './types'
 import type { TInfiniteQuery } from '@/shared/types/query'
 
 export const themeServices: TThemeService = {
-  getAll: async ({ pageParam = 0 }) => {
-    return await httpService
+  getAll: ({ pageParam = 0 }) => {
+    return httpService
       .get<TInfiniteQuery<TTheme>>('/themes', {
         params: {
           cursor: pageParam,
@@ -12,9 +12,7 @@ export const themeServices: TThemeService = {
       })
       .then(res => res.data)
   },
-  getItem: async ({ id }) => {
-    return await httpService
-      .get<TThemeDetail>(`/themes/${id}`)
-      .then(res => res.data)
+  getItem: ({ id }) => {
+    return httpService.get<TThemeDetail>(`/themes/${id}`).then(res => res.data)
   },
 }
