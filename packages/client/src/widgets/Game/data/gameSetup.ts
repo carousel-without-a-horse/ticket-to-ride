@@ -14,7 +14,8 @@ export const gameSetup = {
   },
   route: {
     gap: 6,
-    width: 6,
+    height: 10,
+    tieStep: 5,
     hoverDistance: 4,
     hoverColor: colors.game.greenCold,
   },

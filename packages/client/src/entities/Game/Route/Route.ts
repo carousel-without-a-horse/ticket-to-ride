@@ -3,6 +3,7 @@ import { gameSetup } from '@/widgets/Game/data/gameSetup'
 import getRouteCoords from '@/entities/Game/utils/getRouteCoords'
 import getDistanceToLine from '@/entities/Game/utils/getDistanceToLine'
 import { renderTrain } from '@/entities/Game/utils/renderTrain'
+import { renderRoute } from '@/entities/Game/utils/renderRoute'
 
 import type { IRoute } from '@/widgets/Game/data/routes'
 
@@ -66,28 +67,35 @@ export class Route {
 
     // Рисование сегментов пути
     for (let i = 0; i < segmentsCount; i++) {
+      const angle = Math.atan2(dY, dX)
+
       // Рисуем паровозики, если маршрут проложен
       if (this.isRouteLaid) {
         const segmentCenterX = currentX + segmentDX / 2
         const segmentCenterY = currentY + segmentDY / 2
 
-        const angle = Math.atan2(dY, dX)
         renderTrain(ctx, { x: segmentCenterX, y: segmentCenterY }, angle)
       }
 
+      renderRoute(
+        ctx,
+        {
+          x: currentX,
+          y: currentY,
+        },
+        angle,
+        segmentLength,
+        this.props.color
+      )
+
       const segmentEndX = currentX + segmentDX
       const segmentEndY = currentY + segmentDY
-
-      ctx.lineTo(segmentEndX, segmentEndY)
-
       currentX = segmentEndX + gapDX
       currentY = segmentEndY + gapDY
-
       ctx.moveTo(currentX, currentY)
     }
 
     ctx.strokeStyle = this.props.color
-    ctx.lineWidth = gameSetup.route.width
     ctx.stroke()
     ctx.closePath()
   }
