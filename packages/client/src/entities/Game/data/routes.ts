@@ -1,4 +1,3 @@
-// import type { TGameColors } from '@/app/providers/colors'
 import type { TCityKey } from './cities'
 
 type TPathColor =
