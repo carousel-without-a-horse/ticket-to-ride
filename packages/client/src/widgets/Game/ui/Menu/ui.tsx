@@ -1,28 +1,13 @@
 import { Button } from '@/shared/ui/Game/Button'
 
-import type { CSSProperties } from 'react'
-
-const styles: Record<string, CSSProperties> = {
-  wrapper: {
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 6,
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  button: {
-    height: 30,
-    fontSize: 12,
-    marginBottom: 10,
-  },
-}
+import styles from './styles.module.pcss'
 
 export const Menu = () => {
   return (
-    <div style={styles.wrapper}>
-      <Button style={styles.button}>Завершить ход</Button>
+    <div className={styles.wrapper}>
+      <Button variant="small">Завершить ход</Button>
 
-      <Button style={styles.button}>Меню</Button>
+      <Button variant="small">Меню</Button>
     </div>
   )
 }

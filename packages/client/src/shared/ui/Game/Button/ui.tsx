@@ -1,32 +1,11 @@
-import { colors } from '@/app/providers/colors'
+import classNames from 'classnames'
 
-import stylesAd from './styles.module.pcss'
+import styles from './styles.module.pcss'
 
-import type { CSSProperties } from 'react'
+import type { IProps } from './types'
 
-const styles: Record<string, CSSProperties> = {
-  button: {
-    width: 130,
-    height: 70,
-    borderRadius: 6,
-    cursor: 'pointer',
-    fontWeight: 600,
-    color: colors.game.text,
-    backgroundColor: colors.game.greenCold,
-    border: `1px solid ${colors.game.white}`,
-  },
-}
-
-export interface IButtonProps extends React.ComponentPropsWithoutRef<'button'> {
-  specialProp?: string
-}
-
-export const Button = ({ style, ...props }: IButtonProps) => {
+export const Button = ({ variant = 'normal', ...props }: IProps) => {
   return (
-    <button
-      className={stylesAd.button}
-      style={{ ...styles.button, ...style }}
-      {...props}
-    />
+    <button className={classNames(styles.button, styles[variant])} {...props} />
   )
 }

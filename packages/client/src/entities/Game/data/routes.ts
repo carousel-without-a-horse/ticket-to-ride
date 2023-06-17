@@ -1,9 +1,20 @@
-import type { TGameColors } from '@/app/providers/colors'
+// import type { TGameColors } from '@/app/providers/colors'
 import type { TCityKey } from './cities'
+
+type TPathColor =
+  | 'orange'
+  | 'black'
+  | 'purple'
+  | 'green'
+  | 'blue'
+  | 'white'
+  | 'red'
+  | 'yellow'
+  | 'gray'
 
 export interface IRoute {
   length: number
-  paths: TGameColors[]
+  paths: TPathColor[]
   cities: TCityKey[]
 }
 

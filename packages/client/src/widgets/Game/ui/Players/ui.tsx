@@ -1,18 +1,10 @@
 import { Player } from '@/shared/ui/Game/Player'
 
-import type { CSSProperties } from 'react'
-
-const styles: Record<string, CSSProperties> = {
-  wrapper: {
-    height: 80,
-    marginBottom: 10,
-    display: 'flex',
-  },
-}
+import styles from './styles.module.pcss'
 
 export const Players = () => {
   return (
-    <div style={styles.wrapper}>
+    <div className={styles.wrapper}>
       <Player character="banana" />
 
       <Player character="grape" />

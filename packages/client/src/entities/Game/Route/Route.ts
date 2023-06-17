@@ -1,4 +1,4 @@
-import { colors } from '@/app/providers/colors'
+import { colors } from '@/shared/constants/colors'
 import { gameSetup } from '@/entities/Game/data/gameSetup'
 import getRouteCoords from '@/entities/Game/utils/getRouteCoords'
 import getDistanceToLine from '@/entities/Game/utils/getDistanceToLine'
@@ -32,7 +32,7 @@ export class Route {
     this.props = {
       ...passedProps,
       ...routeCoords,
-      color: colors.game[passedProps.paths[0]],
+      color: colors[passedProps.paths[0]],
     }
   }
 
@@ -127,7 +127,7 @@ export class Route {
       }
     } else if (this.isMouseover) {
       this.isMouseover = false
-      this.changeColor(colors.game[this.props.paths[0]])
+      this.changeColor(colors[this.props.paths[0]])
 
       this.canvas.style.cursor = 'default'
     }

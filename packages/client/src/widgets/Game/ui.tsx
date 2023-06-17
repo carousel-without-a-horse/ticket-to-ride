@@ -1,4 +1,4 @@
-import { colors } from '@/app/providers/colors'
+import { colors } from '@/shared/constants/colors'
 
 import { Draft } from './ui/Draft'
 import { Players } from './ui/Players'
@@ -17,7 +17,7 @@ const styles: Record<string, CSSProperties> = {
     height: '900px',
     padding: '10px',
     maxWidth: '1180px',
-    backgroundColor: colors.game.background,
+    backgroundColor: colors.background,
     borderRadius: 8,
   },
   bottomPanel: {

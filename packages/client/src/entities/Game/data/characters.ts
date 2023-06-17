@@ -1,4 +1,4 @@
-import { colors } from '@/app/providers/colors'
+import { colors } from '@/shared/constants/colors'
 import {
   IconBanana,
   IconBroccoli,
@@ -8,26 +8,26 @@ import {
 
 export const characters = {
   banana: {
-    color: colors.game.greenLight,
-    bgColor: colors.game.yellow,
+    color: colors.greenLight,
+    bgColor: colors.yellow,
     icon: IconBanana,
     name: 'Banana',
   },
   grape: {
-    color: colors.game.pink,
-    bgColor: colors.game.blue,
+    color: colors.pink,
+    bgColor: colors.blue,
     icon: IconGrape,
     name: 'Grape',
   },
   broccoli: {
-    color: colors.game.purpleMedium,
-    bgColor: colors.game.green,
+    color: colors.purpleMedium,
+    bgColor: colors.green,
     icon: IconBroccoli,
     name: 'Broccoli',
   },
   cherry: {
-    color: colors.game.cyan,
-    bgColor: colors.game.red,
+    color: colors.cyan,
+    bgColor: colors.red,
     icon: IconCherry,
     name: 'Cherry',
   },

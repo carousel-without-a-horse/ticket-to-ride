@@ -1,33 +1,33 @@
-import { colors } from '@/app/providers/colors'
+import { colors } from '@/shared/constants/colors'
 
 export type TColorCardKey = keyof typeof colorCards
 
 export const colorCards = {
   black: {
-    color: colors.game.black,
+    color: colors.black,
   },
   blue: {
-    color: colors.game.blue,
+    color: colors.blue,
   },
   green: {
-    color: colors.game.green,
+    color: colors.green,
   },
   orange: {
-    color: colors.game.orange,
+    color: colors.orange,
   },
   purple: {
-    color: colors.game.purple,
+    color: colors.purple,
   },
   rainbow: {
-    color: colors.game.black,
+    color: colors.black,
   },
   red: {
-    color: colors.game.red,
+    color: colors.red,
   },
   white: {
-    color: colors.game.white,
+    color: colors.white,
   },
   yellow: {
-    color: colors.game.yellow,
+    color: colors.yellow,
   },
 }

@@ -1,18 +1,8 @@
 import { SmallCard } from '@/shared/ui/Game/SmallCard'
 
-import type { IHandCard } from './types'
-import type { CSSProperties } from 'react'
+import styles from './styles.module.pcss'
 
-const styles: Record<string, CSSProperties> = {
-  wrapper: {
-    width: 220,
-    padding: 10,
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignContent: 'baseline',
-    gap: 10,
-  },
-}
+import type { IHandCard } from './types'
 
 // TODO: заменить на динамические данные
 const handCards: IHandCard[] = [
@@ -40,7 +30,7 @@ const handCards: IHandCard[] = [
 
 export const Hand = () => {
   return (
-    <div style={styles.wrapper}>
+    <div className={styles.wrapper}>
       {handCards.map(card => (
         <SmallCard card={card} />
       ))}
