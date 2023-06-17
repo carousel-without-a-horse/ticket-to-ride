@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx'
 import { createContext, useContext } from 'react'
 
-import UserStore from './userStore'
+import UserStore from './user/userStore'
 
 import type { TLanguages, TThemeModes } from './types'
 

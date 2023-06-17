@@ -1,13 +1,15 @@
 import { makeAutoObservable } from 'mobx'
 
+import type { TLogin } from './types'
+
 class UserStore {
-  userLogin: string | null = null
+  userLogin: TLogin = null
 
   constructor() {
     makeAutoObservable(this)
   }
 
-  setLogin(login: string | null) {
+  setLogin(login: TLogin) {
     this.userLogin = login
   }
 }

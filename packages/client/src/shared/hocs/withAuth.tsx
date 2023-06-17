@@ -33,7 +33,7 @@ export const withAuth = (Component: any) =>
     }, [isLogout, isLogin, navigate, userStore.userLogin])
 
     if (isLogout || isLogin) {
-      return <></>
+      return null
     }
 
     return <Component {...props} />

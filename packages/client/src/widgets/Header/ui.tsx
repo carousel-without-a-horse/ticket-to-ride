@@ -53,12 +53,12 @@ export const Header = observer(() => {
   const location = useLocation()
   const privateItems = useTranslationRefresh(() =>
     getItems().filter(
-      item => item.key !== ROUTES.signUp && item.key !== ROUTES.signIn
+      ({ key }) => key !== ROUTES.signUp && key !== ROUTES.signIn
     )
   )
   const notPrivateItems = useTranslationRefresh(() =>
     getItems().filter(
-      item => item.key === ROUTES.signUp || item.key === ROUTES.signIn
+      ({ key }) => key === ROUTES.signUp || key === ROUTES.signIn
     )
   )
   const localStorageUserLogin = localStorage.getItem(
