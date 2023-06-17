@@ -4,8 +4,8 @@ export type TSignInSent = {
 }
 
 export type TSignUpSent = TSignInSent & {
-  firstName: string
-  secondName?: string
+  first_name: string
+  second_name: string
   email: string
   phone: string
 }

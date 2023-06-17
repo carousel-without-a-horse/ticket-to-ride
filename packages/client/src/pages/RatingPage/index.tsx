@@ -1,3 +1,4 @@
+import { withAuth } from '@/shared/hocs'
 import { Card } from '@/shared/ui/Card'
 import { Table } from '@/shared/ui/Table'
 import { Content } from '@/shared/ui/Layout'
@@ -5,7 +6,7 @@ import { Content } from '@/shared/ui/Layout'
 import { dataSource } from './data'
 import { columns } from './utils/columns'
 
-const RatingPage = () => {
+const RatingPage = withAuth(() => {
   return (
     <Content>
       <Card
@@ -26,6 +27,6 @@ const RatingPage = () => {
       </Card>
     </Content>
   )
-}
+})
 
 export default RatingPage

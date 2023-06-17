@@ -1,5 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 
+import { LOCAL_STORAGE_KEYS } from '@/shared/constants/localStorage'
+import { useStore } from '@/shared/store'
+import { error } from '@/shared/utils/notification/intex'
 import { Form, FormInput } from '@/shared/ui/Form'
 import { Button } from '@/shared/ui/Button'
 import authServices from '@/shared/services/authServices'
@@ -7,9 +10,12 @@ import { useForm } from '@/shared/hooks'
 
 import schema from './schema'
 
+import type { AxiosError } from 'axios'
 import type { TUseForm } from './types'
+import type { TError } from '@/shared/types/error'
 
 const SignUpForm = () => {
+  const { userStore } = useStore()
   const navigate = useNavigate()
 
   const formProps = useForm<TUseForm>({
@@ -17,7 +23,24 @@ const SignUpForm = () => {
     schema,
     onSubmit: data => {
       if (data) {
-        authServices.signUp(data).then(console.debug).catch(console.error)
+        const user = {
+          first_name: data.firstName,
+          second_name: data.secondName,
+          login: data.login,
+          email: data.email,
+          password: data.password,
+          phone: data.phone,
+        }
+        authServices
+          .signUp(user)
+          .then(() => {
+            localStorage.setItem(LOCAL_STORAGE_KEYS.userLogin, user.login)
+            userStore.setLogin(data.login)
+          })
+          .catch((err: AxiosError) => {
+            const res = err.response?.data as TError
+            error('Error', res?.reason || '')
+          })
       }
     },
   })

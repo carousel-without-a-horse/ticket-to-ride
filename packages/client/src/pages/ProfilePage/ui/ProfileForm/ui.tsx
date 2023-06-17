@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
+import { LOCAL_STORAGE_KEYS } from '@/shared/constants/localStorage'
+import { useStore } from '@/shared/store'
 import { Form, FormInput } from '@/shared/ui/Form'
 import { Button } from '@/shared/ui/Button'
 import userServices from '@/shared/services/userServices'
@@ -15,6 +17,7 @@ import type { TUpload, TUploadFile } from '@/shared/ui/Upload'
 import type { TUseForm } from './types'
 
 const ProfileForm = () => {
+  const { userStore } = useStore()
   const navigate = useNavigate()
 
   const [fileList, setFileList] = useState<TUploadFile[]>([])
@@ -25,6 +28,11 @@ const ProfileForm = () => {
       .changeAvatar(fileList[0])
       .then(console.debug)
       .catch(console.error)
+  }
+
+  const handleLogOut = () => {
+    localStorage.removeItem(LOCAL_STORAGE_KEYS.userLogin)
+    userStore.setLogin('')
   }
 
   const formProps = useForm<TUseForm>({
@@ -71,6 +79,9 @@ const ProfileForm = () => {
         </Button>
         <Button type="link" onClick={() => navigate(-1)}>
           &lt; Назад
+        </Button>
+        <Button danger onClick={handleLogOut}>
+          Выйти
         </Button>
       </Form>
       <div>

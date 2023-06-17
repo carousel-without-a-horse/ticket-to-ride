@@ -1,6 +1,8 @@
 import { makeAutoObservable } from 'mobx'
 import { createContext, useContext } from 'react'
 
+import UserStore from './userStore'
+
 import type { TLanguages, TThemeModes } from './types'
 
 export const store = makeAutoObservable(
@@ -16,6 +18,7 @@ export const store = makeAutoObservable(
     get isDarkMode() {
       return this.themeMode === 'dark'
     },
+    userStore: new UserStore(),
   },
   {},
   { autoBind: true }

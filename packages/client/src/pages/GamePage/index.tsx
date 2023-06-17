@@ -1,5 +1,6 @@
 import { type CSSProperties, useRef, useEffect } from 'react'
 
+import { withAuth } from '@/shared/hocs'
 import { Layout } from '@/shared/ui/Layout'
 import { Game } from '@/widgets/Game'
 
@@ -12,7 +13,7 @@ const styles: Record<string, CSSProperties> = {
   },
 }
 
-const AboutPage = () => {
+const AboutPage = withAuth(() => {
   const gameRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -39,6 +40,6 @@ const AboutPage = () => {
       <Game />
     </Layout>
   )
-}
+})
 
 export default AboutPage

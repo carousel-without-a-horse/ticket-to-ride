@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { UserOutlined } from '@ant-design/icons'
 
+import { withAuth } from '@/shared/hocs'
 import { Card } from '@/shared/ui/Card'
 import { Tabs } from '@/shared/ui/Tabs'
 import { Space } from '@/shared/ui/Space'
@@ -67,7 +68,7 @@ const style = {
   table: { width: 700 },
 }
 
-const GuidePage = () => {
+const GuidePage = withAuth(() => {
   const [fileList, setFileList] = useState<TUploadFile[]>([])
 
   const handleChange: TUpload['onChange'] = ({ fileList }) => {
@@ -149,6 +150,6 @@ const GuidePage = () => {
       </Content>
     </>
   )
-}
+})
 
 export default GuidePage

@@ -1,8 +1,10 @@
+import { observer } from 'mobx-react-lite'
 import { theme } from 'antd'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { t } from 'i18next'
 
+import { LOCAL_STORAGE_KEYS } from '@/shared/constants/localStorage'
 import { Header as LayoutHeader } from '@/shared/ui/Layout'
 import { Space } from '@/shared/ui/Space'
 import { Menu } from '@/shared/ui/Menu'
@@ -10,6 +12,7 @@ import { ThemeSwitcher } from '@/features/ThemeSwitcher'
 import { LangSelect } from '@/features/LangSelect'
 import { ROUTES } from '@/app/router/config'
 import { useTranslationRefresh } from '@/shared/hooks'
+import { useStore } from '@/shared/store'
 
 import type { TMenuSelectEventHandler } from '@/shared/ui/Menu'
 
@@ -43,11 +46,27 @@ const getItems = () => [
     label: t('pages.profile'),
   },
 ]
-export const Header = () => {
+export const Header = observer(() => {
+  const { userStore } = useStore()
   const { token } = theme.useToken()
   const navigate = useNavigate()
   const location = useLocation()
-  const menuItems = useTranslationRefresh(getItems)
+  const privateItems = useTranslationRefresh(() =>
+    getItems().filter(
+      item => item.key !== ROUTES.signUp && item.key !== ROUTES.signIn
+    )
+  )
+  const notPrivateItems = useTranslationRefresh(() =>
+    getItems().filter(
+      item => item.key === ROUTES.signUp || item.key === ROUTES.signIn
+    )
+  )
+  const localStorageUserLogin = localStorage.getItem(
+    LOCAL_STORAGE_KEYS.userLogin
+  )
+  const [menuItems, setMenuItems] = useState(
+    localStorageUserLogin ? privateItems : notPrivateItems
+  )
 
   const [selectedMenuItem, setSelectedMenuItem] = useState<string>(
     location.pathname
@@ -56,6 +75,17 @@ export const Header = () => {
   useEffect(() => {
     setSelectedMenuItem(location.pathname)
   }, [location])
+
+  useEffect(() => {
+    const items = localStorageUserLogin ? privateItems : notPrivateItems
+    setMenuItems(items)
+  }, [
+    localStorageUserLogin,
+    privateItems,
+    notPrivateItems,
+    userStore.userLogin,
+  ])
+
   const handleSelect: TMenuSelectEventHandler = ({ key }) => {
     navigate(key)
   }
@@ -91,4 +121,4 @@ export const Header = () => {
       </div>
     </LayoutHeader>
   )
-}
+})
