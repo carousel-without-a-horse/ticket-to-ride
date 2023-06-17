@@ -1,7 +1,7 @@
-import type { characters } from '@/widgets/Game/data/characters'
+import type { characters } from '../constants/options'
 
 export type TThemeModes = 'dark' | 'light'
 
 export type TLanguages = 'ru' | 'en'
 
-export type TPlayer = keyof typeof characters | null
+export type TCharacters = keyof typeof characters | null

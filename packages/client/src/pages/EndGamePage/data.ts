@@ -1,5 +1,6 @@
 import type { TDataSource } from './types'
 
+// TODO: Мок данные, будут заменяны на настоящие в задаче CAR-38
 export const dataSource: TDataSource = [
   {
     key: '1',

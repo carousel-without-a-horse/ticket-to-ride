@@ -1,4 +1,4 @@
-import type { characters } from '@/widgets/Game/data/characters'
+import type { characters } from '@/shared/constants/options'
 
 export interface IProps {
   character: keyof typeof characters

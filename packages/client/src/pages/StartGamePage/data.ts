@@ -1,7 +1,12 @@
-import { characters } from '@/widgets/Game/data/characters'
+import { characters } from '@/shared/constants/options'
 
-export const playersOptions: object[] = []
+import type { TCharactersOption } from './types'
+
+export const characterOptions: TCharactersOption = []
 
 Object.keys(characters).forEach(key => {
-  playersOptions.push({ value: key, label: key })
+  characterOptions.push({
+    value: key,
+    label: key[0].toUpperCase() + key.slice(1),
+  })
 })
