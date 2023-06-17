@@ -1,4 +1,4 @@
-import type { TRouteCardKey } from '@/widgets/Game/data/routeCards'
+import type { TRouteCardKey } from '@/entities/Game/data/routeCards'
 
 export interface IProps {
   routeKey: TRouteCardKey

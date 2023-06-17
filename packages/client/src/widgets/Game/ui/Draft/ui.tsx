@@ -4,7 +4,7 @@ import { Button } from '@/shared/ui/Game/Button'
 import { Card } from '@/shared/ui/Game/Card'
 
 import type { CSSProperties } from 'react'
-import type { TColorCardKey } from '@/widgets/Game/data/colorCards'
+import type { TColorCardKey } from '@/entities/Game/data/colorCards'
 
 const styles: Record<string, CSSProperties> = {
   wrapper: {

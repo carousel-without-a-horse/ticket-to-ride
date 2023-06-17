@@ -1,4 +1,5 @@
-import { gameSetup } from '@/widgets/Game/data/gameSetup'
+import { gameSetup } from '@/entities/Game/data/gameSetup'
+import { drawLines } from '@/shared/utils/canvas/drawLines'
 
 const { height } = gameSetup.route
 
@@ -28,11 +29,6 @@ export const renderRoute = (
     x2: startX + width,
     y2: startY + verticalOffset * 1,
   }
-  ctx.beginPath()
-  ctx.moveTo(rail1.x1, rail1.y1)
-  ctx.lineTo(rail1.x2, rail1.y2)
-  ctx.stroke()
-  ctx.closePath()
 
   // Вторая рельса
   const rail2 = {
@@ -41,22 +37,22 @@ export const renderRoute = (
     x2: startX + width,
     y2: startY + verticalOffset * 3,
   }
-  ctx.beginPath()
-  ctx.moveTo(rail2.x1, rail2.y1)
-  ctx.lineTo(rail2.x2, rail2.y2)
-  ctx.stroke()
-  ctx.closePath()
+
+  drawLines(ctx, [rail1, rail2])
 
   // Шпалы
   const tieStep = gameSetup.route.tieStep
   const tieLength = Math.floor(width / tieStep)
 
   for (let i = 1; i < tieLength; i++) {
-    ctx.beginPath()
-    ctx.moveTo(startX + tieStep * i, startY)
-    ctx.lineTo(startX + tieStep * i, startY + height)
-    ctx.stroke()
-    ctx.closePath()
+    const tie = {
+      x1: startX + tieStep * i,
+      y1: startY,
+      x2: startX + tieStep * i,
+      y2: startY + height,
+    }
+
+    drawLines(ctx, [tie])
   }
 
   ctx.restore()

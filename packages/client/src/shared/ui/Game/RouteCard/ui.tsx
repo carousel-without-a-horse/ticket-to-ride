@@ -1,5 +1,5 @@
 import { colors } from '@/app/providers/colors'
-import { routeCards } from '@/widgets/Game/data/routeCards'
+import { routeCards } from '@/entities/Game/data/routeCards'
 
 import type { CSSProperties } from 'react'
 import type { IProps } from './types'

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { colors } from '@/app/providers/colors'
-import { colorCards } from '@/widgets/Game/data/colorCards'
+import { colorCards } from '@/entities/Game/data/colorCards'
 import { IconRainbow } from '@/shared/images/game'
 
 import stylesIm from './styles.module.pcss'

@@ -1,5 +1,5 @@
 import { IconCoin, IconHeadTrain } from '@/shared/images/game'
-import { characters } from '@/widgets/Game/data/characters'
+import { characters } from '@/entities/Game/data/characters'
 
 import type { CSSProperties } from 'react'
 import type { IProps } from './types'

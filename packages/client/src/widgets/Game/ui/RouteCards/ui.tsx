@@ -1,7 +1,7 @@
 import { colors } from '@/app/providers/colors'
 import { RouteCard } from '@/shared/ui/Game/RouteCard'
 
-import type { TRouteCardKey } from '@/widgets/Game/data/routeCards'
+import type { TRouteCardKey } from '@/entities/Game/data/routeCards'
 import type { CSSProperties } from 'react'
 
 const styles: Record<string, CSSProperties> = {
