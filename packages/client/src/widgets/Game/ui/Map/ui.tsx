@@ -3,8 +3,8 @@ import { useEffect, useRef } from 'react'
 import { City } from '@/entities/Game/City'
 import { Route } from '@/entities/Game/Route/Route'
 
-import { cities } from '../../data/cities'
-import { routes } from '../../data/routes'
+import { cities } from '../../../../entities/Game/data/cities'
+import { routes } from '../../../../entities/Game/data/routes'
 
 export const Map = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)

@@ -1,9 +1,9 @@
-import { colors } from '@/app/providers/colors'
+import { colors } from '@/shared/constants/colors'
 
 export const gameSetup = {
   city: {
     radius: 12,
-    hoverColor: colors.game.greenCold,
+    hoverColor: colors.greenCold,
   },
   train: {
     width: 20,
@@ -14,8 +14,9 @@ export const gameSetup = {
   },
   route: {
     gap: 6,
-    width: 6,
+    height: 10,
+    tieStep: 5,
     hoverDistance: 4,
-    hoverColor: colors.game.greenCold,
+    hoverColor: colors.greenCold,
   },
 }

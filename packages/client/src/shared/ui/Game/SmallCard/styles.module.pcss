@@ -1,0 +1,28 @@
+.wrapper {
+  width: 60px;
+  height: 30px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  @mixin shadow;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.countWrapper {
+  position: absolute;
+
+  span {
+    color: $white;
+    font-size: 16px;
+    font-weight: 600;
+
+    @mixin textShadow;
+  }
+}

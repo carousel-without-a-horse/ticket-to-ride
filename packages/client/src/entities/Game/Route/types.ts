@@ -1,4 +1,4 @@
-import type { IRoute } from '@/widgets/Game/data/routes'
+import type { IRoute } from '@/entities/Game/data/routes'
 
 interface IPassedProps extends IRoute {
   name: string
