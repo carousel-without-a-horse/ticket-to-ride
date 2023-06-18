@@ -13,7 +13,7 @@ const styles: Record<string, CSSProperties> = {
   },
 }
 
-const AboutPage = withAuth(() => {
+const GamePage = withAuth(() => {
   const gameRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -42,4 +42,4 @@ const AboutPage = withAuth(() => {
   )
 })
 
-export default AboutPage
+export default GamePage

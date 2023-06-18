@@ -20,7 +20,7 @@ export const withAuth = (Component: any) =>
       window.location.pathname !== ROUTES.signUp
 
     const isLogin =
-      localStorage.getItem(LOCAL_STORAGE_KEYS.userLogin) &&
+      localStorageUserLogin &&
       (window.location.pathname === ROUTES.signIn ||
         window.location.pathname === ROUTES.signUp)
 
