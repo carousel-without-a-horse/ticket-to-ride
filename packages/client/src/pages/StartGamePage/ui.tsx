@@ -8,16 +8,16 @@ import { Select } from '@/shared/ui/Select/Select'
 
 import { characterOptions } from './data'
 
-import type { TCharacters } from '@/shared/store/types'
+import type { TCharacters } from '@/shared/store/game/types'
 
 const selectStyle = { marginBottom: 40, width: '100%' }
 
 const StartGame = observer(() => {
   const navigate = useNavigate()
-  const { currentCharacter, currentMode, handleSelectCharacters } = useStore()
+  const { gameStore } = useStore()
 
   const onChangeCharacter = (value: string) => {
-    handleSelectCharacters(value as TCharacters)
+    gameStore.handleSelectCharacters(value as TCharacters)
   }
 
   const onChangeMode = (value: string) => {
@@ -31,13 +31,17 @@ const StartGame = observer(() => {
         style={selectStyle}
         placeholder="Выбрать режим"
         options={[{ label: 'Против компьютера', value: 'test' }]} // доработается, как только появятся режимы
-        value={currentMode}
+        value={gameStore.currentMode}
         onChange={onChangeMode}
       ></Select>
       <h3>Выберете своего персонажа</h3>
       <Select
         style={selectStyle}
-        placeholder={currentCharacter ? currentCharacter : 'Выберать игрока'}
+        placeholder={
+          gameStore.currentCharacter
+            ? gameStore.currentCharacter
+            : 'Выберать игрока'
+        }
         options={characterOptions}
         onChange={onChangeCharacter}
       ></Select>
@@ -46,7 +50,7 @@ const StartGame = observer(() => {
         type="primary"
         style={{ marginBottom: 15 }}
         onClick={() => navigate(ROUTES.game)}
-        disabled={currentCharacter == null ? true : false} // при наличии режимов условие изменится
+        disabled={gameStore.currentCharacter == null ? true : false} // при наличии режимов условие изменится
       >
         Играть
       </Button>
