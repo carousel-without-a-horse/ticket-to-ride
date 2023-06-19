@@ -26,7 +26,8 @@ const SignInForm = () => {
       if (data) {
         authServices
           .signIn(data)
-          .then(() => {
+          .then(async () => {
+            await authServices.fetchUser()
             localStorage.setItem(LOCAL_STORAGE_KEYS.userLogin, data.login)
             userStore.setLogin(data.login)
           })

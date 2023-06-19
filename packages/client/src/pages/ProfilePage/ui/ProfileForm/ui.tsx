@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
+import authServices from '@/shared/services/authServices'
 import { LOCAL_STORAGE_KEYS } from '@/shared/constants/localStorage'
 import { useStore } from '@/shared/store'
 import { Form, FormInput } from '@/shared/ui/Form'
@@ -31,8 +32,15 @@ const ProfileForm = () => {
   }
 
   const handleLogOut = () => {
-    localStorage.removeItem(LOCAL_STORAGE_KEYS.userLogin)
-    userStore.setLogin('')
+    authServices
+      .logOut()
+      .then(() => {
+        localStorage.removeItem(LOCAL_STORAGE_KEYS.userLogin)
+        userStore.setLogin('')
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   const formProps = useForm<TUseForm>({

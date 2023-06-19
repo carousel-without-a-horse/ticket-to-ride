@@ -33,7 +33,8 @@ const SignUpForm = () => {
         }
         authServices
           .signUp(user)
-          .then(() => {
+          .then(async () => {
+            await authServices.fetchUser()
             localStorage.setItem(LOCAL_STORAGE_KEYS.userLogin, user.login)
             userStore.setLogin(data.login)
           })

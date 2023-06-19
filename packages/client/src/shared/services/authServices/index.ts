@@ -9,6 +9,12 @@ const authServices: TAuthService = {
   signUp: data => {
     return httpService.post('/auth/signup', data)
   },
+  fetchUser: () => {
+    return httpService.get('/auth/user')
+  },
+  logOut: () => {
+    return httpService.post('/auth/logout')
+  },
 }
 
 export default authServices
