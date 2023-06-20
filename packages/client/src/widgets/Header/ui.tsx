@@ -15,6 +15,10 @@ import type { TMenuSelectEventHandler } from '@/shared/ui/Menu'
 
 const getItems = () => [
   {
+    key: ROUTES.startGame,
+    label: 'Начать игру',
+  },
+  {
     key: ROUTES.root,
     label: t('pages.guide'),
   },

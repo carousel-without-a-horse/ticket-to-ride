@@ -12,6 +12,9 @@ const SignIn = withSuspense(() => import('@/pages/SignInPage'))
 const SignUp = withSuspense(() => import('@/pages/SignUpPage'))
 const Profile = withSuspense(() => import('@/pages/ProfilePage'))
 const ErrorPage = withSuspense(() => import('@/pages/ErrorPage'))
+const StartGame = withSuspense(() => import('@/pages/StartGamePage'))
+const EndGame = withSuspense(() => import('@/pages/EndGamePage'))
+
 const Game = withSuspense(() => import('@/pages/GamePage'))
 
 export const router = createBrowserRouter([
@@ -23,6 +26,14 @@ export const router = createBrowserRouter([
     path: ROUTES.root,
     element: <BaseLayout />,
     children: [
+      {
+        path: ROUTES.startGame,
+        element: <StartGame />,
+      },
+      {
+        path: ROUTES.endGame,
+        element: <EndGame />,
+      },
       {
         index: true,
         element: <Guide />,
