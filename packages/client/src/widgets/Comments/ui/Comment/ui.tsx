@@ -12,19 +12,6 @@ import type { TReply } from '@/shared/ui/Reply'
 import type { TLikes } from '@/shared/ui/Likes'
 import type { TComment } from '../../types'
 
-// const styles: Record<string, CSSProperties> = {
-//   wrapper: { marginBottom: 20 },
-//   actions: {
-//     width: '100%',
-//     display: 'flex',
-//     alignItems: 'start',
-//     gap: 25,
-//   },
-//   reply: {
-//     flexGrow: '1',
-//   },
-// }
-
 export const Comment: FC<TComment> = ({
   id,
   author,
