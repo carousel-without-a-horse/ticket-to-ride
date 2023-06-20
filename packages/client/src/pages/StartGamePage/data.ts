@@ -1,4 +1,4 @@
-import { characters } from '@/shared/constants/options'
+import { characters } from '@/entities/Game/data/characters'
 
 import type { TCharactersOption } from './types'
 

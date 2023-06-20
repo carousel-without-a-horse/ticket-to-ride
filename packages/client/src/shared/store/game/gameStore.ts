@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx'
 
-import { characters } from '@/shared/constants/options'
+import { characters } from '@/entities/Game/data/characters'
 
 import type { TCharacters } from './types'
 
