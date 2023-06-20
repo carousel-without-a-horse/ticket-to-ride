@@ -11,6 +11,8 @@ import { useForm } from '@/shared/hooks'
 import { user } from './data'
 import schema from './schema'
 
+import styles from './styles.module.pcss'
+
 import type { TUpload, TUploadFile } from '@/shared/ui/Upload'
 import type { TUseForm } from './types'
 
@@ -42,7 +44,7 @@ const ProfileForm = () => {
 
   return (
     <Space direction="horizontal">
-      <Form layout="vertical" style={{ minWidth: '30vw' }} {...formProps}>
+      <Form layout="vertical" className={styles.form} {...formProps}>
         <FormInput
           initialValue={user.first_name}
           label="Имя"

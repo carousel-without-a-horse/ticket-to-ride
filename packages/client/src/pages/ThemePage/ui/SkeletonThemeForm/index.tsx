@@ -2,12 +2,14 @@ import { Skeleton } from 'antd'
 
 import { Card } from '@/shared/ui/Card'
 
-const style = {
-  width: 1000,
-}
+import styles from './styles.module.pcss'
+
 export const SkeletonThemeForm = () => {
   return (
-    <Card title={<Skeleton active paragraph={false} />} style={style}>
+    <Card
+      title={<Skeleton active paragraph={false} />}
+      className={styles.wrapper}
+    >
       <Skeleton active />
     </Card>
   )

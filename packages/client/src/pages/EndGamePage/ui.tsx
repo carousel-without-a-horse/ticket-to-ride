@@ -8,30 +8,26 @@ import { ROUTES } from '@/app/router/config'
 import { dataSource } from './data'
 import { columns } from './utils/columns'
 
-const cardStyle = {
-  marginBottom: 50,
-  width: '100%',
-  maxWidth: 1024,
-}
+import styles from './styles.module.pcss'
 
-const tableStyle = { width: '100%', maxWidth: 1024, marginBottom: 40 }
+const scroll = { y: '45vh' }
 
 const EndGame = () => {
   const navigate = useNavigate()
 
   return (
-    <Card title="Результаты" style={cardStyle}>
+    <Card title="Результаты" className={styles.card}>
       <Table
         dataSource={dataSource}
         columns={columns}
         pagination={false}
-        style={tableStyle}
-        scroll={{ y: '45vh' }}
+        className={styles.table}
+        scroll={scroll}
       />
       <Button
         type="primary"
         block={true}
-        style={{ marginBottom: 10 }}
+        className={styles.button}
         onClick={() => navigate(ROUTES.startGame)}
       >
         Начать сначала

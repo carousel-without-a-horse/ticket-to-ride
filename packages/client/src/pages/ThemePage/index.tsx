@@ -18,10 +18,9 @@ import { themeServices } from '@/entities/theme'
 
 import { SkeletonThemeForm } from './ui/SkeletonThemeForm'
 
-import type { CSSProperties } from 'react'
+import styles from './styles.module.pcss'
 
 const iconEdit = <EditOutlined rev={undefined} />
-const styleActions: CSSProperties = { width: '100%', justifyContent: 'end' }
 
 const ThemePage = () => {
   const { id } = useParams()
@@ -61,7 +60,7 @@ const ThemePage = () => {
       </p>
       <Tags value={data.tags} disabled />
       <p>{data.content}</p>
-      <Space size="large" style={styleActions}>
+      <Space size="large" className={styles.actions}>
         <Likes vote={vote} onChange={handleLikeToggle} />
         <Button icon={iconEdit} onClick={handleEdit}>
           {t('theme.editTheme')}

@@ -3,16 +3,12 @@ import { Content } from '@/shared/ui/Layout'
 
 import StartGame from './ui'
 
-const StartGamePage = () => {
-  const cardStyle = {
-    marginBottom: 50,
-    width: '100%',
-    maxWidth: 1024,
-  }
+import styles from './styles.module.pcss'
 
+const StartGamePage = () => {
   return (
     <Content>
-      <Card style={cardStyle}>
+      <Card className={styles.card}>
         <StartGame />
       </Card>
     </Content>

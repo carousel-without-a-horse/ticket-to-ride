@@ -8,9 +8,11 @@ import { Select } from '@/shared/ui/Select/Select'
 
 import { characterOptions } from './data'
 
+import styles from './styles.module.pcss'
+
 import type { TCharacters } from '@/shared/store/game/types'
 
-const selectStyle = { marginBottom: 40, width: '100%' }
+const modeOptions = [{ label: 'Против компьютера', value: 'test' }] // доработается, как только появятся режимы
 
 const StartGame = observer(() => {
   const navigate = useNavigate()
@@ -28,15 +30,15 @@ const StartGame = observer(() => {
     <>
       <h3>Выберете режим игры</h3>
       <Select
-        style={selectStyle}
+        className={styles.select}
         placeholder="Выбрать режим"
-        options={[{ label: 'Против компьютера', value: 'test' }]} // доработается, как только появятся режимы
+        options={modeOptions}
         value={gameStore.currentMode}
         onChange={onChangeMode}
       ></Select>
       <h3>Выберете своего персонажа</h3>
       <Select
-        style={selectStyle}
+        className={styles.select}
         placeholder={
           gameStore.currentCharacter
             ? gameStore.currentCharacter
@@ -48,7 +50,7 @@ const StartGame = observer(() => {
       <Button
         block={true}
         type="primary"
-        style={{ marginBottom: 15 }}
+        className={styles.button}
         onClick={() => navigate(ROUTES.game)}
         disabled={gameStore.currentCharacter == null ? true : false} // при наличии режимов условие изменится
       >

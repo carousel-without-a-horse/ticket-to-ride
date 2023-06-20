@@ -1,16 +1,9 @@
-import { type CSSProperties, useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 
 import { Layout } from '@/shared/ui/Layout'
 import { Game } from '@/widgets/Game'
 
-const styles: Record<string, CSSProperties> = {
-  layout: {
-    minHeight: '100vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-}
+import styles from './styles.module.pcss'
 
 const GamePage = () => {
   const gameRef = useRef<HTMLDivElement>(null)
@@ -35,7 +28,7 @@ const GamePage = () => {
   }, [])
 
   return (
-    <Layout style={styles.layout} ref={gameRef}>
+    <Layout className={styles.layout} ref={gameRef}>
       <Game />
     </Layout>
   )

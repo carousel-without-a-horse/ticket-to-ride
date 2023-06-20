@@ -1,14 +1,13 @@
-import { useMemo } from 'react'
+import classNames from 'classnames'
 
 import { Form } from '@/shared/ui/Form'
 import { Input } from '@/shared/ui/Input'
 
-import type { CSSProperties, FC } from 'react'
+import styles from './styles.module.pcss'
+
+import type { FC } from 'react'
 import type { TFormInput } from './types'
 
-const styleInput: CSSProperties = {
-  width: 420,
-}
 export const FormInput: FC<TFormInput> = props => {
   const {
     label,
@@ -34,8 +33,6 @@ export const FormInput: FC<TFormInput> = props => {
     inputType = 'default',
   } = props
 
-  const styleFormItem = useMemo(() => ({ ...styleInput, ...style }), [style])
-
   const InputComponent = {
     password: Input.Password,
     default: Input,
@@ -52,11 +49,11 @@ export const FormInput: FC<TFormInput> = props => {
       rules={rules}
       hasFeedback={hasFeedback}
       initialValue={initialValue}
-      style={styleFormItem}
+      style={style}
       labelAlign={labelAlign}
       hidden={hidden}
       validateStatus={validateStatus}
-      className={className}
+      className={classNames(styles.formInput, className)}
     >
       <InputComponent
         addonAfter={addonAfter}

@@ -6,13 +6,10 @@ import { Form, FormInput, FormTags, FormWysiwyg } from '@/shared/ui/Form'
 import { Button } from '@/shared/ui/Button'
 import { Space } from '@/shared/ui/Space'
 
-import type { CSSProperties, FC } from 'react'
-import type { TThemeForm } from './types'
+import styles from './styles.module.pcss'
 
-const styles: Record<string, CSSProperties> = {
-  wrapper: { marginBottom: 40 },
-  wysiwyg: { width: 800 },
-}
+import type { FC } from 'react'
+import type { TThemeForm } from './types'
 
 const ThemeForm: FC<TThemeForm> = ({
   title,
@@ -26,14 +23,14 @@ const ThemeForm: FC<TThemeForm> = ({
     navigate(-1)
   }
   return (
-    <Card title={title} style={styles.wrapper}>
+    <Card title={title} className={styles.wrapper}>
       <Form initialValues={initialValues} onFinish={onSubmit}>
         <FormInput name="name" label={t('theme.form.name')} />
         <FormTags name="tags" label={t('theme.form.tags')} />
         <FormWysiwyg
           name="content"
           label={t('theme.form.content')}
-          style={styles.wysiwyg}
+          className={styles.wysiwyg}
         />
         <Space>
           <Button type="primary" htmlType="submit">
