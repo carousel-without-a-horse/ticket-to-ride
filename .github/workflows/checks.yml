@@ -21,5 +21,9 @@ jobs:
         run: yarn lerna bootstrap
       - name: Lint
         run: yarn lint
+      - name: Style
+        run: yarn stylelint
+      - name: TypeScript
+        run: yarn tsc
       - name: Test
         run: yarn test

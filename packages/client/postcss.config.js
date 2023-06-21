@@ -5,7 +5,7 @@ export default mode => {
   const plugins = {
     'postcss-easy-import': {},
     'postcss-mixins': {
-      mixinsDir: './src/styles/mixins',
+      mixinsDir: './src/app/styles/mixins',
     },
     'postcss-for': {},
     'postcss-nested': {},

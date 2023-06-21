@@ -3,13 +3,20 @@ pre-commit:
   commands:
     client-lint:
       root: "packages/client/"
-      glob: '*.{ts,tsx}'
+      glob: "*.{ts,tsx}"
       run: yarn eslint {staged_files}
+    client-style:
+      root: "packages/client/"
+      glob: "*.{css,pcss}"
+      run: yarn style {staged_files}
+    client-tsc:
+      root: "packages/client/"
+      run: yarn tsc
     server-lint:
       root: "packages/server/"
       glob: '*.{ts,tsx}'
       run: yarn eslint {staged_files}
     prettier:
-      glob: '*.{ts,tsx,css}'
+      glob: '*.{ts,tsx,css,pcss}'
       run: yarn prettier -w {staged_files}
       stage_fixed: true

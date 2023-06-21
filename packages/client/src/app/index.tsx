@@ -7,6 +7,7 @@ import { router } from '@/app/router'
 import startServiceWorker from '@/shared/utils/startServiceWorker'
 
 import { withProviders } from './providers'
+import './styles'
 
 startServiceWorker()
 

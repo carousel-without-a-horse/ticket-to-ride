@@ -18,4 +18,5 @@ export const colors = {
   // App colors
   background: '#F4EBE8',
   text: '#394146',
+  totalBlack: '#000000',
 }
