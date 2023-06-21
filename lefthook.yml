@@ -11,7 +11,7 @@ pre-commit:
       run: yarn style {staged_files}
     client-tsc:
       root: "packages/client/"
-      run: yarn tsc
+      run: yarn types
     server-lint:
       root: "packages/server/"
       glob: '*.{ts,tsx}'

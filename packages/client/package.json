@@ -7,7 +7,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "tsc": "tsc --noEmit",
+    "types": "tsc --noEmit",
     "style": "stylelint '**/*.{css,pcss}'",
     "format": "prettier --write .",
     "test": "jest ./ --passWithNoTests"
