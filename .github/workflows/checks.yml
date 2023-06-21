@@ -8,7 +8,7 @@ on:
       - dev
 
 jobs:
-  eslint:
+  linters:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -24,6 +24,6 @@ jobs:
       - name: Style
         run: yarn stylelint
       - name: TypeScript
-        run: yarn tsc
+        run: yarn types
       - name: Test
         run: yarn test
