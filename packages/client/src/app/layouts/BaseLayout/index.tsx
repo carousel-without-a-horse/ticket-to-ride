@@ -3,11 +3,13 @@ import { Outlet } from 'react-router-dom'
 import { Layout, Content } from '@/shared/ui/Layout'
 import { Header } from '@/widgets/Header'
 
+import styles from './styles.module.pcss'
+
 import type { FC } from 'react'
 
 const BaseLayout: FC = () => {
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout className={styles.layout}>
       <Header />
       <Content>
         <Outlet />

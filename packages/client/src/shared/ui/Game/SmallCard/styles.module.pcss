@@ -1,13 +1,16 @@
 .wrapper {
-  width: 60px;
-  height: 30px;
-  border-radius: 4px;
+  @mixin shadow;
+
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
 
-  @mixin shadow;
+  width: 60px;
+  height: 30px;
+
+  border-radius: 4px;
 
   img {
     width: 24px;
@@ -19,10 +22,10 @@
   position: absolute;
 
   span {
-    color: $white;
+    @mixin textShadow;
+
     font-size: 16px;
     font-weight: 600;
-
-    @mixin textShadow;
+    color: $white;
   }
 }

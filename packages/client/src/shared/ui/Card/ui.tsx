@@ -1,16 +1,13 @@
 import { Card as LibCard } from 'antd'
 import { useMemo } from 'react'
+import classNames from 'classnames'
+
+import styles from './styles.module.pcss'
 
 import type { CardProps } from 'antd'
 import type { CSSProperties, FC } from 'react'
 
 const stylesDefault: Record<string, CSSProperties> = {
-  common: {
-    padding: '60px 80px',
-    width: 'fit-content',
-    margin: 'auto',
-    maxWidth: '1000px',
-  },
   headStyle: {
     border: 'none',
     marginBottom: '40px',
@@ -24,17 +21,13 @@ const stylesDefault: Record<string, CSSProperties> = {
   },
 }
 export const Card: FC<CardProps> = ({
-  style,
+  className,
   headStyle,
   bodyStyle,
   ...props
 }) => {
-  const styles = useMemo(() => {
+  const innerStyles = useMemo(() => {
     return {
-      common: {
-        ...stylesDefault.common,
-        ...style,
-      },
       headStyle: {
         ...stylesDefault.headStyle,
         ...headStyle,
@@ -44,13 +37,13 @@ export const Card: FC<CardProps> = ({
         ...bodyStyle,
       },
     }
-  }, [bodyStyle, headStyle, style])
+  }, [bodyStyle, headStyle])
 
   return (
     <LibCard
-      style={styles.common}
-      headStyle={styles.headStyle}
-      bodyStyle={styles.bodyStyle}
+      className={classNames(styles.common, className)}
+      headStyle={innerStyles.headStyle}
+      bodyStyle={innerStyles.bodyStyle}
       {...props}
     />
   )

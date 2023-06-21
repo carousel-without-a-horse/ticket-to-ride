@@ -7,6 +7,8 @@ import { useForm } from '@/shared/hooks'
 
 import schema from './schema'
 
+import styles from './styles.module.pcss'
+
 import type { TUseForm } from './types'
 
 const PasswordForm = () => {
@@ -26,7 +28,7 @@ const PasswordForm = () => {
   })
 
   return (
-    <Form layout="vertical" style={{ minWidth: '30vw' }} {...formProps}>
+    <Form layout="vertical" className={styles.form} {...formProps}>
       <FormInput
         label="Старый пароль"
         name="oldPassword"

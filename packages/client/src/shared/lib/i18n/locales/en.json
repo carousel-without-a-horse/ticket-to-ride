@@ -21,6 +21,14 @@
         "author": "Author",
         "commentsCount": "Answers"
       }
+    },
+    "operationsWithSelected": {
+      "title": "Operations with selected",
+      "options": {
+        "open": "Open",
+        "convertToDraft": "Convert to draft",
+        "remove": "Delete"
+      }
     }
   },
   "theme": {

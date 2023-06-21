@@ -1,6 +1,6 @@
 import { theme } from 'antd'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { t } from 'i18next'
 
 import { Header as LayoutHeader } from '@/shared/ui/Layout'
@@ -10,6 +10,8 @@ import { ThemeSwitcher } from '@/features/ThemeSwitcher'
 import { LangSelect } from '@/features/LangSelect'
 import { ROUTES } from '@/app/router/config'
 import { useTranslationRefresh } from '@/shared/hooks'
+
+import styles from './styles.module.pcss'
 
 import type { TMenuSelectEventHandler } from '@/shared/ui/Menu'
 
@@ -60,32 +62,28 @@ export const Header = () => {
   useEffect(() => {
     setSelectedMenuItem(location.pathname)
   }, [location])
+
+  const style = useMemo(
+    () => ({
+      background: token.colorBgContainer,
+    }),
+    [token.colorBgContainer]
+  )
   const handleSelect: TMenuSelectEventHandler = ({ key }) => {
     navigate(key)
   }
 
+  const selectedKeys = useMemo(() => [selectedMenuItem], [selectedMenuItem])
+
   return (
-    <LayoutHeader
-      style={{
-        background: token.colorBgContainer,
-        marginBottom: 50,
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
+    <LayoutHeader className={styles.header} style={style}>
       <div>Logo</div>
-      <div
-        style={{
-          width: '100%',
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
+      <div className={styles.content}>
         <Menu
           mode="horizontal"
-          selectedKeys={[selectedMenuItem]}
+          selectedKeys={selectedKeys}
           items={menuItems}
-          style={{ flexGrow: 1, justifyContent: 'flex-end', borderBottom: 0 }}
+          className={styles.menu}
           onSelect={handleSelect}
         />
         <Space>

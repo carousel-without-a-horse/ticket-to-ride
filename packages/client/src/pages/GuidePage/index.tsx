@@ -15,6 +15,8 @@ import { Reply } from '@/shared/ui/Reply'
 import { Likes } from '@/shared/ui/Likes'
 import { success, error, warning } from '@/shared/utils/notification/intex'
 
+import styles from './styles.module.pcss'
+
 import type { TUpload, TUploadFile } from '@/shared/ui/Upload'
 import type { TTabsItems } from '@/shared/ui/Tabs'
 
@@ -62,11 +64,6 @@ const columns = [
   },
 ]
 
-const style = {
-  card: { marginBottom: 40 },
-  table: { width: 700 },
-}
-
 const GuidePage = () => {
   const [fileList, setFileList] = useState<TUploadFile[]>([])
 
@@ -77,7 +74,7 @@ const GuidePage = () => {
   return (
     <>
       <Content>
-        <Card title="UI" style={style.card}>
+        <Card title="UI" className={styles.card}>
           <h2>Tabs</h2>
           <Tabs items={tabsItem} />
           <h2>Buttons</h2>
@@ -126,7 +123,7 @@ const GuidePage = () => {
           </Space>
         </Card>
 
-        <Card title="Form" style={style.card}>
+        <Card title="Form" className={styles.card}>
           <Form
             onFinish={data => console.log('submit data', data)}
             onValuesChange={data => console.log(data)}
@@ -138,12 +135,12 @@ const GuidePage = () => {
             </Button>
           </Form>
         </Card>
-        <Card title="Table" style={style.card}>
+        <Card title="Table" className={styles.card}>
           <Table
             dataSource={dataSource}
             columns={columns}
             pagination={false}
-            style={style.table}
+            className={styles.table}
           />
         </Card>
       </Content>

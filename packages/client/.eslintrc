@@ -23,7 +23,19 @@
     "@typescript-eslint/ban-ts-comment": 1,
     "prettier/prettier": ["error"],
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "error"
+    "react-hooks/exhaustive-deps": "error",
+    "react-perf/jsx-no-new-object-as-prop": [
+      "error",
+      {
+        "nativeAllowList": "all"
+      }
+    ],
+    "react-perf/jsx-no-new-array-as-prop": [
+      "error",
+      {
+        "nativeAllowList": "all"
+      }
+    ]
   },
   "overrides": [
     {

@@ -8,6 +8,8 @@ import { useForm } from '@/shared/hooks'
 
 import schema from './schema'
 
+import styles from './styles.module.pcss'
+
 import type { TUseForm } from './types'
 
 const SignInForm = () => {
@@ -24,7 +26,7 @@ const SignInForm = () => {
   })
 
   return (
-    <Form layout="vertical" style={{ minWidth: '30vw' }} {...formProps}>
+    <Form layout="vertical" className={styles.form} {...formProps}>
       <FormInput label="Логин" name="login" />
       <FormInput label="Пароль" name="password" inputType="password" />
       <Button type="primary" htmlType="submit">

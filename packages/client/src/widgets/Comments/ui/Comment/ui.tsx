@@ -5,23 +5,12 @@ import { Space } from '@/shared/ui/Space'
 import { Reply } from '@/shared/ui/Reply'
 import { Likes } from '@/shared/ui/Likes'
 
-import type { CSSProperties, FC } from 'react'
+import styles from './styles.module.pcss'
+
+import type { FC } from 'react'
 import type { TReply } from '@/shared/ui/Reply'
 import type { TLikes } from '@/shared/ui/Likes'
 import type { TComment } from '../../types'
-
-const styles: Record<string, CSSProperties> = {
-  wrapper: { marginBottom: 20 },
-  actions: {
-    width: '100%',
-    display: 'flex',
-    alignItems: 'start',
-    gap: 25,
-  },
-  reply: {
-    flexGrow: '1',
-  },
-}
 
 export const Comment: FC<TComment> = ({
   id,
@@ -56,16 +45,16 @@ export const Comment: FC<TComment> = ({
   )
 
   return (
-    <div style={styles.wrapper}>
+    <div className={styles.wrapper}>
       <Space align="baseline">
         <Avatar src={author.avatar} />
         <Space direction="vertical" size="large">
           {header}
           <div>{content}</div>
-          <div style={styles.actions}>
+          <div className={styles.actions}>
             {vote && <Likes {...vote} onChange={handleLike} />}
             {handleReply && (
-              <Reply style={styles.reply} onChange={handleReply} />
+              <Reply className={styles.reply} onChange={handleReply} />
             )}
           </div>
         </Space>

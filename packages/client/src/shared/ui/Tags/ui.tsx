@@ -4,17 +4,11 @@ import { PlusOutlined } from '@ant-design/icons'
 import { Tag } from '@/shared/ui/Tag'
 import { Input } from '@/shared/ui/Input'
 
-import type { ChangeEvent, CSSProperties, FC } from 'react'
+import styles from './styles.module.pcss'
+
+import type { ChangeEvent, FC } from 'react'
 import type { TInputRef } from '@/shared/ui/Input'
 import type { TTags } from './types'
-
-const styles: Record<string, CSSProperties> = {
-  input: {
-    width: 78,
-    verticalAlign: 'top',
-  },
-  button: { cursor: 'pointer' },
-}
 
 export const Tags: FC<TTags> = ({ value, onChange, disabled }) => {
   const tags = useMemo(() => value || [], [value])
@@ -59,7 +53,7 @@ export const Tags: FC<TTags> = ({ value, onChange, disabled }) => {
           ref={inputRef}
           type="text"
           size="small"
-          style={styles.input}
+          className={styles.input}
           value={inputValue}
           onChange={handleInputChange}
           onBlur={handleInputConfirm}
@@ -68,7 +62,7 @@ export const Tags: FC<TTags> = ({ value, onChange, disabled }) => {
       )
     }
     return (
-      <Tag onClick={showInput} style={styles.button}>
+      <Tag onClick={showInput} className={styles.button}>
         <PlusOutlined rev={undefined} /> Добавить тег
       </Tag>
     )
