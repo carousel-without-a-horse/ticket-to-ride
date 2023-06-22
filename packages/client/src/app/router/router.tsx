@@ -1,21 +1,26 @@
+import compose from 'compose-function'
 import { createBrowserRouter } from 'react-router-dom'
 
 import { ROUTES } from '@/app/router/config'
 import { withSuspense } from '@/shared/hocs'
+import { withErrorBoundary } from '@/features/ErrorBoundary'
 import { forumRoutes } from '@/app/router/forum'
 
-const BaseLayout = withSuspense(() => import('@/app/layouts/BaseLayout'))
-const Guide = withSuspense(() => import('@/pages/GuidePage'))
-const About = withSuspense(() => import('@/pages/AboutPage'))
-const Rating = withSuspense(() => import('@/pages/RatingPage'))
-const SignIn = withSuspense(() => import('@/pages/SignInPage'))
-const SignUp = withSuspense(() => import('@/pages/SignUpPage'))
-const Profile = withSuspense(() => import('@/pages/ProfilePage'))
-const ErrorPage = withSuspense(() => import('@/pages/ErrorPage'))
-const StartGame = withSuspense(() => import('@/pages/StartGamePage'))
-const EndGame = withSuspense(() => import('@/pages/EndGamePage'))
+const withCommonWrappers = compose(withErrorBoundary, withSuspense)
 
-const Game = withSuspense(() => import('@/pages/GamePage'))
+const BaseLayout = withCommonWrappers(() => import('@/app/layouts/BaseLayout'))
+
+const Guide = withCommonWrappers(() => import('@/pages/GuidePage'))
+const About = withCommonWrappers(() => import('@/pages/AboutPage'))
+const Rating = withCommonWrappers(() => import('@/pages/RatingPage'))
+const SignIn = withCommonWrappers(() => import('@/pages/SignInPage'))
+const SignUp = withCommonWrappers(() => import('@/pages/SignUpPage'))
+const Profile = withCommonWrappers(() => import('@/pages/ProfilePage'))
+const ErrorPage = withCommonWrappers(() => import('@/pages/ErrorPage'))
+const StartGame = withCommonWrappers(() => import('@/pages/StartGamePage'))
+const EndGame = withCommonWrappers(() => import('@/pages/EndGamePage'))
+
+const Game = withCommonWrappers(() => import('@/pages/GamePage'))
 
 export const router = createBrowserRouter([
   {
