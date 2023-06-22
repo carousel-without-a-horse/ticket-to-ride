@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { UserOutlined } from '@ant-design/icons'
+import { useErrorBoundary } from 'react-error-boundary'
 
 import { Card } from '@/shared/ui/Card'
 import { Tabs } from '@/shared/ui/Tabs'
@@ -65,15 +66,34 @@ const columns = [
 ]
 
 const GuidePage = () => {
+  const { showBoundary } = useErrorBoundary()
   const [fileList, setFileList] = useState<TUploadFile[]>([])
 
   const handleChange: TUpload['onChange'] = ({ fileList }) => {
     setFileList(fileList)
   }
 
+  const handleClick = () => {
+    showBoundary('Error Boundary Test!')
+  }
+
+  const handleClick2 = () => {
+    showBoundary(new Response('Not Authorized', { status: 401 }))
+  }
+
   return (
     <>
       <Content>
+        <Card title="ErrorBoundary" className={styles.card}>
+          <Space>
+            <Button type="primary" onClick={handleClick}>
+              Show boundary
+            </Button>
+            <Button type="primary" onClick={handleClick2}>
+              Show boundary 401
+            </Button>
+          </Space>
+        </Card>
         <Card title="UI" className={styles.card}>
           <h2>Tabs</h2>
           <Tabs items={tabsItem} />
