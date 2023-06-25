@@ -6,7 +6,6 @@ import { EditOutlined } from '@ant-design/icons'
 import { useQuery } from '@tanstack/react-query'
 
 import { ROUTES } from '@/app/router/config'
-import { withAuth } from '@/shared/hocs'
 import { Card } from '@/shared/ui/Card'
 import { Tags } from '@/shared/ui/Tags'
 import { Space } from '@/shared/ui/Space'
@@ -24,7 +23,7 @@ import type { CSSProperties } from 'react'
 const iconEdit = <EditOutlined rev={undefined} />
 const styleActions: CSSProperties = { width: '100%', justifyContent: 'end' }
 
-const ThemePage = withAuth(() => {
+const ThemePage = () => {
   const { id } = useParams()
   const [vote, setVote] = useState<boolean | undefined>()
   const navigate = useNavigate()
@@ -72,6 +71,6 @@ const ThemePage = withAuth(() => {
       <Comments id={data.id} />
     </Card>
   )
-})
+}
 
 export default ThemePage

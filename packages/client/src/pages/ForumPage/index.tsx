@@ -1,7 +1,6 @@
 import { t } from 'i18next'
 import { useTranslation } from 'react-i18next'
 
-import { withAuth } from '@/shared/hocs'
 import { Card } from '@/shared/ui/Card'
 import { Tabs } from '@/shared/ui/Tabs'
 import { useTranslationRefresh } from '@/shared/hooks'
@@ -29,7 +28,7 @@ const getTabsItem: () => TTabsItems = () => [
   },
 ]
 
-const ForumPage = withAuth(() => {
+const ForumPage = () => {
   const { t } = useTranslation()
   const tabsItem = useTranslationRefresh(getTabsItem)
 
@@ -42,6 +41,6 @@ const ForumPage = withAuth(() => {
       />
     </Card>
   )
-})
+}
 
 export default ForumPage

@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 import { ROUTES } from '@/app/router/config'
 import { withSuspense } from '@/shared/hocs'
@@ -14,7 +14,7 @@ const Profile = withSuspense(() => import('@/pages/ProfilePage'))
 const ErrorPage = withSuspense(() => import('@/pages/ErrorPage'))
 const Game = withSuspense(() => import('@/pages/GamePage'))
 
-export const router = createBrowserRouter([
+export const privateRouter = [
   {
     path: ROUTES.game,
     element: <Game />,
@@ -36,14 +36,6 @@ export const router = createBrowserRouter([
         element: <Rating />,
       },
       {
-        path: ROUTES.signIn,
-        element: <SignIn />,
-      },
-      {
-        path: ROUTES.signUp,
-        element: <SignUp />,
-      },
-      {
         path: ROUTES.profile,
         element: <Profile />,
       },
@@ -58,4 +50,25 @@ export const router = createBrowserRouter([
       ...forumRoutes,
     ],
   },
-])
+]
+
+export const publicRouter = [
+  {
+    path: ROUTES.root,
+    element: <BaseLayout />,
+    children: [
+      {
+        path: ROUTES.signIn,
+        element: <SignIn />,
+      },
+      {
+        path: ROUTES.signUp,
+        element: <SignUp />,
+      },
+      {
+        path: '*',
+        element: <Navigate to={ROUTES.signIn} replace />,
+      },
+    ],
+  },
+]

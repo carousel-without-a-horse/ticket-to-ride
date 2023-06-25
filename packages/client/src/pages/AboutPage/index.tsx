@@ -1,7 +1,6 @@
-import { withAuth } from '@/shared/hocs'
 import { Card } from '@/shared/ui/Card'
 
-const AboutPage = withAuth(() => {
+const AboutPage = () => {
   return (
     <Card title="Ticket to ride">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae commodi
@@ -9,6 +8,6 @@ const AboutPage = withAuth(() => {
       nisi possimus, quas recusandae reprehenderit saepe ullam unde voluptatum?
     </Card>
   )
-})
+}
 
 export default AboutPage

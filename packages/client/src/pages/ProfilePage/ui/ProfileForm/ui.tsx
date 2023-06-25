@@ -2,14 +2,14 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 import authServices from '@/shared/services/authServices'
-import { LOCAL_STORAGE_KEYS } from '@/shared/constants/localStorage'
-import { useStore } from '@/shared/store'
 import { Form, FormInput } from '@/shared/ui/Form'
 import { Button } from '@/shared/ui/Button'
 import userServices from '@/shared/services/userServices'
 import { Upload } from '@/shared/ui/Upload'
 import { Space } from '@/shared/ui/Space'
 import { useForm } from '@/shared/hooks'
+import { userStore } from '@/shared/store/user/userStore'
+import { ROUTES } from '@/app/router/config'
 
 import { user } from './data'
 import schema from './schema'
@@ -18,7 +18,6 @@ import type { TUpload, TUploadFile } from '@/shared/ui/Upload'
 import type { TUseForm } from './types'
 
 const ProfileForm = () => {
-  const { userStore } = useStore()
   const navigate = useNavigate()
 
   const [fileList, setFileList] = useState<TUploadFile[]>([])
@@ -35,8 +34,8 @@ const ProfileForm = () => {
     authServices
       .logOut()
       .then(() => {
-        localStorage.removeItem(LOCAL_STORAGE_KEYS.userLogin)
-        userStore.setLogin('')
+        userStore.clearUser()
+        navigate(ROUTES.signIn)
       })
       .catch(err => {
         console.log(err)

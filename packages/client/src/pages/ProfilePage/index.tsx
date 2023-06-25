@@ -1,4 +1,3 @@
-import { withAuth } from '@/shared/hocs'
 import { Card } from '@/shared/ui/Card'
 import { ProfileForm } from '@/pages/ProfilePage/ui/ProfileForm'
 import { Tabs } from '@/shared/ui/Tabs'
@@ -21,7 +20,7 @@ const tabsItem: TTabsItems = [
   },
 ]
 
-const ProfilePage = withAuth(() => {
+const ProfilePage = () => {
   return (
     <Card title="Профиль">
       <Tabs
@@ -31,6 +30,6 @@ const ProfilePage = withAuth(() => {
       />
     </Card>
   )
-})
+}
 
 export default ProfilePage

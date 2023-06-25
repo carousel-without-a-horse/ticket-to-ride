@@ -1,3 +1,5 @@
+import type { TUser } from '@/pages/ProfilePage/ui/ProfileForm/type'
+
 export type TSignInSent = {
   login: string
   password: string
@@ -13,6 +15,6 @@ export type TSignUpSent = TSignInSent & {
 export type TAuthService = {
   signIn: (data: TSignInSent) => Promise<unknown>
   signUp: (data: TSignUpSent) => Promise<unknown>
-  fetchUser: () => Promise<unknown>
+  fetchUser: () => Promise<TUser>
   logOut: () => Promise<unknown>
 }
