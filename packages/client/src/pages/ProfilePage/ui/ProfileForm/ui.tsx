@@ -15,12 +15,10 @@ import { error } from '@/shared/utils/notification/intex'
 import { user } from './data'
 import schema from './schema'
 
+import styles from './styles.module.pcss'
 
 import type { TError } from '@/shared/types/error'
 import type { AxiosError } from 'axios'
-
-import styles from './styles.module.pcss'
-
 import type { TUpload, TUploadFile } from '@/shared/ui/Upload'
 import type { TUseForm } from './types'
 

@@ -10,11 +10,9 @@ import { userStore } from '@/shared/store/user/userStore'
 
 import schema from './schema'
 
-
-import type { AxiosError } from 'axios'
-
 import styles from './styles.module.pcss'
 
+import type { AxiosError } from 'axios'
 import type { TUseForm } from './types'
 import type { TError } from '@/shared/types/error'
 
