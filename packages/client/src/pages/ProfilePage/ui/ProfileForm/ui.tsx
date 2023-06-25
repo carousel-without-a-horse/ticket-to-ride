@@ -10,10 +10,13 @@ import { Space } from '@/shared/ui/Space'
 import { useForm } from '@/shared/hooks'
 import { userStore } from '@/shared/store/user/userStore'
 import { ROUTES } from '@/app/router/config'
+import { error } from '@/shared/utils/notification/intex'
 
 import { user } from './data'
 import schema from './schema'
 
+import type { TError } from '@/shared/types/error'
+import type { AxiosError } from 'axios'
 import type { TUpload, TUploadFile } from '@/shared/ui/Upload'
 import type { TUseForm } from './types'
 
@@ -37,8 +40,9 @@ const ProfileForm = () => {
         userStore.clearUser()
         navigate(ROUTES.signIn)
       })
-      .catch(err => {
-        console.log(err)
+      .catch((err: AxiosError) => {
+        const res = err.response?.data as TError
+        error('Error', res?.reason || '')
       })
   }
 
