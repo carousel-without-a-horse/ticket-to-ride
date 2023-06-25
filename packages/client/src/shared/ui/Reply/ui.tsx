@@ -5,19 +5,18 @@ import { Space } from '@/shared/ui/Space'
 import { useToggle } from '@/shared/hooks'
 import { Form, FormTextarea } from '@/shared/ui/Form'
 
+import styles from './styles.module.pcss'
+
 import type { FC } from 'react'
 import type { TReply } from './types'
 
-const styles = {
-  button: { marginBottom: 20 },
-}
-export const Reply: FC<TReply> = ({ isOpen = false, style, onChange }) => {
+export const Reply: FC<TReply> = ({ isOpen = false, className, onChange }) => {
   const { state: isShow, toggle: toggleShow, setFalse } = useToggle(isOpen)
   const { t } = useTranslation()
 
   if (isShow) {
     return (
-      <Form style={style} onFinish={onChange}>
+      <Form className={className} onFinish={onChange}>
         <FormTextarea name="value" />
         <Space>
           <Button type="primary" htmlType="submit">
@@ -30,7 +29,7 @@ export const Reply: FC<TReply> = ({ isOpen = false, style, onChange }) => {
   }
 
   return (
-    <Button style={styles.button} onClick={toggleShow}>
+    <Button className={styles.button} onClick={toggleShow}>
       {t('reply.submit')}
     </Button>
   )

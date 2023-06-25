@@ -1,0 +1,11 @@
+@define-mixin hideScrollbar {
+  scrollbar-width: none; /* Firefox */
+
+  /* Hide scrollbar for */
+  -ms-overflow-style: none; /* IE and Edge */
+
+  &::-webkit-scrollbar {
+    /* Chrome, Safari and Opera */
+    display: none;
+  }
+}

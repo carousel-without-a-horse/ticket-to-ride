@@ -1,7 +1,5 @@
-import type { CSSProperties } from 'react'
-
 export type TReply = {
-  style?: CSSProperties
+  className?: string
   isOpen?: boolean
   onChange: (value: string) => void
 }

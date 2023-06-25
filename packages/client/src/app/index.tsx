@@ -9,6 +9,7 @@ import startServiceWorker from '@/shared/utils/startServiceWorker'
 import { userStore } from '@/shared/store/user/userStore'
 
 import { withProviders } from './providers'
+import './styles'
 
 startServiceWorker()
 

@@ -5,6 +5,9 @@ import { Text } from '@/shared/ui/Text'
 import { PageTitle } from '@/shared/ui/PageTitle'
 import { Space } from '@/shared/ui/Space'
 import { Row } from '@/shared/ui/Row'
+
+import styles from './styles.module.pcss'
+
 interface IError {
   [key: string]: string
 }
@@ -21,7 +24,7 @@ const ErrorPage = () => {
     <Row justify="center">
       <Space direction="vertical" align="center">
         <PageTitle type="success">{code}</PageTitle>
-        <Text strong style={{ color: 'white' }}>
+        <Text strong className={styles.text}>
           {message}
         </Text>
         <Button ghost onClick={() => navigate(-1)}>

@@ -10,7 +10,11 @@ import { userStore } from '@/shared/store/user/userStore'
 
 import schema from './schema'
 
+
 import type { AxiosError } from 'axios'
+
+import styles from './styles.module.pcss'
+
 import type { TUseForm } from './types'
 import type { TError } from '@/shared/types/error'
 
@@ -40,7 +44,7 @@ const SignInForm = () => {
   })
 
   return (
-    <Form layout="vertical" style={{ minWidth: '30vw' }} {...formProps}>
+    <Form layout="vertical" className={styles.form} {...formProps}>
       <FormInput label="Логин" name="login" />
       <FormInput label="Пароль" name="password" inputType="password" />
       <Button type="primary" htmlType="submit">

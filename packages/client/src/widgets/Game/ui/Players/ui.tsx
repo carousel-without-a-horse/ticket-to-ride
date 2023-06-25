@@ -1,13 +1,13 @@
-import type { CSSProperties } from 'react'
+import { Player } from '@/shared/ui/Game/Player'
 
-const styles: Record<string, CSSProperties> = {
-  wrapper: {
-    height: 80,
-    backgroundColor: 'red',
-    marginBottom: 10,
-  },
-}
+import styles from './styles.module.pcss'
 
 export const Players = () => {
-  return <div style={styles.wrapper}>Players</div>
+  return (
+    <div className={styles.wrapper}>
+      <Player character="banana" />
+
+      <Player character="grape" />
+    </div>
+  )
 }

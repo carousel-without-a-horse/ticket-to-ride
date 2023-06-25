@@ -10,7 +10,12 @@ import { ROUTES } from '@/app/router/config'
 
 import schema from './schema'
 
+
 import type { AxiosError } from 'axios'
+
+import styles from './styles.module.pcss'
+
+
 import type { TUseForm } from './types'
 import type { TError } from '@/shared/types/error'
 
@@ -48,7 +53,7 @@ const SignUpForm = () => {
   })
 
   return (
-    <Form layout="vertical" style={{ minWidth: '30vw' }} {...formProps}>
+    <Form layout="vertical" className={styles.form} {...formProps}>
       <FormInput label="Имя" name="firstName" />
       <FormInput label="Фамилия" name="secondName" />
       <FormInput label="Логин" name="login" />

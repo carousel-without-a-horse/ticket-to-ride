@@ -8,12 +8,9 @@ import { useTranslationRefresh } from '@/shared/hooks'
 import { Themes } from './ui/Themes'
 import { THEME_TYPES } from './lib/constants'
 
-import type { TTabsItems } from '@/shared/ui/Tabs'
-import type { CSSProperties } from 'react'
+import styles from './styles.module.pcss'
 
-const style: CSSProperties = {
-  marginBottom: 40,
-}
+import type { TTabsItems } from '@/shared/ui/Tabs'
 
 const getTabsItem: () => TTabsItems = () => [
   {
@@ -33,7 +30,7 @@ const ForumPage = () => {
   const tabsItem = useTranslationRefresh(getTabsItem)
 
   return (
-    <Card title={t('pages.forum')} style={style}>
+    <Card title={t('pages.forum')} className={styles.wrapper}>
       <Tabs
         items={tabsItem}
         defaultActiveKey={THEME_TYPES.all}

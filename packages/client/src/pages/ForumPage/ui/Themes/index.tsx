@@ -13,16 +13,15 @@ import { ROUTES } from '@/app/router/config'
 import { OperationsWithSelected } from './ui/OperationsWithSelected'
 import { getColumnsDefault, columnActions } from './utils'
 
+import styles from './styles.module.pcss'
+
 import type { TTheme } from '@/entities/theme'
 import type { TTableColumnsType } from '@/shared/ui/Table'
 import type { FC, Key } from 'react'
 import type { TThemes } from './types'
 
 const iconPlus = <PlusCircleOutlined rev={undefined} />
-const style = {
-  wrapper: { width: '100%', justifyContent: 'end', marginBottom: 15 },
-  table: { width: '700px' },
-}
+const queryKey = ['themes']
 
 export const Themes: FC<TThemes> = ({ type }) => {
   const { t } = useTranslation()
@@ -55,7 +54,7 @@ export const Themes: FC<TThemes> = ({ type }) => {
 
   return (
     <>
-      <Space style={style.wrapper}>
+      <Space className={styles.actions}>
         {isMyThemes && selectedItems.length > 0 && (
           <OperationsWithSelected selectedItems={selectedItems} />
         )}
@@ -65,10 +64,10 @@ export const Themes: FC<TThemes> = ({ type }) => {
       </Space>
       <QueryTable
         rowSelection={rowSelection}
-        queryKey={['themes']}
+        queryKey={queryKey}
         queryFn={themeServices.getAll}
         columns={columns}
-        style={style.table}
+        className={styles.table}
       />
     </>
   )

@@ -1,8 +1,11 @@
-import { colors } from '@/app/providers/colors'
+import { colors } from '@/shared/constants/colors'
 
 import { Draft } from './ui/Draft'
 import { Players } from './ui/Players'
 import { Map } from './ui/Map'
+import { Menu } from './ui/Menu'
+import { RouteCards } from './ui/RouteCards'
+import { Hand } from './ui/Hand'
 
 import type { CSSProperties } from 'react'
 
@@ -14,12 +17,12 @@ const styles: Record<string, CSSProperties> = {
     height: '900px',
     padding: '10px',
     maxWidth: '1180px',
-    backgroundColor: colors.game.background,
+    backgroundColor: colors.background,
     borderRadius: 8,
   },
   bottomPanel: {
     height: 150,
-    backgroundColor: 'green',
+    display: 'flex',
   },
 }
 
@@ -52,9 +55,11 @@ export const Game = () => {
       </div>
 
       <div style={styles.bottomPanel}>
-        <div>Menu</div>
-        <div>Routes cards</div>
-        <div>Hand cards</div>
+        <Menu />
+
+        <RouteCards />
+
+        <Hand />
       </div>
     </div>
   )

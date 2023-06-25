@@ -1,9 +1,19 @@
-import type { TGameColors } from '@/app/providers/colors'
 import type { TCityKey } from './cities'
+
+type TPathColor =
+  | 'orange'
+  | 'black'
+  | 'purple'
+  | 'green'
+  | 'blue'
+  | 'white'
+  | 'red'
+  | 'yellow'
+  | 'gray'
 
 export interface IRoute {
   length: number
-  paths: TGameColors[]
+  paths: TPathColor[]
   cities: TCityKey[]
 }
 
@@ -49,7 +59,7 @@ export const routes: Record<string, IRoute> = {
     cities: ['Pamplona', 'Madrid'],
   },
   'Madrid-Lisboa': {
-    length: 3,
+    length: 2,
     paths: ['purple'],
     cities: ['Madrid', 'Lisboa'],
   },
@@ -169,7 +179,7 @@ export const routes: Record<string, IRoute> = {
     cities: ['Sevastopol', 'Rostov'],
   },
   'Bucuresti-Sevastopol': {
-    length: 4,
+    length: 2,
     paths: ['white'],
     cities: ['Bucuresti', 'Sevastopol'],
   },
@@ -389,7 +399,7 @@ export const routes: Record<string, IRoute> = {
     cities: ['Warszawa', 'Danzig'],
   },
   'Warszawa-Wilno': {
-    length: 3,
+    length: 2,
     paths: ['red'],
     cities: ['Warszawa', 'Wilno'],
   },

@@ -1,7 +1,7 @@
-import { cities } from '@/widgets/Game/data/cities'
-import { gameSetup } from '@/widgets/Game/data/gameSetup'
+import { cities } from '@/entities/Game/data/cities'
+import { gameSetup } from '@/entities/Game/data/gameSetup'
 
-import type { TCityKey } from '@/widgets/Game/data/cities'
+import type { TCityKey } from '@/entities/Game/data/cities'
 
 interface IReturn {
   x1: number

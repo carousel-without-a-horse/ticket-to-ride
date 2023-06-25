@@ -21,6 +21,14 @@
         "author": "Author",
         "commentsCount": "Answers"
       }
+    },
+    "operationsWithSelected": {
+      "title": "Operations with selected",
+      "options": {
+        "open": "Open",
+        "convertToDraft": "Convert to draft",
+        "remove": "Delete"
+      }
     }
   },
   "theme": {
@@ -53,5 +61,14 @@
       "error": "Data not loaded, please try again or contact support",
       "retry": "Repeat request"
     }
+  },
+  "errorBoundary": {
+    "list": {
+      "notFound": "This page doesn't exist",
+      "notAuthorized": "You aren't authorized to see this",
+      "serverError": "Looks like our API is down",
+      "defaultError": "Something went wrong"
+    },
+    "reset": "Reset"
   }
 }

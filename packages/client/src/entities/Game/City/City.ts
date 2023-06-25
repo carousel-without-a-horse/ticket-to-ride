@@ -1,5 +1,5 @@
-import { colors } from '@/app/providers/colors'
-import { gameSetup } from '@/widgets/Game/data/gameSetup'
+import { colors } from '@/shared/constants/colors'
+import { gameSetup } from '@/entities/Game/data/gameSetup'
 import { IconCity } from '@/shared/images/game'
 
 import type { IProps } from './types'
@@ -12,7 +12,7 @@ export class City {
   constructor(props: IProps) {
     this.props = {
       radius: gameSetup.city.radius,
-      color: colors.game.gray,
+      color: colors.gray,
       ...props,
     }
   }
@@ -33,7 +33,7 @@ export class City {
       ctx.arc(x, y, radius, 0, 2 * Math.PI)
       ctx.fillStyle = this.props.color
       ctx.lineWidth = 1
-      ctx.strokeStyle = colors.game.black
+      ctx.strokeStyle = colors.black
       ctx.fill()
       ctx.stroke()
       ctx.closePath()
@@ -66,7 +66,7 @@ export class City {
       }
     } else if (this.isMouseover) {
       this.isMouseover = false
-      this.changeColor(colors.game.gray)
+      this.changeColor(colors.gray)
     }
   }
 }

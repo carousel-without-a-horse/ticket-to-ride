@@ -21,6 +21,14 @@
         "author": "Автор",
         "commentsCount": "Ответы"
       }
+    },
+    "operationsWithSelected": {
+      "title": "Операции с выделенным",
+      "options": {
+        "open": "Открыть",
+        "convertToDraft": "Перевести в черновик",
+        "remove": "Удалить"
+      }
     }
   },
   "theme": {
@@ -53,5 +61,14 @@
       "error": "Данные не загружены, повторите запрос или обратитесь в службу поддержки",
       "retry": "Повторить запрос"
     }
+  },
+  "errorBoundary": {
+    "list": {
+      "notFound": "Страница не найдена",
+      "notAuthorized": "Нет доступа",
+      "serverError": "Похоже, наш API не работает",
+      "defaultError": "Что-то пошло не так"
+    },
+    "reset": "Сбросить"
   }
 }

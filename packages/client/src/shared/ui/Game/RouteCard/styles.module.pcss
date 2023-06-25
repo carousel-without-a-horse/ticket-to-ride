@@ -1,0 +1,52 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  min-width: 250px;
+  margin-right: 10px;
+  padding: 10px;
+
+  background-color: $blueMedium;
+  border-radius: 6px;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.canvas {
+  width: 170px;
+  height: 84px;
+  background-color: $background;
+  border-radius: 6px;
+}
+
+.title {
+  font-weight: 600;
+  color: $text;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.points {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 50px;
+  height: 50px;
+
+  background-color: $pink;
+  border-radius: 50%;
+
+  span {
+    font-size: 20px;
+    font-weight: 500;
+  }
+}

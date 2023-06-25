@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { UserOutlined } from '@ant-design/icons'
+import { useErrorBoundary } from 'react-error-boundary'
 
 import { Card } from '@/shared/ui/Card'
 import { Tabs } from '@/shared/ui/Tabs'
@@ -14,6 +15,8 @@ import { Content } from '@/shared/ui/Layout'
 import { Reply } from '@/shared/ui/Reply'
 import { Likes } from '@/shared/ui/Likes'
 import { success, error, warning } from '@/shared/utils/notification/intex'
+
+import styles from './styles.module.pcss'
 
 import type { TUpload, TUploadFile } from '@/shared/ui/Upload'
 import type { TTabsItems } from '@/shared/ui/Tabs'
@@ -62,22 +65,36 @@ const columns = [
   },
 ]
 
-const style = {
-  card: { marginBottom: 40 },
-  table: { width: 700 },
-}
-
 const GuidePage = () => {
+  const { showBoundary } = useErrorBoundary()
   const [fileList, setFileList] = useState<TUploadFile[]>([])
 
   const handleChange: TUpload['onChange'] = ({ fileList }) => {
     setFileList(fileList)
   }
 
+  const handleClick = () => {
+    showBoundary('Error Boundary Test!')
+  }
+
+  const handleClick2 = () => {
+    showBoundary(new Response('Not Authorized', { status: 401 }))
+  }
+
   return (
     <>
       <Content>
-        <Card title="UI" style={style.card}>
+        <Card title="ErrorBoundary" className={styles.card}>
+          <Space>
+            <Button type="primary" onClick={handleClick}>
+              Show boundary
+            </Button>
+            <Button type="primary" onClick={handleClick2}>
+              Show boundary 401
+            </Button>
+          </Space>
+        </Card>
+        <Card title="UI" className={styles.card}>
           <h2>Tabs</h2>
           <Tabs items={tabsItem} />
           <h2>Buttons</h2>
@@ -126,7 +143,7 @@ const GuidePage = () => {
           </Space>
         </Card>
 
-        <Card title="Form" style={style.card}>
+        <Card title="Form" className={styles.card}>
           <Form
             onFinish={data => console.log('submit data', data)}
             onValuesChange={data => console.log(data)}
@@ -138,12 +155,12 @@ const GuidePage = () => {
             </Button>
           </Form>
         </Card>
-        <Card title="Table" style={style.card}>
+        <Card title="Table" className={styles.card}>
           <Table
             dataSource={dataSource}
             columns={columns}
             pagination={false}
-            style={style.table}
+            className={styles.table}
           />
         </Card>
       </Content>
