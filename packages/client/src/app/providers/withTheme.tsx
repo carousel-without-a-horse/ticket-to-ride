@@ -6,27 +6,30 @@ import { useMemo } from 'react'
 import { useStore } from '@/shared/store'
 import { colors } from '@/shared/constants/colors'
 
-import type { ReactNode } from 'react'
+import type { PropsWithChildren, ReactNode } from 'react'
+
 const { defaultAlgorithm, darkAlgorithm } = theme
 
-export const withTheme = (component: () => ReactNode) =>
-  observer(() => {
-    const { isDarkMode } = useStore()
-    const theme = useMemo(
-      () => ({
-        algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
-        token: {
-          colorBgLayout: isDarkMode ? colors.black : colors.blueMedium,
-          colorPrimary: isDarkMode ? colors.greenCold : colors.blue,
-          colorBgContainer: isDarkMode ? colors.totalBlack : colors.white,
-        },
-      }),
-      [isDarkMode]
-    )
+const ThemeProvider = observer(({ children }: PropsWithChildren) => {
+  const { isDarkMode } = useStore()
+  const theme = useMemo(
+    () => ({
+      algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
+      token: {
+        colorBgLayout: isDarkMode ? colors.black : colors.blueMedium,
+        colorPrimary: isDarkMode ? colors.greenCold : colors.blue,
+        colorBgContainer: isDarkMode ? colors.totalBlack : colors.white,
+      },
+    }),
+    [isDarkMode]
+  )
 
-    return (
-      <ConfigProvider locale={ruRu} theme={theme}>
-        {component()}
-      </ConfigProvider>
-    )
-  })
+  return (
+    <ConfigProvider locale={ruRu} theme={theme}>
+      {children}
+    </ConfigProvider>
+  )
+})
+
+export const withTheme = (component: () => ReactNode) => () =>
+  <ThemeProvider>{component()}</ThemeProvider>

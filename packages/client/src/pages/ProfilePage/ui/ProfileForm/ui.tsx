@@ -1,18 +1,24 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
+import authServices from '@/shared/services/authServices'
 import { Form, FormInput } from '@/shared/ui/Form'
 import { Button } from '@/shared/ui/Button'
 import userServices from '@/shared/services/userServices'
 import { Upload } from '@/shared/ui/Upload'
 import { Space } from '@/shared/ui/Space'
 import { useForm } from '@/shared/hooks'
+import { userStore } from '@/shared/store/user/userStore'
+import { ROUTES } from '@/app/router/config'
+import { error } from '@/shared/utils/notification/intex'
 
 import { user } from './data'
 import schema from './schema'
 
 import styles from './styles.module.pcss'
 
+import type { TError } from '@/shared/types/error'
+import type { AxiosError } from 'axios'
 import type { TUpload, TUploadFile } from '@/shared/ui/Upload'
 import type { TUseForm } from './types'
 
@@ -27,6 +33,19 @@ const ProfileForm = () => {
       .changeAvatar(fileList[0])
       .then(console.debug)
       .catch(console.error)
+  }
+
+  const handleLogOut = () => {
+    authServices
+      .logOut()
+      .then(() => {
+        userStore.clearUser()
+        navigate(ROUTES.signIn)
+      })
+      .catch((err: AxiosError) => {
+        const res = err.response?.data as TError
+        error('Error', res?.reason || '')
+      })
   }
 
   const formProps = useForm<TUseForm>({
@@ -73,6 +92,9 @@ const ProfileForm = () => {
         </Button>
         <Button type="link" onClick={() => navigate(-1)}>
           &lt; Назад
+        </Button>
+        <Button danger onClick={handleLogOut}>
+          Выйти
         </Button>
       </Form>
       <div>

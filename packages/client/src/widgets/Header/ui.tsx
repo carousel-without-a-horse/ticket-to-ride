@@ -2,6 +2,7 @@ import { theme } from 'antd'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect, useMemo, useState } from 'react'
 import { t } from 'i18next'
+import { observer } from 'mobx-react-lite'
 
 import { Header as LayoutHeader } from '@/shared/ui/Layout'
 import { Space } from '@/shared/ui/Space'
@@ -10,50 +11,58 @@ import { ThemeSwitcher } from '@/features/ThemeSwitcher'
 import { LangSelect } from '@/features/LangSelect'
 import { ROUTES } from '@/app/router/config'
 import { useTranslationRefresh } from '@/shared/hooks'
+import { userStore } from '@/shared/store/user/userStore'
 
 import styles from './styles.module.pcss'
 
 import type { TMenuSelectEventHandler } from '@/shared/ui/Menu'
 
-const getItems = () => [
-  {
-    key: ROUTES.startGame,
-    label: 'Начать игру',
-  },
-  {
-    key: ROUTES.root,
-    label: t('pages.guide'),
-  },
-  {
-    key: ROUTES.about,
-    label: t('pages.about'),
-  },
-  {
-    key: ROUTES.rating,
-    label: t('pages.rating'),
-  },
-  {
-    key: ROUTES.forum,
-    label: t('pages.forum'),
-  },
-  {
-    key: ROUTES.signIn,
-    label: t('pages.login'),
-  },
-  {
-    key: ROUTES.signUp,
-    label: t('pages.signup'),
-  },
-  {
-    key: ROUTES.profile,
-    label: t('pages.profile'),
-  },
-]
-export const Header = () => {
+const getPublicItems = () => {
+  return [
+    {
+      key: ROUTES.signIn,
+      label: t('pages.login'),
+    },
+    {
+      key: ROUTES.signUp,
+      label: t('pages.signup'),
+    },
+  ]
+}
+
+const getPrivateItems = () => {
+  return [
+    {
+      key: ROUTES.root,
+      label: t('pages.guide'),
+    },
+    {
+      key: ROUTES.about,
+      label: t('pages.about'),
+    },
+    {
+      key: ROUTES.rating,
+      label: t('pages.rating'),
+    },
+    {
+      key: ROUTES.forum,
+      label: t('pages.forum'),
+    },
+    {
+      key: ROUTES.profile,
+      label: t('pages.profile'),
+    },
+  ]
+}
+
+export const Header = observer(() => {
   const { token } = theme.useToken()
   const navigate = useNavigate()
   const location = useLocation()
-  const menuItems = useTranslationRefresh(getItems)
+  const { user } = userStore
+  const privateItems = useTranslationRefresh(getPrivateItems)
+  const publicItems = useTranslationRefresh(getPublicItems)
+  const menuItems = user ? privateItems : publicItems
 
   const [selectedMenuItem, setSelectedMenuItem] = useState<string>(
     location.pathname
@@ -93,4 +102,4 @@ export const Header = () => {
       </div>
     </LayoutHeader>
   )
-}
+})

@@ -2,8 +2,6 @@ import { httpService } from '@/shared/services/httpService'
 
 import type { TUserService } from './types'
 
-httpService.defaults.baseURL = '/api/user'
-
 const userServices: TUserService = {
   changeUserProfile: async data => {
     return httpService.put('/profile', {
