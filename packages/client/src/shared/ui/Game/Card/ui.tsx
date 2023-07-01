@@ -1,8 +1,6 @@
-import { useState } from 'react'
-
 import { colors } from '@/shared/constants/colors'
-import { colorCards } from '@/entities/Game/data/colorCards'
 import { IconRainbow } from '@/shared/images/game'
+import { useStore } from '@/shared/store'
 
 import stylesIm from './styles.module.pcss'
 
@@ -10,25 +8,45 @@ import type { IProps } from './types'
 
 const { text: textColor, greenCold } = colors
 
-export const Card = ({ type }: IProps) => {
-  const [isSelected, setIsSelected] = useState(false)
+export const Card = ({
+  card,
+  selectedCardsIndexes,
+  setSelectedCardsIndexes,
+  cardIndex,
+}: IProps) => {
+  const {
+    gameStore: {
+      draft: { open },
+    },
+  } = useStore()
 
-  const { color } = colorCards[type]
+  const isSelected = selectedCardsIndexes.includes(cardIndex)
+  const isDisabled = !isSelected && selectedCardsIndexes.length === 2
+
   const selectedBorderWidth = 4
   const notSelectedBorderWidth = 1
   const borderWidth = isSelected ? selectedBorderWidth : notSelectedBorderWidth
   const borderColor = isSelected ? greenCold : textColor
 
+  const onSelect = () => {
+    if (!isDisabled) {
+      setSelectedCardsIndexes(prev => {
+        if (isSelected) return prev.filter(element => element !== cardIndex)
+        return [...prev, cardIndex]
+      })
+    }
+  }
+
   return (
     <div
       style={{
-        backgroundColor: color,
+        backgroundColor: card.color,
         border: `${borderWidth}px solid ${borderColor}`,
       }}
       className={stylesIm.card}
-      onClick={() => setIsSelected(prev => !prev)}
+      onClick={onSelect}
     >
-      {type === 'rainbow' && <img src={IconRainbow} alt="IconRainbow" />}
+      {card.type === 'rainbow' && <img src={IconRainbow} alt="IconRainbow" />}
     </div>
   )
 }

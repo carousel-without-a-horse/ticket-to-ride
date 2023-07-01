@@ -11,7 +11,7 @@ export const RouteCards = () => {
   return (
     <div className={styles.wrapper}>
       {selectedCards.map(card => (
-        <RouteCard routeKey={card} />
+        <RouteCard routeKey={card} key={card} />
       ))}
     </div>
   )

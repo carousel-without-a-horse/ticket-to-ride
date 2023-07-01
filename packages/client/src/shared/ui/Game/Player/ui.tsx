@@ -5,27 +5,21 @@ import styles from './styles.module.pcss'
 
 import type { IProps } from './types'
 
-export const Player = ({ character }: IProps) => {
+export const Player = ({ player: { character, points, trains } }: IProps) => {
   const Icon = characters[character].icon
 
-  // TODO: заменить на динамические данные
-  const data = {
-    coins: 40,
-    trains: 23,
-  }
-
-  const renderPointsBlock = (type: keyof typeof data) => (
+  const renderPointsBlock = (type: 'points' | 'trains', count: number) => (
     <div
       className={styles.points}
       style={{ backgroundColor: characters[character].color }}
     >
       <img
-        src={type === 'coins' ? IconCoin : IconHeadTrain}
+        src={type === 'points' ? IconCoin : IconHeadTrain}
         alt={type}
         style={{ marginBottom: 5 }}
       />
 
-      <span style={{ fontWeight: 600 }}>{data[type]}</span>
+      <span style={{ fontWeight: 600 }}>{count}</span>
     </div>
   )
 
@@ -45,9 +39,9 @@ export const Player = ({ character }: IProps) => {
         <img src={Icon} alt="PlayerIcon" />
       </div>
 
-      {renderPointsBlock('coins')}
+      {renderPointsBlock('points', points)}
 
-      {renderPointsBlock('trains')}
+      {renderPointsBlock('trains', trains)}
     </div>
   )
 }

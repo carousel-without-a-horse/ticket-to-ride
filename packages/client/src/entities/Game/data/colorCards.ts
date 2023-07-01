@@ -1,33 +1,57 @@
 import { colors } from '@/shared/constants/colors'
 
-export type TColorCardKey = keyof typeof colorCards
+export type TColorCardType =
+  | 'black'
+  | 'blue'
+  | 'green'
+  | 'orange'
+  | 'purple'
+  | 'rainbow'
+  | 'red'
+  | 'white'
+  | 'yellow'
 
-export const colorCards = {
-  black: {
+// export type TColorCardObj = valueof typeof colorCards
+export type TColorCard = {
+  type: TColorCardType
+  color: string
+}
+
+export const colorCards: TColorCard[] = [
+  {
+    type: 'black',
     color: colors.black,
   },
-  blue: {
+  {
+    type: 'blue',
     color: colors.blue,
   },
-  green: {
+  {
+    type: 'green',
     color: colors.green,
   },
-  orange: {
+  {
+    type: 'orange',
     color: colors.orange,
   },
-  purple: {
+  {
+    type: 'purple',
     color: colors.purple,
   },
-  rainbow: {
+  {
+    type: 'rainbow',
     color: colors.black,
   },
-  red: {
+  {
+    type: 'red',
     color: colors.red,
   },
-  white: {
+  {
+    type: 'white',
     color: colors.white,
   },
-  yellow: {
+  {
+    type: 'yellow',
     color: colors.yellow,
   },
-}
+]
