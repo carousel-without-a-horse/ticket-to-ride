@@ -11,7 +11,6 @@ export type TColorCardType =
   | 'white'
   | 'yellow'
 
-// export type TColorCardObj = valueof typeof colorCards
 export type TColorCard = {
   type: TColorCardType
   color: string

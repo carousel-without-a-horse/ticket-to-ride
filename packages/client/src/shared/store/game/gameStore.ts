@@ -57,6 +57,7 @@ class GameStore {
   }
 
   setDraft() {
+    // Создание колоды карт из представленных colorCards
     const allCards = Object.entries(colorCards).reduce((accum, [_, card]) => {
       const arrOfCard = Array.from(
         { length: gameSetup.colorCards.typeCount },
@@ -65,6 +66,7 @@ class GameStore {
       return [...accum, ...arrOfCard]
     }, [] as TColorCard[])
 
+    // Замешивание колоды
     const shuffledAllCards = shuffle(allCards)
 
     this.draft = {
@@ -75,9 +77,12 @@ class GameStore {
 
   refreshDraft(cardIndexesToDelete: number[]) {
     const cardsToDeleteCount = cardIndexesToDelete.length
+
+    // Удаление взятых карт из открытого драфта
     let newOpenCards = this.draft.open.filter(
       (_, index) => !cardIndexesToDelete.includes(index)
     )
+    // Берем карты из закрытого драфта и добавляем в открытый
     const newCardsFromHidden = this.draft.hidden.slice(0, cardsToDeleteCount)
     newOpenCards = [...newOpenCards, ...newCardsFromHidden]
 
@@ -107,8 +112,6 @@ class GameStore {
         player.colorCards[card.type] = newCardType
       })
     }
-
-    console.log('player:', player)
 
     this.players[this.turnState.player] = player
   }
