@@ -1,5 +1,5 @@
-import type { IPlayer } from '@/shared/store/game/types'
+import type { TPlayer } from '@/shared/store/game/types'
 
 export interface IProps {
-  player: IPlayer
+  player: TPlayer
 }

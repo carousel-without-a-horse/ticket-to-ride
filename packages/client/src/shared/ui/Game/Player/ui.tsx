@@ -15,7 +15,10 @@ export const Player = ({ player: { character, points, trains } }: IProps) => {
     >
       <img
         src={type === 'points' ? IconCoin : IconHeadTrain}
-        alt={type}
+        alt={type === 'points' ? 'Очки' : 'Поезда'}
+        width={28}
+        height={28}
+        loading="lazy"
         style={{ marginBottom: 5 }}
       />
 

@@ -4,14 +4,14 @@ import type {
   TColorCardType,
 } from '@/entities/Game/data/colorCards'
 
-export interface IPlayerColorCard {
+export type TPlayerColorCard = {
   count: number
   card: TColorCard
 }
 
-export type TPlayerColorCards = Record<TColorCardType, IPlayerColorCard>
+export type TPlayerColorCards = Record<TColorCardType, TPlayerColorCard>
 
-export interface IPlayer {
+export type TPlayer = {
   character: TCharacterKey
   colorCards: TPlayerColorCards
   routeCards: string[] // TODO: тип не продуман, поменять, если понадобится
@@ -21,15 +21,15 @@ export interface IPlayer {
 
 export type TPlayersKey = 'currentPlayer' | 'opponentPlayer'
 
-export type TPlayers = Record<TPlayersKey, IPlayer | null>
+export type TPlayers = Record<TPlayersKey, TPlayer | null>
 
-export interface ITurnState {
+export type TTurnState = {
   colorCardsTakenCount: 0 | 1 | 2
   isPossibleToTakeColorCard: boolean
   player: TPlayersKey
 }
 
-export interface IDraft {
+export type TDraft = {
   hidden: TColorCard[]
   open: TColorCard[]
 }

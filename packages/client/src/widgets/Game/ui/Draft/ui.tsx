@@ -12,7 +12,7 @@ import styles from './styles.module.pcss'
 export const Draft = observer(() => {
   const { gameStore } = useStore()
   const {
-    draft: { open },
+    draft: { open: openCards },
   } = gameStore
 
   const [selectedCardsIndexes, setSelectedCardsIndexes] = useState<number[]>([])
@@ -20,26 +20,25 @@ export const Draft = observer(() => {
   const isOpenCardsSelected = selectedCardsIndexes.length !== 0
 
   const takeCards = () => {
-    if (!isOpenCardsSelected) {
-      gameStore.takeHiddenCard()
-    } else {
+    if (isOpenCardsSelected) {
       gameStore.takeOpenCard(selectedCardsIndexes)
       setSelectedCardsIndexes([])
+    } else {
+      gameStore.takeHiddenCard()
     }
   }
 
   const renderOpenCards = () => (
     <div className={styles.cards}>
-      {open &&
-        open.map((card, cardIndex) => (
-          <Card
-            key={uniqueId()}
-            card={card}
-            selectedCardsIndexes={selectedCardsIndexes}
-            setSelectedCardsIndexes={setSelectedCardsIndexes}
-            cardIndex={cardIndex}
-          />
-        ))}
+      {openCards.map((card, cardIndex) => (
+        <Card
+          key={uniqueId()}
+          card={card}
+          selectedCardsIndexes={selectedCardsIndexes}
+          setSelectedCardsIndexes={setSelectedCardsIndexes}
+          cardIndex={cardIndex}
+        />
+      ))}
     </div>
   )
 

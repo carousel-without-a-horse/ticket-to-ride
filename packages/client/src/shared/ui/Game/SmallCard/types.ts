@@ -1,5 +1,5 @@
-import type { IPlayerColorCard } from '@/shared/store/game/types'
+import type { TPlayerColorCard } from '@/shared/store/game/types'
 
 export interface IProps {
-  card: IPlayerColorCard
+  card: TPlayerColorCard
 }

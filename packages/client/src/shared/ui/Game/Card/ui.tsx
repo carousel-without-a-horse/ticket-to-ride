@@ -1,6 +1,5 @@
 import { colors } from '@/shared/constants/colors'
 import { IconRainbow } from '@/shared/images/game'
-import { useStore } from '@/shared/store'
 
 import stylesIm from './styles.module.pcss'
 
@@ -14,12 +13,6 @@ export const Card = ({
   setSelectedCardsIndexes,
   cardIndex,
 }: IProps) => {
-  const {
-    gameStore: {
-      draft: { open },
-    },
-  } = useStore()
-
   const isSelected = selectedCardsIndexes.includes(cardIndex)
   const isDisabled = !isSelected && selectedCardsIndexes.length === 2
 
@@ -31,22 +24,32 @@ export const Card = ({
   const onSelect = () => {
     if (!isDisabled) {
       setSelectedCardsIndexes(prev => {
-        if (isSelected) return prev.filter(element => element !== cardIndex)
-        return [...prev, cardIndex]
+        return isSelected
+          ? prev.filter(element => element !== cardIndex)
+          : [...prev, cardIndex]
       })
     }
   }
 
   return (
-    <div
+    <button
       style={{
         backgroundColor: card.color,
         border: `${borderWidth}px solid ${borderColor}`,
       }}
       className={stylesIm.card}
       onClick={onSelect}
+      type="button"
     >
-      {card.type === 'rainbow' && <img src={IconRainbow} alt="IconRainbow" />}
-    </div>
+      {card.type === 'rainbow' && (
+        <img
+          src={IconRainbow}
+          width={50}
+          height={50}
+          loading="lazy"
+          alt="Радуга"
+        />
+      )}
+    </button>
   )
 }

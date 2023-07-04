@@ -12,7 +12,15 @@ export const SmallCard = ({ card }: IProps) => {
       }}
       className={styles.wrapper}
     >
-      {card.card.type === 'rainbow' && <img src={IconRainbow} />}
+      {card.card.type === 'rainbow' && (
+        <img
+          src={IconRainbow}
+          alt="Радуга"
+          width={24}
+          height={24}
+          loading="lazy"
+        />
+      )}
 
       <div className={styles.countWrapper}>
         <span>{card.count}</span>

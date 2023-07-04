@@ -7,16 +7,16 @@ import { type TColorCard, colorCards } from '@/entities/Game/data/colorCards'
 
 import type { TCharacterKey } from '@/entities/Game/data/characters'
 import type {
-  IDraft,
-  IPlayerColorCard,
-  ITurnState,
+  TDraft,
+  TPlayerColorCard,
+  TTurnState,
   TPlayerColorCards,
   TPlayers,
 } from './types'
 
 class GameStore {
   currentMode = 'Против Компьютера'
-  turnState: ITurnState = {
+  turnState: TTurnState = {
     colorCardsTakenCount: 0,
     isPossibleToTakeColorCard: true,
     player: 'currentPlayer',
@@ -25,7 +25,7 @@ class GameStore {
     currentPlayer: null,
     opponentPlayer: null,
   }
-  draft: IDraft = {
+  draft: TDraft = {
     hidden: [],
     open: [],
   }
@@ -34,7 +34,7 @@ class GameStore {
     makeAutoObservable(this)
   }
 
-  setTurnState(state: ITurnState) {
+  setTurnState(state: TTurnState) {
     this.turnState = state
   }
 
@@ -95,12 +95,13 @@ class GameStore {
 
     if (player) {
       cards.forEach(card => {
-        let newCardType: IPlayerColorCard
+        const previousCardType = player.colorCards[card.type]
+        let newCardType: TPlayerColorCard
 
-        if (player.colorCards[card.type]) {
+        if (previousCardType) {
           newCardType = {
-            ...player.colorCards[card.type],
-            count: player.colorCards[card.type].count + 1,
+            ...previousCardType,
+            count: previousCardType.count + 1,
           }
         } else {
           newCardType = {
