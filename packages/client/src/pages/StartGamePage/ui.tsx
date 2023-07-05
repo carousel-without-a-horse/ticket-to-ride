@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 
@@ -5,25 +6,38 @@ import { Button } from '@/shared/ui/Button'
 import { ROUTES } from '@/app/router/config'
 import { useStore } from '@/shared/store'
 import { Select } from '@/shared/ui/Select/Select'
+import {
+  type TCharacterKey,
+  charactersKeys,
+} from '@/entities/Game/data/characters'
 
 import { characterOptions } from './data'
 
 import styles from './styles.module.pcss'
 
-import type { TCharacters } from '@/shared/store/game/types'
-
 const modeOptions = [{ label: 'Против компьютера', value: 'test' }] // доработается, как только появятся режимы
 
 const StartGame = observer(() => {
-  const navigate = useNavigate()
   const { gameStore } = useStore()
 
+  const [character, setCharacter] = useState<TCharacterKey>(charactersKeys[0])
+
+  const navigate = useNavigate()
+
   const onChangeCharacter = (value: string) => {
-    gameStore.handleSelectCharacters(value as TCharacters)
+    setCharacter(value as TCharacterKey)
+    gameStore.setDraft()
   }
 
   const onChangeMode = (value: string) => {
     console.log(value)
+  }
+
+  const onGameStart = () => {
+    gameStore.setPlayers(character)
+    gameStore.setDraft()
+
+    navigate(ROUTES.game)
   }
 
   return (
@@ -39,20 +53,15 @@ const StartGame = observer(() => {
       <h3>Выберете своего персонажа</h3>
       <Select
         className={styles.select}
-        placeholder={
-          gameStore.currentCharacter
-            ? gameStore.currentCharacter
-            : 'Выберать игрока'
-        }
         options={characterOptions}
+        value={character}
         onChange={onChangeCharacter}
       ></Select>
       <Button
         block={true}
         type="primary"
         className={styles.button}
-        onClick={() => navigate(ROUTES.game)}
-        disabled={gameStore.currentCharacter == null ? true : false} // при наличии режимов условие изменится
+        onClick={onGameStart}
       >
         Играть
       </Button>

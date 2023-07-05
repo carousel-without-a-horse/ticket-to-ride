@@ -1,5 +1,5 @@
-import type { IHandCard } from '@/widgets/Game/ui/Hand/types'
+import type { TPlayerColorCard } from '@/shared/store/game/types'
 
 export interface IProps {
-  card: IHandCard
+  card: TPlayerColorCard
 }

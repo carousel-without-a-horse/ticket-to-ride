@@ -6,6 +6,8 @@ import {
   IconGrape,
 } from '@/shared/images/game'
 
+export type TCharacterKey = keyof typeof characters
+
 export const characters = {
   banana: {
     color: colors.greenLight,
@@ -32,3 +34,5 @@ export const characters = {
     name: 'Cherry',
   },
 }
+
+export const charactersKeys = Object.keys(characters) as TCharacterKey[]

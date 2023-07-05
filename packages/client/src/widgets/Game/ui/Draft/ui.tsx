@@ -1,33 +1,54 @@
 import { Col } from 'antd'
+import { observer } from 'mobx-react-lite'
+import { useState } from 'react'
+import { uniqueId } from 'lodash'
 
 import { Button } from '@/shared/ui/Game/Button'
 import { Card } from '@/shared/ui/Game/Card'
+import { useStore } from '@/shared/store'
 
 import styles from './styles.module.pcss'
 
-import type { TColorCardKey } from '@/entities/Game/data/colorCards'
+export const Draft = observer(() => {
+  const { gameStore } = useStore()
+  const {
+    draft: { open: openCards },
+  } = gameStore
 
-// TODO: заменить на динамические данные
-const draftCards: TColorCardKey[] = [
-  'blue',
-  'orange',
-  'red',
-  'white',
-  'rainbow',
-]
+  const [selectedCardsIndexes, setSelectedCardsIndexes] = useState<number[]>([])
 
-export const Draft = () => {
+  const isOpenCardsSelected = selectedCardsIndexes.length !== 0
+
+  const takeCards = () => {
+    if (isOpenCardsSelected) {
+      gameStore.takeOpenCard(selectedCardsIndexes)
+      setSelectedCardsIndexes([])
+    } else {
+      gameStore.takeHiddenCard()
+    }
+  }
+
   const renderOpenCards = () => (
     <div className={styles.cards}>
-      {draftCards.map(card => (
-        <Card type={card} />
+      {openCards.map((card, cardIndex) => (
+        <Card
+          key={uniqueId()}
+          card={card}
+          selectedCardsIndexes={selectedCardsIndexes}
+          setSelectedCardsIndexes={setSelectedCardsIndexes}
+          cardIndex={cardIndex}
+        />
       ))}
     </div>
   )
 
   const renderButtons = () => (
     <div className={styles.buttons}>
-      <Button>Взять карту цвета</Button>
+      <Button onClick={takeCards}>
+        {isOpenCardsSelected
+          ? 'Взять карту цвета'
+          : 'Взять карту цвета вслепую'}
+      </Button>
 
       <Button>Взять карту маршрута</Button>
 
@@ -42,4 +63,4 @@ export const Draft = () => {
       {renderButtons()}
     </Col>
   )
-}
+})
