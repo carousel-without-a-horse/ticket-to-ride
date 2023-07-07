@@ -33,6 +33,10 @@ const getPublicItems = () => {
 const getPrivateItems = () => {
   return [
     {
+      key: ROUTES.startGame,
+      label: t('pages.startGame'),
+    },
+    {
       key: ROUTES.root,
       label: t('pages.guide'),
     },
