@@ -1,13 +1,20 @@
 import { Player } from '@/shared/ui/Game/Player'
+import { useStore } from '@/shared/store'
 
 import styles from './styles.module.pcss'
 
 export const Players = () => {
+  const {
+    gameStore: {
+      players: { currentPlayer, opponentPlayer },
+    },
+  } = useStore()
+
   return (
     <div className={styles.wrapper}>
-      <Player character="banana" />
+      {currentPlayer && <Player player={currentPlayer} />}
 
-      <Player character="grape" />
+      {opponentPlayer && <Player player={opponentPlayer} />}
     </div>
   )
 }

@@ -11,6 +11,7 @@ export const gameSetup = {
     borderRadius: 2,
     imgWidth: 16,
     imgHeight: 8,
+    startCount: 45,
   },
   route: {
     gap: 6,
@@ -18,5 +19,8 @@ export const gameSetup = {
     tieStep: 5,
     hoverDistance: 4,
     hoverColor: colors.greenCold,
+  },
+  colorCards: {
+    typeCount: 12, // Кол-во карт одного типа
   },
 }

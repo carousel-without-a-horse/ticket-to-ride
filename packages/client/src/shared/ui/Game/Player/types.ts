@@ -1,5 +1,5 @@
-import type { characters } from '@/entities/Game/data/characters'
+import type { TPlayer } from '@/shared/store/game/types'
 
 export interface IProps {
-  character: keyof typeof characters
+  player: TPlayer
 }
