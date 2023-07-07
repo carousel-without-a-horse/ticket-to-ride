@@ -41,14 +41,13 @@ export const developmentServer = async (app: Express) => {
         isPlainStyle: false,
       })
 
-      let appHtml = template
+      const appHtml = template
         .replace(STUBS_IN_TEMPLATE.outlet, html)
         .replace(
           STUBS_IN_TEMPLATE.state,
           JSON.stringify(initialState).replace(/</g, '\\u003c')
         )
-
-      appHtml = appHtml.replace(STUBS_IN_TEMPLATE.style, style)
+        .replace(STUBS_IN_TEMPLATE.style, style)
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(appHtml)
     } catch (e) {
