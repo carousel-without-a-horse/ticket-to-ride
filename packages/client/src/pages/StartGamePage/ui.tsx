@@ -36,6 +36,7 @@ const StartGame = observer(() => {
   const onGameStart = () => {
     gameStore.setPlayers(character)
     gameStore.setDraft()
+    gameStore.setGameStatus('gameInProcess')
 
     navigate(ROUTES.game)
   }

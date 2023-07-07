@@ -12,10 +12,12 @@ import type {
   TTurnState,
   TPlayerColorCards,
   TPlayers,
+  TGameStatus,
 } from './types'
 
 class GameStore {
   currentMode = 'Против Компьютера'
+  gameStatus: TGameStatus = 'noGame'
   turnState: TTurnState = {
     colorCardsTakenCount: 0,
     isPossibleToTakeColorCard: true,
@@ -36,6 +38,11 @@ class GameStore {
 
   setTurnState(state: TTurnState) {
     this.turnState = state
+  }
+
+  setGameStatus(state: TGameStatus) {
+    this.gameStatus = state
+    console.log(this.gameStatus)
   }
 
   setPlayers(character: TCharacterKey) {

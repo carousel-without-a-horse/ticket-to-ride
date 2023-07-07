@@ -23,6 +23,8 @@ export type TPlayersKey = 'currentPlayer' | 'opponentPlayer'
 
 export type TPlayers = Record<TPlayersKey, TPlayer | null>
 
+export type TGameStatus = 'noGame' | 'gameInProcess' | 'endGame'
+
 export type TTurnState = {
   colorCardsTakenCount: 0 | 1 | 2
   isPossibleToTakeColorCard: boolean
