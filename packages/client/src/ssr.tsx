@@ -17,12 +17,9 @@ type TRender = {
 export async function render({ url, repository, isPlainStyle }: TRender) {
   const cache = createCache()
 
-  // eslint-disable-next-line @typescript-eslint/unbound-method
-  const { setUser } = userStore
-
   const user = await repository.fetchUser()
 
-  setUser(user)
+  userStore.setUser(user)
 
   const html = renderToString(
     <StyleProvider mock="server" cache={cache}>
