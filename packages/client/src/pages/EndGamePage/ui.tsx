@@ -20,6 +20,7 @@ const scroll = { y: '45vh' }
 const EndGame = () => {
   const navigate = useNavigate()
   const { gameStore } = useStore()
+  const gameStatus = gameStore.gameStatus
   const [result, setResult] = useState<TDataSource | undefined>(undefined)
   const [modalOpen, setModalOpen] = useState<boolean>(true)
   const hideModal = () => setModalOpen(false)
@@ -28,26 +29,31 @@ const EndGame = () => {
   )
 
   useEffect(() => {
-    if (gameStore.gameStatus !== 'endGame') {
+    if (gameStatus !== 'endGame') {
       navigate(ROUTES.root)
     }
+    const players = { ...gameStore.players }
     const toResultConverter = (users: TPlayers): TDataSource => {
       const result: TDataSource = []
       Object.keys(users).forEach((key, i) => {
         const playerName = key
         const playerPoints = (
           {
-            ...{ ...gameStore.players }[key as TPlayersKey],
+            ...players[key as TPlayersKey],
           } as unknown as TPlayer
         ).points
         result.push({
           key: i.toString(),
-          num: (i + 1).toString(),
+          num: '',
           user: playerName,
           scores: playerPoints,
         })
       })
-      result.sort((a, b) => (a.scores < b.scores ? -1 : 1))
+      result
+        .sort((a, b) => b.scores - a.scores)
+        .map((player, index) => {
+          player.num = (index + 1).toString()
+        })
       result.forEach((item, index) => {
         if (item.user === 'currentPlayer' && index === 0) {
           setResultTitle(
@@ -64,8 +70,8 @@ const EndGame = () => {
       })
       return result
     }
-    setResult(toResultConverter({ ...gameStore.players }))
-  }, [gameStore, navigate])
+    setResult(toResultConverter({ ...players }))
+  }, [gameStatus, navigate, gameStore.players])
 
   return gameStore.gameStatus === 'endGame' ? (
     <Card title="Результаты" className={styles.card}>
