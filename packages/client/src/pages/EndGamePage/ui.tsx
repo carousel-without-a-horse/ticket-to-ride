@@ -73,7 +73,10 @@ const EndGame = () => {
     setResult(toResultConverter({ ...players }))
   }, [gameStatus, navigate, gameStore.players])
 
-  return gameStore.gameStatus === 'endGame' ? (
+  if (gameStore.gameStatus !== 'endGame') {
+    return null
+  }
+  return (
     <Card title="Результаты" className={styles.card}>
       <Modal
         title={resultTitle}
@@ -105,8 +108,6 @@ const EndGame = () => {
         Начать сначала
       </Button>
     </Card>
-  ) : (
-    <></>
   )
 }
 

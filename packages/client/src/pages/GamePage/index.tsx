@@ -36,7 +36,10 @@ const GamePage = () => {
     }
   }, [gameStore, navigate])
 
-  return gameStore.gameStatus === 'gameInProcess' ? (
+  if (gameStore.gameStatus !== 'gameInProcess') {
+    return null
+  }
+  return (
     <Layout className={styles.layout} ref={gameRef}>
       <Game />
       <Button // Костыль, что бы попадать на страницу конца игры, коллбеки следует перенести в логику, которая сработает после завершения игры.
@@ -48,8 +51,6 @@ const GamePage = () => {
         Конец игры
       </Button>
     </Layout>
-  ) : (
-    <></>
   )
 }
 
