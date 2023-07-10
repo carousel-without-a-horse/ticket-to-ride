@@ -1,6 +1,6 @@
 {
   "pages": {
-    "play": "Начать игру",
+    "play": "Играть",
     "guide": "Гайд",
     "about": "Об игре",
     "rating": "Рейтинг игроков",
@@ -71,5 +71,16 @@
       "defaultError": "Что-то пошло не так"
     },
     "reset": "Сбросить"
+  },
+  "startGame": {
+    "pageTitle": "Начало игры",
+    "countTitle": "Игра начнется через",
+    "chooseGameMode": "Выберите режим игры",
+    "chooseMode": "Выбрать режим",
+    "chooseYourCharacter": "Выберите своего персонажа",
+    "play": "Играть",
+    "modeOptions": {
+      "againstTheComputer": "Против компьютера"
+    }
   }
 }
