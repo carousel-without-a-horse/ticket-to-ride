@@ -11,7 +11,7 @@ import { ThemeSwitcher } from '@/features/ThemeSwitcher'
 import { LangSelect } from '@/features/LangSelect'
 import { ROUTES } from '@/app/router/config'
 import { useTranslationRefresh } from '@/shared/hooks'
-import { userStore } from '@/shared/store/user/userStore'
+import { useStore } from '@/shared/store'
 
 import styles from './styles.module.pcss'
 
@@ -34,7 +34,7 @@ const getPrivateItems = () => {
   return [
     {
       key: ROUTES.startGame,
-      label: t('pages.startGame'),
+      label: t('pages.play'),
     },
     {
       key: ROUTES.root,
@@ -63,10 +63,10 @@ export const Header = observer(() => {
   const { token } = theme.useToken()
   const navigate = useNavigate()
   const location = useLocation()
-  const { user } = userStore
+  const { userStore } = useStore()
   const privateItems = useTranslationRefresh(getPrivateItems)
   const publicItems = useTranslationRefresh(getPublicItems)
-  const menuItems = user ? privateItems : publicItems
+  const menuItems = userStore.user ? privateItems : publicItems
 
   const [selectedMenuItem, setSelectedMenuItem] = useState<string>(
     location.pathname

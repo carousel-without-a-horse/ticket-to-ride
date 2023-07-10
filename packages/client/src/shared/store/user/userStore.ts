@@ -46,5 +46,3 @@ export class UserStore {
     this.user = null
   }
 }
-
-export const userStore = new UserStore()

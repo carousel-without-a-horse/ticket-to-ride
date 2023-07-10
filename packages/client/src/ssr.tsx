@@ -2,7 +2,7 @@ import { StaticRouter } from 'react-router-dom/server'
 import { renderToString } from 'react-dom/server'
 import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs'
 
-import { userStore } from '@/shared/store/user'
+import { createStore, StoreContext } from '@/shared/store'
 
 import App from './app'
 
@@ -19,12 +19,16 @@ export async function render({ url, repository, isPlainStyle }: TRender) {
 
   const user = await repository.fetchUser()
 
-  userStore.setUser(user)
+  const store = createStore()
+
+  store.userStore.setUser(user)
 
   const html = renderToString(
     <StyleProvider mock="server" cache={cache}>
       <StaticRouter location={url}>
-        <App />
+        <StoreContext.Provider value={store}>
+          <App />
+        </StoreContext.Provider>
       </StaticRouter>
     </StyleProvider>
   )

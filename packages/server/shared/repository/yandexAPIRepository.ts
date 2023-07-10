@@ -6,12 +6,16 @@ export class YandexAPIRepository {
   constructor(private _cookieHeader: string | undefined) {}
 
   async fetchUser(): Promise<unknown> {
-    const { data } = await axios.get(`${API_ROOT}/auth/user`, {
-      headers: {
-        cookie: this._cookieHeader,
-      },
-    })
+    try {
+      const { data } = await axios.get(`${API_ROOT}/auth/user`, {
+        headers: {
+          cookie: this._cookieHeader,
+        },
+      })
 
-    return data
+      return data
+    } catch (e) {
+      return null
+    }
   }
 }

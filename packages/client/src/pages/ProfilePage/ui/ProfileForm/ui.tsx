@@ -8,7 +8,7 @@ import userServices from '@/shared/services/userServices'
 import { Upload } from '@/shared/ui/Upload'
 import { Space } from '@/shared/ui/Space'
 import { useForm } from '@/shared/hooks'
-import { userStore } from '@/shared/store/user/userStore'
+import { useStore } from '@/shared/store'
 import { ROUTES } from '@/app/router/config'
 import { error } from '@/shared/utils/notification/intex'
 
@@ -24,6 +24,7 @@ import type { TUseForm } from './types'
 
 const ProfileForm = () => {
   const navigate = useNavigate()
+  const { userStore } = useStore()
 
   const [fileList, setFileList] = useState<TUploadFile[]>([])
 
