@@ -1,9 +1,9 @@
 import { makeObservable, observable, action } from 'mobx'
+import { AxiosError } from 'axios'
 
-import authServices from 'src/shared/services/authServices'
+import authServices from '@/shared/services/authServices'
 
-import type { AxiosError } from 'axios'
-import type { TUser } from '@/pages/ProfilePage/ui/ProfileForm/type'
+import type { TUser } from './types'
 
 export class UserStore {
   user: TUser | null = null
@@ -15,9 +15,11 @@ export class UserStore {
       user: observable,
       initialized: observable,
       fetchUser: action,
+      setUser: action,
     })
     this.fetchUser = this.fetchUser.bind(this)
     this.clearUser = this.clearUser.bind(this)
+    this.setUser = this.setUser.bind(this)
   }
 
   async fetchUser() {
@@ -29,16 +31,18 @@ export class UserStore {
       }
       this.user = response
     } catch (error) {
-      if ((error as AxiosError).isAxiosError) {
-        this.error = error as AxiosError
+      if (error instanceof AxiosError) {
+        this.error = error
       }
     }
     this.initialized = true
+  }
+
+  setUser(user: TUser | null) {
+    this.user = user
   }
 
   clearUser() {
     this.user = null
   }
 }
-
-export const userStore = new UserStore()

@@ -5,7 +5,7 @@ import { Form, FormInput } from '@/shared/ui/Form'
 import { Button } from '@/shared/ui/Button'
 import authServices from '@/shared/services/authServices'
 import { useForm } from '@/shared/hooks'
-import { userStore } from '@/shared/store/user/userStore'
+import { useStore } from '@/shared/store'
 import { ROUTES } from '@/app/router/config'
 
 import schema from './schema'
@@ -18,6 +18,7 @@ import type { TError } from '@/shared/types/error'
 
 const SignUpForm = () => {
   const navigate = useNavigate()
+  const { userStore } = useStore()
 
   const formProps = useForm<TUseForm>({
     name: 'sign-up',

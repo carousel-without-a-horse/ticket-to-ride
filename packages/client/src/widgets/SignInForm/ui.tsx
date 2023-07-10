@@ -6,7 +6,7 @@ import { Button } from '@/shared/ui/Button'
 import { ROUTES } from '@/app/router/config'
 import authServices from '@/shared/services/authServices'
 import { useForm } from '@/shared/hooks'
-import { userStore } from '@/shared/store/user/userStore'
+import { useStore } from '@/shared/store'
 
 import schema from './schema'
 
@@ -18,6 +18,7 @@ import type { TError } from '@/shared/types/error'
 
 const SignInForm = () => {
   const navigate = useNavigate()
+  const { userStore } = useStore()
 
   const formProps = useForm<TUseForm>({
     name: 'sign-in',

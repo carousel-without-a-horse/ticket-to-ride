@@ -1,4 +1,4 @@
-const serviceWorkerPath = '/serviceWorker.js'
+const serviceWorkerPath = '/assets/serviceWorker.js'
 
 const onServiceWorkerRegisterSuccess = (
   registration: ServiceWorkerRegistration
@@ -21,7 +21,8 @@ const onWindowLoad = () => {
 }
 
 const startServiceWorker = (): void => {
-  const isSupportServiceWorker = 'serviceWorker' in navigator
+  const isSupportServiceWorker =
+    typeof navigator !== 'undefined' && 'serviceWorker' in navigator
   if (!isSupportServiceWorker) return
 
   window.addEventListener('load', onWindowLoad)

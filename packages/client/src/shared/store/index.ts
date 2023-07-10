@@ -1,1 +1,1 @@
-export { store, StoreContext, useStore } from './store'
+export { store, createStore, StoreContext, useStore } from './store'

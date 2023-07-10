@@ -1,4 +1,4 @@
-import type { TUser } from './type'
+import type { TUser } from '@/shared/store/user'
 
 export const user: TUser = {
   id: 123,
