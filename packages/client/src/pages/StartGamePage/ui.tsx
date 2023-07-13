@@ -10,6 +10,7 @@ import {
   type TCharacterKey,
   charactersKeys,
 } from '@/entities/Game/data/characters'
+import { gameInProcess } from '@/shared/constants/gameStatus'
 
 import { characterOptions } from './data'
 
@@ -36,7 +37,7 @@ const StartGame = observer(() => {
   const onGameStart = () => {
     gameStore.setPlayers(character)
     gameStore.setDraft()
-    gameStore.setGameStatus('gameInProcess')
+    gameStore.setGameStatus(gameInProcess)
 
     navigate(ROUTES.game)
   }

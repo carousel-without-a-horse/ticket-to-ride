@@ -7,13 +7,14 @@ import { Button } from '@/shared/ui/Button'
 import { ROUTES } from '@/app/router/config'
 import { useStore } from '@/shared/store'
 import { Modal } from '@/shared/ui/Modal'
+import { endGame } from '@/shared/constants/gameStatus'
 
 import { columns } from './utils/columns'
+import { toResultConverter } from './utils/resultConverter'
 
 import styles from './styles.module.pcss'
 
 import type { TDataSource } from '../EndGamePage/types'
-import type { TPlayer, TPlayers, TPlayersKey } from '@/shared/store/game/types'
 
 const scroll = { y: '45vh' }
 
@@ -29,53 +30,19 @@ const EndGame = () => {
   )
 
   useEffect(() => {
-    if (gameStatus !== 'endGame') {
+    if (gameStatus !== endGame) {
       navigate(ROUTES.root)
     }
+
     const players = { ...gameStore.players }
-    const toResultConverter = (users: TPlayers): TDataSource => {
-      const result: TDataSource = []
-      Object.keys(users).forEach((key, i) => {
-        const playerName = key
-        const playerPoints = (
-          {
-            ...players[key as TPlayersKey],
-          } as unknown as TPlayer
-        ).points
-        result.push({
-          key: i.toString(),
-          num: '',
-          user: playerName,
-          scores: playerPoints,
-        })
-      })
-      result
-        .sort((a, b) => b.scores - a.scores)
-        .map((player, index) => {
-          player.num = (index + 1).toString()
-        })
-      result.forEach((item, index) => {
-        if (item.user === 'currentPlayer' && index === 0) {
-          setResultTitle(
-            `Вы победили, колличество очков - ${item.scores ? item.scores : 0}`
-          )
-          return
-        } else if (item.user === 'currentPlayer') {
-          setResultTitle(
-            `Вы заняли ${item.num} место, колличество очков - ${
-              item.scores ? item.scores : 0
-            }`
-          )
-        }
-      })
-      return result
-    }
-    setResult(toResultConverter({ ...players }))
+
+    setResult(toResultConverter({ ...players }, setResultTitle))
   }, [gameStatus, navigate, gameStore.players])
 
-  if (gameStore.gameStatus !== 'endGame') {
+  if (gameStore.gameStatus !== endGame) {
     return null
   }
+
   return (
     <Card title="Результаты" className={styles.card}>
       <Modal

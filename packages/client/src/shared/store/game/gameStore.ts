@@ -4,6 +4,7 @@ import { shuffle } from 'lodash'
 import getOpponentPlayerCharacter from '@/shared/utils/game/getOpponentPlayerCharacter'
 import { gameSetup } from '@/entities/Game/data/gameSetup'
 import { type TColorCard, colorCards } from '@/entities/Game/data/colorCards'
+import { noGame } from '@/shared/constants/gameStatus'
 
 import type { TCharacterKey } from '@/entities/Game/data/characters'
 import type {
@@ -17,7 +18,7 @@ import type {
 
 class GameStore {
   currentMode = 'Против Компьютера'
-  gameStatus: TGameStatus = 'noGame'
+  gameStatus: TGameStatus = noGame
   turnState: TTurnState = {
     colorCardsTakenCount: 0,
     isPossibleToTakeColorCard: true,
@@ -42,7 +43,6 @@ class GameStore {
 
   setGameStatus(state: TGameStatus) {
     this.gameStatus = state
-    console.log(this.gameStatus)
   }
 
   setPlayers(character: TCharacterKey) {
