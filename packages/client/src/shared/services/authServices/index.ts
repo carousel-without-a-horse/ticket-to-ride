@@ -4,16 +4,16 @@ import type { TAuthService } from './types'
 
 const authServices: TAuthService = {
   signIn: data => {
-    return httpService.post('/auth/signin', data)
+    return httpService.post('/v2/auth/signin', data)
   },
   signUp: data => {
-    return httpService.post('/auth/signup', data)
+    return httpService.post('/v2/auth/signup', data)
   },
   fetchUser: () => {
-    return httpService.get('/auth/user')
+    return httpService.get('/v2/auth/user')
   },
   logOut: () => {
-    return httpService.post('/auth/logout')
+    return httpService.post('/v2/auth/logout')
   },
 }
 

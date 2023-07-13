@@ -1,5 +1,6 @@
 {
   "pages": {
+    "play": "Play",
     "guide": "Guide",
     "about": "About",
     "rating": "Rating",
@@ -70,5 +71,16 @@
       "defaultError": "Something went wrong"
     },
     "reset": "Reset"
+  },
+  "startGame": {
+    "pageTitle": "Start the game",
+    "countTitle": "The game will start after",
+    "chooseGameMode": "Choose game mode",
+    "chooseMode": "Choose mode",
+    "chooseYourCharacter": "Choose your character",
+    "play": "Play",
+    "modeOptions": {
+      "againstTheComputer": "Against the computer"
+    }
   }
 }

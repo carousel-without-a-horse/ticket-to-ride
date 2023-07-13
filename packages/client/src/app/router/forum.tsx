@@ -1,14 +1,19 @@
-import { withSuspense } from '@/shared/hocs'
-import { ROUTES } from '@/app/router/config'
+import compose from 'compose-function'
 
-const Forum = withSuspense(() => import('@/pages/ForumPage'))
-const Theme = withSuspense(() => import('@/pages/ThemePage'))
-const CreateTheme = withSuspense(
-  () => import('@/pages/ThemePage/pages/CreateThemePage')
-)
-const EditTheme = withSuspense(
-  () => import('@/pages/ThemePage/pages/EditThemePage')
-)
+import { ROUTES } from '@/app/router/config'
+import { withErrorBoundary } from '@/features/ErrorBoundary'
+import ForumPageCmp from '@/pages/ForumPage'
+import ThemePageCmp from '@/pages/ThemePage'
+import CreateThemePageCmp from '@/pages/ThemePage/pages/CreateThemePage'
+import EditThemePageCmp from '@/pages/ThemePage/pages/EditThemePage'
+
+const withCommonWrappers = compose(withErrorBoundary)
+
+// TODO: Разобраться как использовать Suspense совместно с SSR(CAR-48)
+const Forum = withCommonWrappers(() => <ForumPageCmp />)
+const Theme = withCommonWrappers(() => <ThemePageCmp />)
+const CreateTheme = withCommonWrappers(() => <CreateThemePageCmp />)
+const EditTheme = withCommonWrappers(() => <EditThemePageCmp />)
 
 export const forumRoutes = [
   {

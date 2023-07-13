@@ -4,15 +4,14 @@
 
 Чтобы посмотреть что получилось
 
-`yarn preview --scope client`
-`yarn preview --scope server`
+`yarn preview`
 
 ## Хуки
 В проекте используется [lefthook](https://github.com/evilmartians/lefthook)
 Если очень-очень нужно пропустить проверки, используйте `--no-verify` (но не злоупотребляйте :)
 
 ## Автодеплой статики на netlify
-[Dev-ветка](https://lucky-palmier-326077.netlify.app/) 
+[Dev-ветка](https://lucky-palmier-326077.netlify.app/)
 Используем Netlify, а не Vercel, так как Vercel платный для организаций github
 
 Все ваши PR будут автоматически деплоиться на Netlify. URL вам предоставит деплоящий бот

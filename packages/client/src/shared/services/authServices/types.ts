@@ -1,4 +1,4 @@
-import type { TUser } from '@/pages/ProfilePage/ui/ProfileForm/type'
+import type { TUser } from '@/shared/store/user'
 
 export type TSignInSent = {
   login: string

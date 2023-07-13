@@ -1,37 +1,9 @@
-import dotenv from 'dotenv'
-import cors from 'cors'
-dotenv.config()
+import { startServer } from './app'
 
-import express from 'express'
-import { createClientAndConnect } from './db'
-import { getMockThemes, getMockTheme } from './mock'
+const port = Number(process.env.SERVER_PORT) || 3000
 
-const app = express()
-app.use(cors())
-const port = Number(process.env.SERVER_PORT) || 3001
-
-createClientAndConnect()
-
-app.get('/', (_, res) => {
-  res.json('👋 Howdy from the server :)')
-})
-
-app.get('/themes', (req, res) => {
-  const cursor = req.query.cursor ? parseInt(req.query.cursor.toString()) : 0
-  const data = getMockThemes(cursor)
-
-  setTimeout(() => {
-    res.json(data)
-  }, 1000)
-})
-
-app.get('/themes/:id', (_, res) => {
-  const data = getMockTheme()
-  setTimeout(() => {
-    res.json(data)
-  }, 1000)
-})
-
-app.listen(port, () => {
-  console.log(`  ➜ 🎸 Server is listening on port: ${port}`)
+startServer().then(app => {
+  app.listen(port, () => {
+    console.log(`  ➜ 🎸 Server is listening on port: ${port}`)
+  })
 })
