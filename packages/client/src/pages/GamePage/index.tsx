@@ -1,12 +1,25 @@
 import { useRef, useEffect } from 'react'
+import { notification } from 'antd'
 
 import { Layout } from '@/shared/ui/Layout'
 import { Game } from '@/widgets/Game'
+import useUserAttention from '@/shared/utils/useUserAttention'
 
 import styles from './styles.module.pcss'
 
 const GamePage = () => {
   const gameRef = useRef<HTMLDivElement>(null)
+  const [api, contextHolder] = notification.useNotification()
+
+  useUserAttention({
+    onBackAction: () => {
+      api.info({
+        message: `Notification`,
+        description: 'Не уходите далеко, игра в самом разгаре!',
+        placement: 'topLeft',
+      })
+    },
+  })
 
   useEffect(() => {
     const handleFButton = (event: KeyboardEvent) => {
@@ -29,6 +42,7 @@ const GamePage = () => {
 
   return (
     <Layout className={styles.layout} ref={gameRef}>
+      {contextHolder}
       <Game />
     </Layout>
   )
