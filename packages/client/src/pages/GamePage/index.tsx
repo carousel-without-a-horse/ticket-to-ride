@@ -14,7 +14,7 @@ const GamePage = () => {
   useUserAttention({
     onBackAction: () => {
       api.info({
-        message: `Notification`,
+        message: `Внимание!`,
         description: 'Не уходите далеко, игра в самом разгаре!',
         placement: 'topLeft',
       })
