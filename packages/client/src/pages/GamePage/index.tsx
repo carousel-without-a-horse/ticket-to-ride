@@ -1,13 +1,14 @@
 import { useRef, useEffect } from 'react'
-import { notification } from 'antd'
 import { useNavigate } from 'react-router-dom'
+import { t } from 'i18next'
 
 import { useStore } from '@/shared/store'
 import { Layout } from '@/shared/ui/Layout'
 import { Game } from '@/widgets/Game'
-import useUserAttention from '@/shared/utils/useUserAttention'
+import { useUserAttention } from '@/shared/hooks'
 import { ROUTES } from '@/app/router/config'
 import { Button } from '@/shared/ui/Game/Button'
+import { useNotification } from '@/shared/utils/notification/intex'
 import { endGame, gameInProcess } from '@/shared/constants/gameStatus'
 
 import styles from './styles.module.pcss'
@@ -16,13 +17,13 @@ const GamePage = () => {
   const { gameStore } = useStore()
   const navigate = useNavigate()
   const gameRef = useRef<HTMLDivElement>(null)
-  const [api, contextHolder] = notification.useNotification()
+  const [api, contextHolder] = useNotification()
 
   useUserAttention({
     onBackAction: () => {
       api.info({
-        message: `Внимание!`,
-        description: 'Не уходите далеко, игра в самом разгаре!',
+        message: t('notification.attention'),
+        description: t('notification.dontGoFar'),
         placement: 'topLeft',
       })
     },

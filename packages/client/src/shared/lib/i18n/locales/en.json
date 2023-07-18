@@ -82,5 +82,9 @@
     "modeOptions": {
       "againstTheComputer": "Against the computer"
     }
+  },
+  "notification": {
+    "attention": "Attention!",
+    "dontGoFar": "Don't go far, the game is in full swing!"
   }
 }

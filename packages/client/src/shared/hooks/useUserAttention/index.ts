@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 
-type TProps = {
-  onBackAction: () => void
-  duration?: number
-}
+import type { TProps } from './types'
 
-const useUserAttention = ({ onBackAction, duration = 5 }: TProps) => {
+// Хук, отслеживающий видимость страницы пользователем.
+// Вызывается onBackAction при возвращении пользователя на страницу,
+// если превышен лимит отсутствия (duration).
+export const useUserAttention = ({ onBackAction, duration = 5 }: TProps) => {
   const [absenceTime, setAbsenceTime] = useState(0)
 
   const interval = useRef<ReturnType<typeof setInterval>>()
@@ -44,5 +44,3 @@ const useUserAttention = ({ onBackAction, duration = 5 }: TProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [absenceTime])
 }
-
-export default useUserAttention
