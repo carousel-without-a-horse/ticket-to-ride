@@ -1,3 +1,8 @@
+import type {
+  endGame,
+  gameInProcess,
+  noGame,
+} from '@/shared/constants/gameStatus'
 import type { TCharacterKey } from '@/entities/Game/data/characters'
 import type {
   TColorCard,
@@ -22,6 +27,8 @@ export type TPlayer = {
 export type TPlayersKey = 'currentPlayer' | 'opponentPlayer'
 
 export type TPlayers = Record<TPlayersKey, TPlayer | null>
+
+export type TGameStatus = typeof noGame | typeof gameInProcess | typeof endGame
 
 export type TTurnState = {
   colorCardsTakenCount: 0 | 1 | 2
