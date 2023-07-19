@@ -82,5 +82,9 @@
     "modeOptions": {
       "againstTheComputer": "Против компьютера"
     }
+  },
+  "notification": {
+    "attention": "Внимание!",
+    "dontGoFar": "Не уходите далеко, игра в самом разгаре!"
   }
 }

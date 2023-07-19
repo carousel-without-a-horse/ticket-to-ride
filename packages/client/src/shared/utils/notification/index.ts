@@ -1,3 +1,5 @@
+import { notification } from 'antd'
+
 import { Modal } from '@/shared/ui/Modal'
 
 export const success = (message?: string) => {
@@ -19,3 +21,5 @@ export const warning = (title?: string, message?: string) => {
     content: message || 'Что-то пошло не так',
   })
 }
+
+export const useNotification = notification.useNotification
