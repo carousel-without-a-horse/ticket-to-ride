@@ -10,7 +10,7 @@ import { Space } from '@/shared/ui/Space'
 import { useForm } from '@/shared/hooks'
 import { useStore } from '@/shared/store'
 import { ROUTES } from '@/app/router/config'
-import { error } from '@/shared/utils/notification/intex'
+import { error } from '@/shared/utils/notification'
 
 import { user } from './data'
 import schema from './schema'

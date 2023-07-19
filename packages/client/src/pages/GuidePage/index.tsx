@@ -14,7 +14,7 @@ import { Table } from '@/shared/ui/Table'
 import { Content } from '@/shared/ui/Layout'
 import { Reply } from '@/shared/ui/Reply'
 import { Likes } from '@/shared/ui/Likes'
-import { success, error, warning } from '@/shared/utils/notification/intex'
+import { success, error, warning } from '@/shared/utils/notification'
 
 import styles from './styles.module.pcss'
 

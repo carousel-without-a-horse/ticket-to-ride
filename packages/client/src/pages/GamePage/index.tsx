@@ -8,7 +8,7 @@ import { Game } from '@/widgets/Game'
 import { useUserAttention } from '@/shared/hooks'
 import { ROUTES } from '@/app/router/config'
 import { Button } from '@/shared/ui/Game/Button'
-import { useNotification } from '@/shared/utils/notification/intex'
+import { useNotification } from '@/shared/utils/notification'
 import { endGame, gameInProcess } from '@/shared/constants/gameStatus'
 
 import styles from './styles.module.pcss'
