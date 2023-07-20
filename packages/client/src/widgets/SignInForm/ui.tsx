@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-import { error } from '@/shared/utils/notification/intex'
+import { error } from '@/shared/utils/notification'
 import { Form, FormInput } from '@/shared/ui/Form'
 import { Button } from '@/shared/ui/Button'
 import { ROUTES } from '@/app/router/config'
