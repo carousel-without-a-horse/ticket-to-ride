@@ -8,6 +8,8 @@ import { ROUTES } from '@/app/router/config'
 import { useStore } from '@/shared/store'
 import { Modal } from '@/shared/ui/Modal'
 import { endGame } from '@/shared/constants/gameStatus'
+import ratingServices from '@/shared/services/ratingServices'
+import { ratingFieldName, teamName } from '@/shared/constants/apiConsts'
 
 import { columns } from './utils/columns'
 import { toResultConverter } from './utils/resultConverter'
@@ -25,6 +27,7 @@ const EndGame = () => {
   const [result, setResult] = useState<TDataSource | undefined>(undefined)
   const [modalOpen, setModalOpen] = useState<boolean>(true)
   const hideModal = () => setModalOpen(false)
+  const [currentPlayerScores, setCurrentPlayerScores] = useState<string>('')
   const [resultTitle, setResultTitle] = useState<string>(
     'Вы заняли какое-то место'
   )
@@ -36,7 +39,9 @@ const EndGame = () => {
 
     const players = { ...gameStore.players }
 
-    setResult(toResultConverter({ ...players }, setResultTitle))
+    setResult(
+      toResultConverter({ ...players }, setResultTitle, setCurrentPlayerScores)
+    )
   }, [gameStatus, navigate, gameStore.players])
 
   if (gameStore.gameStatus !== endGame) {
@@ -70,6 +75,18 @@ const EndGame = () => {
         onClick={() => {
           navigate(ROUTES.startGame)
           gameStore.setGameStatus('noGame')
+          // login в зпросе следует брать из юзер стора текущего юзера. Сейчас как я понял такой возможности нет
+          ratingServices
+            .addUserToLeaderboard({
+              teamName: teamName,
+              ratingFieldName: ratingFieldName,
+              data: {
+                login: 'testLogin',
+                rating: currentPlayerScores,
+              },
+            })
+            .then(console.debug)
+            .catch(console.error)
         }}
       >
         Начать сначала
