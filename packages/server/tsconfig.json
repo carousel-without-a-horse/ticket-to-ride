@@ -2,6 +2,8 @@
   "compilerOptions": {
     "composite": true,
     "target": "es2019",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -18,12 +20,13 @@
     "noUnusedLocals": true,
     "forceConsistentCasingInFileNames": true,
     "importsNotUsedAsValues": "error",
+    "strictPropertyInitialization": false,
     "lib": ["DOM", "es2019", "esnext.asynciterable"],
-    "types": ["node", "jest"],
+    "types": ["node", "jest", "reflect-metadata"],
     "baseUrl": ".",
     "paths": {
       "*": ["types/*"]
     },
-    "outDir": "dist"
+    "outDir": "dist",
   }
 }

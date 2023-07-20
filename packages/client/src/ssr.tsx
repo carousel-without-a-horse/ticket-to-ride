@@ -6,22 +6,21 @@ import { createStore, StoreContext } from '@/shared/store'
 
 import App from './app'
 
-import type { TAuthService } from '@/shared/services/authServices/types'
+import type { TUser } from '@/shared/store/user'
 
 type TRender = {
   url: string
-  repository: Pick<TAuthService, 'fetchUser'>
+  initialState: TUser | null
+
   isPlainStyle: boolean
 }
 
-export async function render({ url, repository, isPlainStyle }: TRender) {
+export function render({ url, initialState, isPlainStyle }: TRender) {
   const cache = createCache()
-
-  const user = await repository.fetchUser()
 
   const store = createStore()
 
-  store.userStore.setUser(user)
+  store.userStore.setUser(initialState)
 
   const html = renderToString(
     <StyleProvider mock="server" cache={cache}>
@@ -30,10 +29,10 @@ export async function render({ url, repository, isPlainStyle }: TRender) {
           <App />
         </StoreContext.Provider>
       </StaticRouter>
-    </StyleProvider>
+    </StyleProvider>,
   )
 
   const style = extractStyle(cache, isPlainStyle)
 
-  return { html, style, initialState: user || null }
+  return { html, style }
 }

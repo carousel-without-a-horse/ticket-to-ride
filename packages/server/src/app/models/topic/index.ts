@@ -1,0 +1,5 @@
+export { TopicRepository } from './TopicRepository'
+export { TopicController } from './TopicController'
+export { TopicService } from './TopicService'
+export { Topic } from './TopicModel'
+export * from './types'

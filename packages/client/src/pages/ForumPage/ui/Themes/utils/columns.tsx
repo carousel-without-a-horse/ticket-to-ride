@@ -12,10 +12,10 @@ import type { TTableColumnsType, TTableColumnType } from '@/shared/ui/Table'
 export const getColumnsDefault: () => TTableColumnsType<TTheme> = () => [
   {
     title: t('forum.table.header.name'),
-    dataIndex: 'name',
+    dataIndex: 'title',
     render: (_, record) => {
       const url = generateUrl(ROUTES.themeDetail, { id: record.id })
-      return <Link to={url}>{record.name}</Link>
+      return <Link to={url}>{record.title}</Link>
     },
   },
   {

@@ -1,16 +1,18 @@
-import { createServer as createViteServer } from 'vite'
-import cookieParser from 'cookie-parser'
 import path from 'path'
 import fs from 'fs'
 
-import { YandexAPIRepository } from '../../shared/repository/yandexAPIRepository'
+import { createServer as createViteServer } from 'vite'
+
+import { AuthMiddleware } from '../../middlewares'
+
+import { STUBS_IN_TEMPLATE } from './constants'
 
 import type { Express } from 'express'
-import { STUBS_IN_TEMPLATE } from './constants'
+import type { TRender } from './types'
 
 const srcPath = path.dirname(require.resolve('client'))
 
-export const developmentServer = async (app: Express) => {
+export const developmentServer = async (app: Express): Promise<void> => {
   const vite = await createViteServer({
     server: { middlewareMode: true },
     root: srcPath,
@@ -19,25 +21,27 @@ export const developmentServer = async (app: Express) => {
 
   app.use(vite.middlewares)
 
-  // @ts-ignore
-  app.use('*', cookieParser(), async (req, res, next) => {
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+  app.use('*', AuthMiddleware, async (req, res, next) => {
     const url = req.originalUrl
 
     try {
       let template = fs.readFileSync(
         path.resolve(srcPath, 'index.html'),
-        'utf-8'
+        'utf-8',
       )
 
       template = await vite.transformIndexHtml(url, template)
 
-      const { render } = await vite.ssrLoadModule(
-        path.resolve(srcPath, 'src/ssr.tsx')
-      )
+      const render = (
+        await vite.ssrLoadModule(path.resolve(srcPath, 'src/ssr.tsx'))
+      ).render as TRender
 
-      const { html, style, initialState } = await render({
+      const initialState = req.user || null
+
+      const { html, style } = await render({
         url,
-        repository: new YandexAPIRepository(req.headers['cookie']),
+        initialState,
         isPlainStyle: false,
       })
 
@@ -45,7 +49,7 @@ export const developmentServer = async (app: Express) => {
         .replace(STUBS_IN_TEMPLATE.outlet, html)
         .replace(
           STUBS_IN_TEMPLATE.state,
-          JSON.stringify(initialState).replace(/</g, '\\u003c')
+          JSON.stringify(initialState).replace(/</g, '\\u003c'),
         )
         .replace(STUBS_IN_TEMPLATE.style, style)
 
