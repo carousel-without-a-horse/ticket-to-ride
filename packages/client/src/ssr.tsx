@@ -29,7 +29,7 @@ export function render({ url, initialState, isPlainStyle }: TRender) {
           <App />
         </StoreContext.Provider>
       </StaticRouter>
-    </StyleProvider>,
+    </StyleProvider>
   )
 
   const style = extractStyle(cache, isPlainStyle)

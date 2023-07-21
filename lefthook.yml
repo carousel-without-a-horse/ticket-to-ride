@@ -16,7 +16,3 @@ pre-commit:
       root: "packages/server/"
       glob: '*.{ts,tsx}'
       run: yarn eslint {staged_files}
-    prettier:
-      glob: '*.{ts,tsx,css,pcss}'
-      run: yarn prettier -w {staged_files}
-      stage_fixed: true

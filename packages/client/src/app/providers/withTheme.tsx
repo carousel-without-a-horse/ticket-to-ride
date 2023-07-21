@@ -31,5 +31,6 @@ const ThemeProvider = observer(({ children }: PropsWithChildren) => {
   )
 })
 
-export const withTheme = (component: () => ReactNode) => () =>
+export const withTheme = (component: () => ReactNode) => () => (
   <ThemeProvider>{component()}</ThemeProvider>
+)
