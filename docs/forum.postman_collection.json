@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "6792d6c8-4fdc-4974-8275-a45ea7eeca52",
+		"name": "forum",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Delete comment",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/comments/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"comments",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create comment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"zczxczxc\",\n    \"topicId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/comments",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read topic",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/themes/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"themes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create topic",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"title\": \"Text 2\",\n   \"content\": \"Content 2\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/themes",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"themes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete topic",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/themes/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"themes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update topic",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"title\": \"Text edited\",\n   \"content\": \"Content edited\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/themes/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"themes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
