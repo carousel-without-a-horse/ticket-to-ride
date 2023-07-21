@@ -16,3 +16,10 @@ export type TDataRow = {
 }
 
 export type TDataSource = TDataRow[]
+
+export type TRatingResponseItem = {
+  data: {
+    login: string
+    rating: string
+  }
+}

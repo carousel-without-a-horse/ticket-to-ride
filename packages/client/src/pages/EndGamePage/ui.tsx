@@ -79,7 +79,7 @@ const EndGame = () => {
           ratingServices
             .addUserToLeaderboard({
               teamName: teamName,
-              ratingFieldName: ratingFieldName,
+              ratingFieldName,
               data: {
                 login: 'testLogin',
                 rating: currentPlayerScores,
