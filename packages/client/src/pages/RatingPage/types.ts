@@ -6,8 +6,6 @@ export type TColumn = {
   width?: number
 }
 
-export type TColumns = TColumn[]
-
 export type TDataRow = {
   key: string
   num: string

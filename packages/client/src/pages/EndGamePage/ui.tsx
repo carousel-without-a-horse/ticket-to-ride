@@ -22,7 +22,8 @@ const scroll = { y: '45vh' }
 
 const EndGame = () => {
   const navigate = useNavigate()
-  const { gameStore } = useStore()
+  const { gameStore, userStore } = useStore()
+
   const gameStatus = gameStore.gameStatus
   const [result, setResult] = useState<TDataSource | undefined>(undefined)
   const [modalOpen, setModalOpen] = useState<boolean>(true)
@@ -36,13 +37,30 @@ const EndGame = () => {
     if (gameStatus !== endGame) {
       navigate(ROUTES.root)
     }
+    ratingServices
+      .addUserToLeaderboard({
+        teamName: teamName,
+        ratingFieldName,
+        data: {
+          login: userStore.user?.login as string,
+          rating: currentPlayerScores,
+        },
+      })
+      .then(console.debug)
+      .catch(console.error)
 
     const players = { ...gameStore.players }
 
     setResult(
       toResultConverter({ ...players }, setResultTitle, setCurrentPlayerScores)
     )
-  }, [gameStatus, navigate, gameStore.players])
+  }, [
+    gameStatus,
+    navigate,
+    gameStore.players,
+    currentPlayerScores,
+    userStore.user?.login,
+  ])
 
   if (gameStore.gameStatus !== endGame) {
     return null
@@ -75,18 +93,6 @@ const EndGame = () => {
         onClick={() => {
           navigate(ROUTES.startGame)
           gameStore.setGameStatus('noGame')
-          // login в зпросе следует брать из юзер стора текущего юзера. Сейчас как я понял такой возможности нет
-          ratingServices
-            .addUserToLeaderboard({
-              teamName: teamName,
-              ratingFieldName,
-              data: {
-                login: 'testLogin',
-                rating: currentPlayerScores,
-              },
-            })
-            .then(console.debug)
-            .catch(console.error)
         }}
       >
         Начать сначала

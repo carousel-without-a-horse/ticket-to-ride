@@ -83,6 +83,12 @@
       "againstTheComputer": "Against the computer"
     }
   },
+  "rating": {
+    "title": "Players Rating",
+     "user": "User",
+     "scores": "Scores",
+     "spinnerTip": "Loading"
+  },
   "notification": {
     "attention": "Attention!",
     "dontGoFar": "Don't go far, the game is in full swing!"
