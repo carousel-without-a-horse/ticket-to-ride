@@ -21,7 +21,9 @@
   },
   "rules": {
     "@typescript-eslint/ban-ts-comment": 1,
-    "prettier/prettier": ["error"],
+    "prettier/prettier": ["error", {
+      "trailingComma": "es5"
+    }],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error",
     "react-perf/jsx-no-new-object-as-prop": [

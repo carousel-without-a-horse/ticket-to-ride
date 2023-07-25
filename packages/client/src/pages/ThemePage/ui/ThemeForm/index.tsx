@@ -25,7 +25,7 @@ const ThemeForm: FC<TThemeForm> = ({
   return (
     <Card title={title} className={styles.wrapper}>
       <Form initialValues={initialValues} onFinish={onSubmit}>
-        <FormInput name="name" label={t('theme.form.name')} />
+        <FormInput name="title" label={t('theme.form.name')} />
         <FormTags name="tags" label={t('theme.form.tags')} />
         <FormWysiwyg
           name="content"

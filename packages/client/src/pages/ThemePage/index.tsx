@@ -54,10 +54,8 @@ const ThemePage = () => {
   }
 
   return (
-    <Card title={data.name}>
-      <p>
-        {t('theme.info.author')}: {data.author.name}
-      </p>
+    <Card title={data.title}>
+      <p>{/*{t('theme.info.author')}: {data.author.name}*/}</p>
       <Tags value={data.tags} disabled />
       <p>{data.content}</p>
       <Space size="large" className={styles.actions}>

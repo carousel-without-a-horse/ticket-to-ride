@@ -2,14 +2,14 @@ import type { TInfiniteQuery } from '@/shared/types/query'
 
 export type TTheme = {
   id: string
-  name: string
+  title: string
   author: string
   commentsCount: number
 }
 
 export type TThemeDetail = {
   id: string
-  name: string
+  title: string
   author: {
     id: string
     name: string
