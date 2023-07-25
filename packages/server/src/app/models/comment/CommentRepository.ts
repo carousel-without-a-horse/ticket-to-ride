@@ -15,11 +15,15 @@ export class CommentRepository implements ICommentRepository {
     this.commentRepository = dbService.client.getRepository(Comment)
   }
 
-  create(
+  async create(
     data: { content: string; parentId?: number },
     userId: number,
-  ): Promise<Comment> {
-    return this.commentRepository.create({ ...data, userId })
+  ): Promise<Comment | false> {
+    try {
+      return await this.commentRepository.create({ ...data, userId })
+    } catch (_e) {
+      return false
+    }
   }
 
   async read(id: number): Promise<Comment | false> {

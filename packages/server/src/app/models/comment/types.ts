@@ -13,7 +13,7 @@ export interface ICommentService {
 }
 
 export interface ICommentRepository {
-  create: (dto: CommentCreateDto, userId: number) => Promise<Comment>
+  create: (dto: CommentCreateDto, userId: number) => Promise<Comment | false>
   read: (id: number) => Promise<Comment | false>
   delete: (id: number) => Promise<boolean>
 }
