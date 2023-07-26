@@ -1,3 +1,3 @@
 export type TOperationsWithSelected = {
-  selectedItems: string[]
+  selectedItems: TId[]
 }

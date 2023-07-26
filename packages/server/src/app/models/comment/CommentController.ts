@@ -9,7 +9,8 @@ import { CommentCreateDto } from './dto'
 
 import type { NextFunction, Request, Response } from 'express'
 import type { ILoggerService } from '../../services/loggerService'
-import type { TCommentController, ICommentService, TObject } from './types'
+import type { TCommentController } from './types'
+import type { CommentService } from './CommentService'
 
 @injectable()
 export class CommentController
@@ -18,7 +19,7 @@ export class CommentController
 {
   constructor(
     @inject(TYPES.Logger) private loggerService: ILoggerService,
-    @inject(TYPES.CommentService) private commentService: ICommentService,
+    @inject(TYPES.CommentService) private commentService: CommentService,
   ) {
     super(loggerService)
     this.bindRoutes([
@@ -34,6 +35,12 @@ export class CommentController
         method: 'delete',
         // eslint-disable-next-line @typescript-eslint/unbound-method,@typescript-eslint/no-misused-promises
         func: this.delete,
+      },
+      {
+        path: '/:topicId',
+        method: 'get',
+        // eslint-disable-next-line @typescript-eslint/unbound-method,@typescript-eslint/no-misused-promises
+        func: this.getAllByTopicId,
       },
     ])
   }
@@ -66,6 +73,12 @@ export class CommentController
         new HTTPError(422, 'Комментарий не найден', 'CommentController'),
       )
     }
+    this.ok(res, result)
+  }
+
+  getAllByTopicId = async (req: Request, res: Response): Promise<void> => {
+    const topicId = +req.params.topicId
+    const result = await this.commentService.getAllByTopicId(topicId)
     this.ok(res, result)
   }
 }

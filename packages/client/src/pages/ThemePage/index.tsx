@@ -1,3 +1,4 @@
+import DomPurify from 'dompurify'
 import { useParams } from 'react-router'
 import { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -36,12 +37,12 @@ const ThemePage = () => {
 
   const { data, isLoading } = useQuery({
     queryKey: ['theme', id],
-    queryFn: () => themeServices.getItem({ id: id!.toString() }),
+    queryFn: () => themeServices.getItem({ id: +id! }),
   })
 
   const handleEdit = useCallback(() => {
     if (!data?.id) return
-    const url = generateUrl(ROUTES.themeEdit, { id: data.id })
+    const url = generateUrl(ROUTES.themeEdit, { id: data.id.toString() })
     navigate(url)
   }, [data?.id, navigate])
 
@@ -49,15 +50,22 @@ const ThemePage = () => {
     setVote(vote)
   }, [])
 
-  if (isLoading || !data) {
+  if (isLoading) {
     return <SkeletonThemeForm />
   }
 
+  if (!data) {
+    navigate(ROUTES.forum)
+    return null
+  }
+
   return (
-    <Card title={data.title}>
+    <Card className={styles.wrapper} title={data.title}>
       <p>{/*{t('theme.info.author')}: {data.author.name}*/}</p>
       <Tags value={data.tags} disabled />
-      <p>{data.content}</p>
+      <p
+        dangerouslySetInnerHTML={{ __html: DomPurify.sanitize(data.content) }}
+      />
       <Space size="large" className={styles.actions}>
         <Likes vote={vote} onChange={handleLikeToggle} />
         <Button icon={iconEdit} onClick={handleEdit}>

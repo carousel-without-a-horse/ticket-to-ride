@@ -9,7 +9,8 @@ import { TopicGetAllDto, TopicCreateOrEditDto } from './dto'
 
 import type { NextFunction, Request, Response } from 'express'
 import type { ILoggerService } from '../../services/loggerService'
-import type { TTopicController, ITopicService, TObject } from './types'
+import type { TTopicController } from './types'
+import type { TopicService } from './TopicService'
 
 @injectable()
 export class TopicController
@@ -18,7 +19,7 @@ export class TopicController
 {
   constructor(
     @inject(TYPES.Logger) private loggerService: ILoggerService,
-    @inject(TYPES.TopicService) private topicService: ITopicService,
+    @inject(TYPES.TopicService) private topicService: TopicService,
   ) {
     super(loggerService)
     this.bindRoutes([

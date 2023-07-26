@@ -51,6 +51,7 @@
     }
   },
   "reply": {
+    "comment": "Comment",
     "submit": "Reply",
     "cancel": "Cancel"
   },

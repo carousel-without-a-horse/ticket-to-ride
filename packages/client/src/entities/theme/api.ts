@@ -16,4 +16,12 @@ export const themeServices: TThemeService = {
   getItem: ({ id }) => {
     return httpService.get<TThemeDetail>(`/themes/${id}`).then(res => res.data)
   },
+  create: data => {
+    return httpService.post<TThemeDetail>('/themes', data).then(res => res.data)
+  },
+  update: ({ id, ...data }) => {
+    return httpService
+      .put<TThemeDetail>(`/themes/${id}`, data)
+      .then(res => res.data)
+  },
 }

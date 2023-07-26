@@ -27,7 +27,7 @@ export const Themes: FC<TThemes> = ({ type }) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [isMyThemes, setIsMyThemes] = useState(false)
-  const [selectedItems, setSelectedItems] = useState<string[]>([])
+  const [selectedItems, setSelectedItems] = useState<TId[]>([])
   const columnsDefault = useTranslationRefresh(getColumnsDefault)
 
   useEffect(() => {

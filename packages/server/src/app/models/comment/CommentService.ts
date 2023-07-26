@@ -4,13 +4,13 @@ import { TYPES } from '../../../types'
 
 import type { Comment } from './CommentModel'
 import type { CommentCreateDto } from './dto'
-import type { ICommentRepository, ICommentService } from './types'
+import type { CommentRepository } from './CommentRepository'
 
 @injectable()
-export class CommentService implements ICommentService {
+export class CommentService {
   constructor(
     @inject(TYPES.CommentRepository)
-    private commentRepository: ICommentRepository,
+    private commentRepository: CommentRepository,
   ) {}
 
   async create(
@@ -34,5 +34,9 @@ export class CommentService implements ICommentService {
 
   delete(id: number): Promise<boolean> {
     return this.commentRepository.delete(id)
+  }
+
+  getAllByTopicId(topicId: number): Promise<Comment[]> {
+    return this.commentRepository.getAllByTopicId(topicId)
   }
 }
