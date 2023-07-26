@@ -35,7 +35,7 @@ export const Map = () => {
     // Рисуем маршруты
     routesElements.current.forEach(route => route.draw(ctx, canvas))
 
-    canvas.addEventListener('mousemove', event => {
+    const mouseMoveHandler = (event: MouseEvent) => {
       // Получаем координаты курсора мыши
       const mouseX = event.clientX - canvas.offsetLeft
       const mouseY = event.clientY - canvas.offsetTop
@@ -43,15 +43,23 @@ export const Map = () => {
       citiesElements.current.forEach(city => city.onHover(mouseX, mouseY))
 
       routesElements.current.forEach(route => route.onHover(mouseX, mouseY))
-    })
+    }
 
-    canvas.addEventListener('click', event => {
+    const clickHandler = (event: MouseEvent) => {
       // Получаем координаты курсора мыши
       const mouseX = event.clientX - canvas.offsetLeft
       const mouseY = event.clientY - canvas.offsetTop
 
       routesElements.current.forEach(route => route.onClick(mouseX, mouseY))
-    })
+    }
+
+    canvas.addEventListener('mousemove', mouseMoveHandler)
+
+    canvas.addEventListener('click', clickHandler)
+    return () => {
+      document.removeEventListener('mousemove', mouseMoveHandler)
+      document.removeEventListener('click', clickHandler)
+    }
   }, [])
 
   return <canvas ref={canvasRef} width={1000} height={630} />
