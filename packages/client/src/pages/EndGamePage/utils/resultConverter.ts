@@ -4,7 +4,8 @@ import type { TDataSource } from '../types'
 
 export const toResultConverter = (
   users: TPlayers,
-  setResultTitle: Dispatch<SetStateAction<string>>
+  setResultTitle: Dispatch<SetStateAction<string>>,
+  setCurrentPlayerScores: Dispatch<SetStateAction<string>>
 ): TDataSource => {
   const result: TDataSource = []
 
@@ -32,6 +33,7 @@ export const toResultConverter = (
 
   result.forEach((item, index) => {
     if (item.user === 'currentPlayer' && index === 0) {
+      setCurrentPlayerScores(item.scores.toString())
       setResultTitle(
         `Вы победили, колличество очков - ${item.scores ? item.scores : 0}`
       )

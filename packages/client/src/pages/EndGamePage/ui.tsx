@@ -8,6 +8,8 @@ import { ROUTES } from '@/app/router/config'
 import { useStore } from '@/shared/store'
 import { Modal } from '@/shared/ui/Modal'
 import { endGame } from '@/shared/constants/gameStatus'
+import ratingServices from '@/shared/services/ratingServices'
+import { ratingFieldName, teamName } from '@/shared/constants/apiConsts'
 
 import { columns } from './utils/columns'
 import { toResultConverter } from './utils/resultConverter'
@@ -20,11 +22,13 @@ const scroll = { y: '45vh' }
 
 const EndGame = () => {
   const navigate = useNavigate()
-  const { gameStore } = useStore()
+  const { gameStore, userStore } = useStore()
+
   const gameStatus = gameStore.gameStatus
   const [result, setResult] = useState<TDataSource | undefined>(undefined)
   const [modalOpen, setModalOpen] = useState<boolean>(true)
   const hideModal = () => setModalOpen(false)
+  const [currentPlayerScores, setCurrentPlayerScores] = useState<string>('')
   const [resultTitle, setResultTitle] = useState<string>(
     'Вы заняли какое-то место'
   )
@@ -33,11 +37,30 @@ const EndGame = () => {
     if (gameStatus !== endGame) {
       navigate(ROUTES.root)
     }
+    ratingServices
+      .addUserToLeaderboard({
+        teamName: teamName,
+        ratingFieldName,
+        data: {
+          login: userStore.user?.login as string,
+          rating: currentPlayerScores,
+        },
+      })
+      .then(console.debug)
+      .catch(console.error)
 
     const players = { ...gameStore.players }
 
-    setResult(toResultConverter({ ...players }, setResultTitle))
-  }, [gameStatus, navigate, gameStore.players])
+    setResult(
+      toResultConverter({ ...players }, setResultTitle, setCurrentPlayerScores)
+    )
+  }, [
+    gameStatus,
+    navigate,
+    gameStore.players,
+    currentPlayerScores,
+    userStore.user?.login,
+  ])
 
   if (gameStore.gameStatus !== endGame) {
     return null

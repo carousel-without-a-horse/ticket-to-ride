@@ -83,6 +83,12 @@
       "againstTheComputer": "Против компьютера"
     }
   },
+  "rating": {
+    "title": "Рейтинг Игроков",
+     "user": "Пользователь",
+     "scores": "Баллы",
+     "spinnerTip": "Загрузка"
+  },
   "notification": {
     "attention": "Внимание!",
     "dontGoFar": "Не уходите далеко, игра в самом разгаре!"

@@ -1,6 +1,9 @@
-import type { TColumns } from '../types'
+import { t } from 'i18next'
 
-export const columns: TColumns = [
+import type { TTableColumnsType } from '@/shared/ui/Table'
+import type { TDataRow } from '../types'
+
+export const getColumnsDefault: () => TTableColumnsType<TDataRow> = () => [
   {
     title: '',
     dataIndex: 'num',
@@ -8,13 +11,13 @@ export const columns: TColumns = [
     width: 60,
   },
   {
-    title: 'Пользователь',
+    title: t('rating.user'),
     dataIndex: 'user',
     ellipsis: true,
     key: 'user',
   },
   {
-    title: 'Баллы',
+    title: t('rating.scores'),
     dataIndex: 'scores',
     key: 'scores',
     ellipsis: true,
