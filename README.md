@@ -7,6 +7,8 @@
 - [Сборка](docs/build.md)
 - [Игра](docs/game.md)
 - [Работа с формами](docs/forms.md)
+- [Работа с утечками памяти](docs/memoryleacks.md)
+
 
 ## Прототипы
 
