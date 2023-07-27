@@ -1,16 +1,50 @@
 import { useTranslation } from 'react-i18next'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
+
+import { useForm } from '@/shared/hooks'
+import { themeServices } from '@/entities/theme'
+import { ROUTES } from '@/app/router/config'
 
 import ThemeForm from '../../ui/ThemeForm'
 
+import schema from './schema'
+
+import type { TUseForm } from './types'
+
 const CreateThemePage = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
+  const queryClient = useQueryClient()
+  const [isLoading, setLoading] = useState(false)
+
+  const formProps = useForm<TUseForm>({
+    name: 'create-theme-form',
+    schema,
+    onSubmit: data => {
+      if (!data) return
+      setLoading(true)
+      void themeServices
+        .create(data)
+        .then(() =>
+          queryClient.resetQueries({
+            queryKey: ['themes'],
+          })
+        )
+        .then(() => {
+          navigate(ROUTES.forum)
+        })
+        .finally(() => setLoading(false))
+    },
+  })
+
   return (
     <ThemeForm
       title={t('theme.titles.newTheme')}
       buttonSubmitText={t('theme.form.create')}
-      onSubmit={data => {
-        console.log(data)
-      }}
+      formProps={formProps}
+      isLoading={isLoading}
     />
   )
 }

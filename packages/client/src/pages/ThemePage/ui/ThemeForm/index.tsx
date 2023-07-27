@@ -15,16 +15,18 @@ const ThemeForm: FC<TThemeForm> = ({
   title,
   initialValues,
   buttonSubmitText,
-  onSubmit,
+  isLoading,
+  formProps,
 }) => {
   const navigate = useNavigate()
   const { t } = useTranslation()
   const handleCancel = () => {
     navigate(-1)
   }
+
   return (
     <Card title={title} className={styles.wrapper}>
-      <Form initialValues={initialValues} onFinish={onSubmit}>
+      <Form initialValues={initialValues} {...formProps}>
         <FormInput name="title" label={t('theme.form.name')} />
         <FormTags name="tags" label={t('theme.form.tags')} />
         <FormWysiwyg
@@ -33,7 +35,7 @@ const ThemeForm: FC<TThemeForm> = ({
           className={styles.wysiwyg}
         />
         <Space>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" loading={isLoading}>
             {buttonSubmitText || t('theme.form.save')}
           </Button>
           <Button onClick={handleCancel}>{t('theme.form.cancel')}</Button>

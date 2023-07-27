@@ -14,7 +14,7 @@ export const getColumnsDefault: () => TTableColumnsType<TTheme> = () => [
     title: t('forum.table.header.name'),
     dataIndex: 'title',
     render: (_, record) => {
-      const url = generateUrl(ROUTES.themeDetail, { id: record.id })
+      const url = generateUrl(ROUTES.themeDetail, { id: record.id.toString() })
       return <Link to={url}>{record.title}</Link>
     },
   },

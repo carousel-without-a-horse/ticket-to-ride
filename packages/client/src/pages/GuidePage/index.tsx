@@ -12,7 +12,7 @@ import { Tag } from '@/shared/ui/Tag'
 import { Upload } from '@/shared/ui/Upload'
 import { Table } from '@/shared/ui/Table'
 import { Content } from '@/shared/ui/Layout'
-import { Reply } from '@/shared/ui/Reply'
+import { Reply } from '@/widgets/Reply'
 import { Likes } from '@/shared/ui/Likes'
 import { success, error, warning } from '@/shared/utils/notification'
 
@@ -139,7 +139,7 @@ const GuidePage = () => {
           <h2>Like and reply</h2>
           <Space align="start" size="large">
             <Likes onChange={data => console.log('data', data)} />
-            <Reply onChange={data => console.log('data', data)} />
+            <Reply topicId={1} />
           </Space>
         </Card>
 

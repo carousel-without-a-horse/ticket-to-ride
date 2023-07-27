@@ -18,32 +18,24 @@ import {
   CommentRepository,
 } from './app/models/comment'
 
-import type {
-  TTopicController,
-  ITopicRepository,
-  ITopicService,
-} from './app/models/topic'
+import type { TTopicController } from './app/models/topic'
 import type { TBootstrapReturn } from './types'
 import type { ILoggerService } from './app/services/loggerService'
 import type { IExceptionFilter } from './app/errors/types'
-import type {
-  TCommentController,
-  ICommentService,
-  ICommentRepository,
-} from './app/models/comment'
+import type { TCommentController } from './app/models/comment'
 
 export const appBindings = new ContainerModule((bind: interfaces.Bind) => {
   bind<ILoggerService>(TYPES.Logger).to(LoggerService).inSingletonScope()
   bind<IExceptionFilter>(TYPES.ExceptionFilter).to(ExceptionFilter)
   bind<IConfigService>(TYPES.ConfigService).to(ConfigService).inSingletonScope()
   bind<TTopicController>(TYPES.TopicController).to(TopicController)
-  bind<ITopicService>(TYPES.TopicService).to(TopicService)
-  bind<ITopicRepository>(TYPES.TopicRepository)
+  bind<TopicService>(TYPES.TopicService).to(TopicService)
+  bind<TopicRepository>(TYPES.TopicRepository)
     .to(TopicRepository)
     .inSingletonScope()
   bind<TCommentController>(TYPES.CommentController).to(CommentController)
-  bind<ICommentService>(TYPES.CommentService).to(CommentService)
-  bind<ICommentRepository>(TYPES.CommentRepository)
+  bind<CommentService>(TYPES.CommentService).to(CommentService)
+  bind<CommentRepository>(TYPES.CommentRepository)
     .to(CommentRepository)
     .inSingletonScope()
   bind<DBService>(TYPES.DBService).to(DBService).inSingletonScope()

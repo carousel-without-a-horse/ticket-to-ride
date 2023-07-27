@@ -4,17 +4,13 @@ import { TYPES } from '../../../types'
 
 import type { Topic } from './TopicModel'
 import type { TopicCreateOrEditDto } from './dto'
-import type {
-  ITopicRepository,
-  ITopicService,
-  TCursorPagination,
-  TModelTopic,
-} from './types'
+import type { TCursorPagination, TModelTopic } from './types'
+import type { TopicRepository } from './TopicRepository'
 
 @injectable()
-export class TopicService implements ITopicService {
+export class TopicService {
   constructor(
-    @inject(TYPES.TopicRepository) private topicRepository: ITopicRepository,
+    @inject(TYPES.TopicRepository) private topicRepository: TopicRepository,
   ) {}
 
   all(cursor: number): TCursorPagination<Topic> {

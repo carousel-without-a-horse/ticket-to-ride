@@ -9,11 +9,11 @@ import { getNextId } from '../../utils/cursorPagination'
 import { Topic } from './TopicModel'
 
 import type { TopicCreateOrEditDto } from './dto'
-import type { ITopicRepository, TCursorPagination, TModelTopic } from './types'
+import type { TCursorPagination, TModelTopic } from './types'
 import type { Repository } from 'sequelize-typescript'
 
 @injectable()
-export class TopicRepository implements ITopicRepository {
+export class TopicRepository {
   topicRepository: Repository<Topic>
   commentRepository: Repository<Comment>
   pageSize = 10
@@ -57,9 +57,7 @@ export class TopicRepository implements ITopicRepository {
   }
 
   async read(id: number): Promise<Topic | false> {
-    const topic = await this.topicRepository.findByPk(id, {
-      include: this.commentRepository,
-    })
+    const topic = await this.topicRepository.findByPk(id)
 
     return topic || false
   }

@@ -14,7 +14,7 @@ const iconDelete = <DeleteOutlined rev={undefined} />
 export const TableActions = ({ id }: { id: TTheme['id'] }) => {
   const navigate = useNavigate()
   const handleEdit = () => {
-    const url = generateUrl(ROUTES.themeEdit, { id })
+    const url = generateUrl(ROUTES.themeEdit, { id: id.toString() })
     navigate(url)
   }
 
