@@ -1,5 +1,5 @@
 {
-  "name": "@tickt-to-ride/client",
+  "name": "@carousel-without-a-horse/client",
   "version": "1.0.3",
   "main": "dist-ssr/client.cjs",
   "type": "module",
@@ -81,5 +81,5 @@
     "access": "public"
   },
   "license": "MIT",
-  "gitHead": "8cad4ec10f4d2c9f669300ab365a273c11dbdb12"
+  "gitHead": "e8c15e137991f2e6a7490dfd8e050e7baec6e552"
 }
