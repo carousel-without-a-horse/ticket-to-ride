@@ -1,6 +1,7 @@
 {
   "name": "client",
   "version": "1.0.0",
+  "main": "dist-ssr/client.cjs",
   "type": "module",
   "scripts": {
     "start": "vite",
@@ -76,6 +77,6 @@
     "vite": "^4.3.9",
     "vite-tsconfig-paths": "^4.2.0"
   },
-  "license": "GNU GPLv3",
+  "license": "MIT",
   "gitHead": "46af612862f3bcd0e535214917b94f5ff10eb652"
 }

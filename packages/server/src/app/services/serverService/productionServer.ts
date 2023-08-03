@@ -2,6 +2,8 @@ import path from 'path'
 import fs from 'fs'
 import { createHash } from 'crypto'
 
+// @ts-ignore
+import { render } from 'client'
 import express, { Express } from 'express'
 
 import { AuthMiddleware } from '../../middlewares'
@@ -10,8 +12,9 @@ import { STUBS_IN_TEMPLATE } from './constants'
 
 import type { TRender } from './types'
 
+// const distSsrPath = require.resolve('client/dist-ssr/client.cjs')
+// console.log('distSsrPath: ', distSsrPath)
 const distPath = path.dirname(require.resolve('client/dist/index.html'))
-const distSsrPath = require.resolve('client/dist-ssr/client.cjs')
 export const productionServer = (app: Express): void => {
   app.use('/assets', express.static(path.resolve(distPath, 'assets')))
 
@@ -24,9 +27,9 @@ export const productionServer = (app: Express): void => {
         path.resolve(distPath, 'index.html'),
         'utf-8',
       )
-      const { render } = (await import(distSsrPath)) as { render: TRender }
+      // const { render } = (await import(distSsrPath)) as { render: TRender }
       const initialState = req.user || null
-      const { html, style } = await render({
+      const { html, style } = await (render as TRender)({
         url,
         initialState,
         isPlainStyle: true,
