@@ -77,6 +77,9 @@
     "vite": "^4.3.9",
     "vite-tsconfig-paths": "^4.2.0"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
-  "gitHead": "46af612862f3bcd0e535214917b94f5ff10eb652"
+  "gitHead": "8cad4ec10f4d2c9f669300ab365a273c11dbdb12"
 }
