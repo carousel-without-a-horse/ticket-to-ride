@@ -3,7 +3,7 @@ import fs from 'fs'
 import { createHash } from 'crypto'
 
 // @ts-ignore
-import { render } from 'client'
+import { render } from '@carousel-without-a-horse/client'
 import express, { Express } from 'express'
 
 import { AuthMiddleware } from '../../middlewares'
@@ -12,9 +12,12 @@ import { STUBS_IN_TEMPLATE } from './constants'
 
 import type { TRender } from './types'
 
-// const distSsrPath = require.resolve('client/dist-ssr/client.cjs')
-// console.log('distSsrPath: ', distSsrPath)
-const distPath = path.dirname(require.resolve('client/dist/index.html'))
+const distPath = path.resolve(
+  path.dirname(require.resolve('@carousel-without-a-horse/client')),
+  '../dist',
+)
+
+// console.log('distPath', distPath)
 export const productionServer = (app: Express): void => {
   app.use('/assets', express.static(path.resolve(distPath, 'assets')))
 

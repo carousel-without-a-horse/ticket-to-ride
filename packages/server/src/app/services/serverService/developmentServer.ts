@@ -10,7 +10,9 @@ import { STUBS_IN_TEMPLATE } from './constants'
 import type { Express } from 'express'
 import type { TRender } from './types'
 
-const srcPath = path.dirname(require.resolve('client'))
+const srcPath = path.dirname(
+  require.resolve('@carousel-without-a-horse/client'),
+)
 
 export const developmentServer = async (app: Express): Promise<void> => {
   const vite = await createViteServer({

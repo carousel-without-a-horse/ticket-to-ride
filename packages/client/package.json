@@ -78,7 +78,8 @@
     "vite-tsconfig-paths": "^4.2.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": ["dist", "dist-ssr"]
   },
   "license": "MIT",
   "gitHead": "e8c15e137991f2e6a7490dfd8e050e7baec6e552"

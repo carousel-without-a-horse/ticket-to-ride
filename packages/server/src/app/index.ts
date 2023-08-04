@@ -53,7 +53,7 @@ export class App {
         target: 'https://ya-praktikum.tech',
       }),
     )
-    this.app.use(cookieParser() as express.RequestHandler)
+    this.app.use(cookieParser())
     this.app.use(json())
   }
 
@@ -62,6 +62,7 @@ export class App {
       '/api/themes',
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       AuthMiddleware,
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       AuthGuardMiddleware,
       this.topicController.router,
     )
@@ -69,6 +70,7 @@ export class App {
       '/api/comments',
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       AuthMiddleware,
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       AuthGuardMiddleware,
       this.commentController.router,
     )
