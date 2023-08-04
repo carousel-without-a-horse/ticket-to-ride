@@ -1,6 +1,6 @@
 {
   "name": "@carousel-without-a-horse/client",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "dist-ssr/client.cjs",
   "type": "module",
   "scripts": {
@@ -79,7 +79,10 @@
   },
   "publishConfig": {
     "access": "public",
-    "directory": ["dist", "dist-ssr"]
+    "directory": [
+      "dist",
+      "dist-ssr"
+    ]
   },
   "license": "MIT",
   "gitHead": "e8c15e137991f2e6a7490dfd8e050e7baec6e552"
