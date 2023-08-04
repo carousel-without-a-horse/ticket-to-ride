@@ -1,8 +1,11 @@
 {
   "name": "@carousel-without-a-horse/client",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "dist-ssr/client.cjs",
-  "files": ["dist", "dist-ssr"],
+  "files": [
+    "dist",
+    "dist-ssr"
+  ],
   "type": "module",
   "scripts": {
     "start": "vite",
