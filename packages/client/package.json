@@ -2,6 +2,7 @@
   "name": "@carousel-without-a-horse/client",
   "version": "1.0.5",
   "main": "dist-ssr/client.cjs",
+  "files": ["dist", "dist-ssr"],
   "type": "module",
   "scripts": {
     "start": "vite",
@@ -78,12 +79,8 @@
     "vite-tsconfig-paths": "^4.2.0"
   },
   "publishConfig": {
-    "access": "public",
-    "directory": [
-      "dist",
-      "dist-ssr"
-    ]
+    "access": "public"
   },
   "license": "MIT",
-  "gitHead": "e8c15e137991f2e6a7490dfd8e050e7baec6e552"
+  "gitHead": "467318b3d49bd62ea559b60aed9e220686e56c15"
 }
