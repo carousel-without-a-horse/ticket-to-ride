@@ -28,7 +28,7 @@
 В этом проекте используется `monorepo` на основе [`lerna`](https://github.com/lerna/lerna)
 
 Чтобы добавить зависимость для клиента
-```yarn lerna add {your_dep} --scope client```
+```yarn lerna add {your_dep} --scope @carousel-without-a-horse/client```
 
 Для сервера
 ```yarn lerna add {your_dep} --scope server```
@@ -41,7 +41,7 @@
 ```yarn lerna add {your_dep} --dev --scope server```
 
 Чтобы удалить зависимость для клиента
-```lerna exec 'yarn remove {your_dep}' --scope client```
+```lerna exec 'yarn remove {your_dep}' --scope @carousel-without-a-horse/client```
 
 
 ### Тесты

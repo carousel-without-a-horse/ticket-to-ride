@@ -11,7 +11,6 @@ import type { TUser } from '@/shared/store/user'
 type TRender = {
   url: string
   initialState: TUser | null
-
   isPlainStyle: boolean
 }
 
