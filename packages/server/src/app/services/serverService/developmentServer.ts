@@ -24,7 +24,6 @@ export const developmentServer = async (app: Express): Promise<void> => {
 
   app.use(vite.middlewares)
 
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   app.use('*', AuthMiddleware, async (req, res, next) => {
     const url = req.originalUrl
 

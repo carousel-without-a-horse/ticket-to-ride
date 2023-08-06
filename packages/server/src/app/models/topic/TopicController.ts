@@ -26,7 +26,6 @@ export class TopicController
       {
         path: '/',
         method: 'get',
-        // eslint-disable-next-line @typescript-eslint/unbound-method,@typescript-eslint/no-misused-promises
         func: this.getAll,
         middlewares: [
           new ValidateMiddleware(TopicGetAllDto, { isBodyValidate: false }),
@@ -35,27 +34,23 @@ export class TopicController
       {
         path: '/:id',
         method: 'get',
-        // eslint-disable-next-line @typescript-eslint/unbound-method,@typescript-eslint/no-misused-promises
         func: this.read,
       },
       {
         path: '/',
         method: 'post',
-        // eslint-disable-next-line @typescript-eslint/unbound-method,@typescript-eslint/no-misused-promises
         func: this.create,
         middlewares: [new ValidateMiddleware(TopicCreateOrEditDto)],
       },
       {
         path: '/:id',
         method: 'put',
-        // eslint-disable-next-line @typescript-eslint/unbound-method,@typescript-eslint/no-misused-promises
         func: this.update,
         middlewares: [new ValidateMiddleware(TopicCreateOrEditDto)],
       },
       {
         path: '/:id',
         method: 'delete',
-        // eslint-disable-next-line @typescript-eslint/unbound-method,@typescript-eslint/no-misused-promises
         func: this.delete,
       },
     ])

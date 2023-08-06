@@ -60,17 +60,13 @@ export class App {
   private useRoutes(): void {
     this.app.use(
       '/api/themes',
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       AuthMiddleware,
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       AuthGuardMiddleware,
       this.topicController.router,
     )
     this.app.use(
       '/api/comments',
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       AuthMiddleware,
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       AuthGuardMiddleware,
       this.commentController.router,
     )

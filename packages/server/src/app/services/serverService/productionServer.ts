@@ -20,7 +20,6 @@ const distPath = path.resolve(
 export const productionServer = (app: Express): void => {
   app.use('/assets', express.static(path.resolve(distPath, 'assets')))
 
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   app.use('*', AuthMiddleware, async (req, res, next) => {
     const url = req.originalUrl
 

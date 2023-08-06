@@ -26,20 +26,17 @@ export class CommentController
       {
         path: '/',
         method: 'post',
-        // eslint-disable-next-line @typescript-eslint/unbound-method,@typescript-eslint/no-misused-promises
         func: this.create,
         middlewares: [new ValidateMiddleware(CommentCreateDto)],
       },
       {
         path: '/:id',
         method: 'delete',
-        // eslint-disable-next-line @typescript-eslint/unbound-method,@typescript-eslint/no-misused-promises
         func: this.delete,
       },
       {
         path: '/:topicId',
         method: 'get',
-        // eslint-disable-next-line @typescript-eslint/unbound-method,@typescript-eslint/no-misused-promises
         func: this.getAllByTopicId,
       },
     ])
