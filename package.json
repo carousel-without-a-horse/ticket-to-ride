@@ -4,7 +4,7 @@
   "scripts": {
     "bootstrap": "yarn && node init.js && lerna clean && yarn && lerna bootstrap",
     "build": "lerna run build --scope=@carousel-without-a-horse/client && lerna run build --scope=server",
-    "dev:client": "lerna run start  --scope=@carousel-without-a-horse/client",
+    "docker:dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build",
     "dev": "lerna run dev",
     "test": "lerna run test",
     "lint": "lerna run lint",

@@ -17,7 +17,7 @@ export class DBService {
     @inject(TYPES.ConfigService) config: IConfigService,
   ) {
     const sequelizeOptions: SequelizeOptions = {
-      host: 'localhost',
+      host: config.get('POSTGRES_HOST'),
       port: +config.get('POSTGRES_PORT'),
       username: config.get('POSTGRES_USER'),
       password: config.get('POSTGRES_PASSWORD'),

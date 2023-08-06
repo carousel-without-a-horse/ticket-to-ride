@@ -17,7 +17,6 @@ const distPath = path.resolve(
   '../dist',
 )
 
-// console.log('distPath', distPath)
 export const productionServer = (app: Express): void => {
   app.use('/assets', express.static(path.resolve(distPath, 'assets')))
 
@@ -30,7 +29,7 @@ export const productionServer = (app: Express): void => {
         path.resolve(distPath, 'index.html'),
         'utf-8',
       )
-      // const { render } = (await import(distSsrPath)) as { render: TRender }
+
       const initialState = req.user || null
       const { html, style } = await (render as TRender)({
         url,

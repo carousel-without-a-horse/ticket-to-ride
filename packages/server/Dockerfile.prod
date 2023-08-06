@@ -16,11 +16,14 @@ RUN yarn lerna bootstrap
 RUN rm -rf /app/packages/server/dist/ && yarn lerna run build --scope=server
 
 FROM node:$NODE_VERSION-buster-slim as production
+
+ENV NODE_ENV production
+
 WORKDIR /app
 
 COPY --from=builder /app/packages/server/dist/ /app/
 COPY --from=builder /app/packages/server/package.json /app/package.json
-RUN yarn install --production=true --ignore-engines
+RUN yarn install --production --ignore-engines
 
 EXPOSE $SERVER_PORT
 CMD [ "node", "/app/src/main.js" ]
