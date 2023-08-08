@@ -46,7 +46,7 @@ const EditThemePage = observer(() => {
       void themeServices
         .update({ id: +id!, ...data })
         .then(() =>
-          queryClient.invalidateQueries({
+          queryClient.refetchQueries({
             queryKey: ['themes'],
           })
         )

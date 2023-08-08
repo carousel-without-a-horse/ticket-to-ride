@@ -47,7 +47,7 @@ export class CommentRepository {
 
   getAllByTopicId(topicId: number): Promise<Comment[]> {
     return this.commentRepository.findAll({
-      order: [['createdAt', 'ASC']],
+      order: [['createdAt', 'DESC']],
       where: {
         topicId: {
           [Op.eq]: topicId,

@@ -27,7 +27,7 @@ const CreateThemePage = () => {
       void themeServices
         .create(data)
         .then(() =>
-          queryClient.invalidateQueries({
+          queryClient.refetchQueries({
             queryKey: ['themes'],
           })
         )
