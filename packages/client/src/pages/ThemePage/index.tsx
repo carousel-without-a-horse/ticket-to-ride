@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { EditOutlined } from '@ant-design/icons'
 import { useQuery } from '@tanstack/react-query'
+import { observer } from 'mobx-react-lite'
 
 import { ROUTES } from '@/app/router/config'
 import { Card } from '@/shared/ui/Card'
@@ -16,6 +17,7 @@ import { Divider } from '@/shared/ui/Divider'
 import { generateUrl } from '@/shared/utils/generateUrl'
 import { Comments } from '@/widgets/Comments'
 import { themeServices } from '@/entities/theme'
+import { useStore } from '@/shared/store'
 
 import { SkeletonThemeForm } from './ui/SkeletonThemeForm'
 
@@ -23,8 +25,9 @@ import styles from './styles.module.pcss'
 
 const iconEdit = <EditOutlined rev={undefined} />
 
-const ThemePage = () => {
+const ThemePage = observer(() => {
   const { id } = useParams()
+  const { userStore } = useStore()
   const [vote, setVote] = useState<boolean | undefined>()
   const navigate = useNavigate()
   const { t } = useTranslation()
@@ -61,21 +64,25 @@ const ThemePage = () => {
 
   return (
     <Card className={styles.wrapper} title={data.title}>
-      <p>{/*{t('theme.info.author')}: {data.author.name}*/}</p>
+      <p>
+        {t('theme.info.author')}: {data.user.login}
+      </p>
       <Tags value={data.tags} disabled />
       <p
         dangerouslySetInnerHTML={{ __html: DomPurify.sanitize(data.content) }}
       />
       <Space size="large" className={styles.actions}>
         <Likes vote={vote} onChange={handleLikeToggle} />
-        <Button icon={iconEdit} onClick={handleEdit}>
-          {t('theme.editTheme')}
-        </Button>
+        {userStore.user?.id === data.user.id && (
+          <Button icon={iconEdit} onClick={handleEdit}>
+            {t('theme.editTheme')}
+          </Button>
+        )}
       </Space>
       <Divider />
       <Comments id={data.id} />
     </Card>
   )
-}
+})
 
 export default ThemePage

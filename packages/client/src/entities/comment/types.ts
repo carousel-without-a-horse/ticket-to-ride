@@ -1,9 +1,15 @@
+type TAuthorComment = {
+  id: TId
+  login: string
+  avatar?: string
+}
+
 export type TComment = {
   id: TId
   content: string
   parentId: TId
   topicId: TId
-  userId: TId
+  user: TAuthorComment
   updatedAt: string
   createdAt: string
 }
