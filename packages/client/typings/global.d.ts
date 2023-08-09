@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
-import type { TUser } from '@/shared/store/user'
+import type { TInitialData } from '@/shared/store'
 
 declare global {
   interface Window {
-    __INITIAL_STATE__?: TUser | null
+    __INITIAL_STATE__?: TInitialData
   }
 }
 

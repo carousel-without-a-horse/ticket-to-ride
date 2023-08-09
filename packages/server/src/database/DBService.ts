@@ -5,6 +5,9 @@ import { TYPES } from '../types'
 import { Topic } from '../app/models/topic'
 import { Comment } from '../app/models/comment'
 import { User } from '../app/models/user'
+import { Theme } from '../app/models/theme'
+import { Lang } from '../app/models/lang'
+import { UserSettings } from '../app/models/userSettings'
 
 import type { ILoggerService } from '../app/services/loggerService'
 import type { IConfigService } from '../app/services/configService'
@@ -24,7 +27,7 @@ export class DBService {
       password: config.get('POSTGRES_PASSWORD'),
       database: config.get('POSTGRES_DB'),
       dialect: 'postgres',
-      models: [Topic, Comment, User],
+      models: [Topic, Comment, User, Theme, Lang, UserSettings],
       repositoryMode: true,
     }
 
@@ -35,6 +38,7 @@ export class DBService {
     try {
       await this.client.authenticate()
       await this.client.sync({ force: true })
+      await this.seeds()
       this.logger.info('[DBService] Connected to the database')
     } catch (error) {
       if (error instanceof Error) {
@@ -43,5 +47,26 @@ export class DBService {
         )
       }
     }
+  }
+
+  async seeds(): Promise<void> {
+    await this.client.getRepository(Theme).bulkCreate(
+      [
+        { name: 'dark', description: 'Dark theme' },
+        { name: 'light', description: 'Light theme' },
+      ],
+      {
+        ignoreDuplicates: true,
+      },
+    )
+    await this.client.getRepository(Lang).bulkCreate(
+      [
+        { code: 'ru', description: 'Русский' },
+        { code: 'en', description: 'English' },
+      ],
+      {
+        ignoreDuplicates: true,
+      },
+    )
   }
 }

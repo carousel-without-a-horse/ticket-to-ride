@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite'
 
 import { useStore } from '@/shared/store'
+import { Lang } from '@/shared/store/types'
 
 import type { TFormattedDate } from './types'
 
@@ -16,9 +17,9 @@ const defaultOptions = {
 
 export const FormattedDate = observer(
   ({ date, options = defaultOptions }: TFormattedDate) => {
-    const { lang } = useStore()
+    const { langId } = useStore()
 
-    const locales = lang === 'en' ? 'en-En' : 'ru-Ru'
+    const locales = langId === Lang.en ? 'en-En' : 'ru-Ru'
 
     return <>{new Intl.DateTimeFormat(locales, options).format(date)}</>
   }

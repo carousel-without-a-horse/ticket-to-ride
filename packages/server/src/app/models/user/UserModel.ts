@@ -5,9 +5,11 @@ import {
   DataType,
   PrimaryKey,
   HasMany,
+  HasOne,
 } from 'sequelize-typescript'
 
 import { Topic } from '../topic'
+import { UserSettings } from '../userSettings'
 
 @Table({
   timestamps: true,
@@ -29,4 +31,9 @@ export class User extends Model {
     foreignKey: 'userId',
   })
   topics: Topic[]
+
+  @HasOne(() => UserSettings, {
+    foreignKey: 'userId',
+  })
+  settings: UserSettings
 }
