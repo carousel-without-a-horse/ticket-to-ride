@@ -22,4 +22,7 @@ export const TYPES = {
   UserSettingsRepository: Symbol.for('UserSettingsRepository'),
   UserSettingsService: Symbol.for('UserSettingsService'),
   ExceptionFilter: Symbol.for('ExceptionFilter'),
+  LikeController: Symbol.for('LikeController'),
+  LikeRepository: Symbol.for('LikeRepository'),
+  LikeService: Symbol.for('LikeService'),
 }

@@ -19,6 +19,7 @@ import type { IExceptionFilter } from './errors/types'
 import type { TTopicController } from './models/topic'
 import type { TCommentController } from './models/comment'
 import type { TUserSettingsController } from './models/userSettings'
+import type { TLikeController } from './models/like/types'
 
 @injectable()
 export class App {
@@ -35,6 +36,8 @@ export class App {
     private commentController: TCommentController,
     @inject(TYPES.UserSettingsController)
     private userSettingsController: TUserSettingsController,
+    @inject(TYPES.LikeController)
+    private likeController: TLikeController,
     @inject(TYPES.DBService) private dbService: DBService,
     @inject(TYPES.ExceptionFilter) private exceptionFilter: IExceptionFilter,
     @inject(TYPES.UserSettingsService)
@@ -79,6 +82,12 @@ export class App {
       AuthMiddleware,
       AuthGuardMiddleware,
       this.userSettingsController.router,
+    )
+    this.app.use(
+      '/api/likes',
+      AuthMiddleware,
+      AuthGuardMiddleware,
+      this.likeController.router,
     )
   }
 

@@ -12,7 +12,7 @@ import { Card } from '@/shared/ui/Card'
 import { Tags } from '@/shared/ui/Tags'
 import { Space } from '@/shared/ui/Space'
 import { Button } from '@/shared/ui/Button'
-import { Likes } from '@/shared/ui/Likes'
+import { Likes } from '@/features/Likes'
 import { Divider } from '@/shared/ui/Divider'
 import { generateUrl } from '@/shared/utils/generateUrl'
 import { Comments } from '@/widgets/Comments'
@@ -28,7 +28,6 @@ const iconEdit = <EditOutlined rev={undefined} />
 const ThemePage = observer(() => {
   const { id } = useParams()
   const { userStore } = useStore()
-  const [vote, setVote] = useState<boolean | undefined>()
   const navigate = useNavigate()
   const { t } = useTranslation()
 
@@ -49,10 +48,6 @@ const ThemePage = observer(() => {
     navigate(url)
   }, [data?.id, navigate])
 
-  const handleLikeToggle = useCallback((vote?: boolean) => {
-    setVote(vote)
-  }, [])
-
   if (isLoading) {
     return <SkeletonThemeForm />
   }
@@ -72,7 +67,7 @@ const ThemePage = observer(() => {
         dangerouslySetInnerHTML={{ __html: DomPurify.sanitize(data.content) }}
       />
       <Space size="large" className={styles.actions}>
-        <Likes vote={vote} onChange={handleLikeToggle} />
+        <Likes type="topic" id={data.id} />
         {userStore.user?.id === data.user.id && (
           <Button icon={iconEdit} onClick={handleEdit}>
             {t('theme.editTheme')}

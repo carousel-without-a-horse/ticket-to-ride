@@ -4,6 +4,7 @@ import { Avatar } from '@/shared/ui/Avatar'
 import { Space } from '@/shared/ui/Space'
 import { Reply } from '@/widgets/Reply'
 import { FormattedDate } from '@/features/FormattedDate'
+import { Likes } from '@/features/Likes'
 
 import styles from './styles.module.pcss'
 
@@ -40,7 +41,7 @@ export const Comment: FC<TComment> = ({
           {header}
           <div>{content}</div>
           <div className={styles.actions}>
-            {/*{vote && <Likes {...vote} onChange={handleLike} />}*/}
+            <Likes type="comment" id={id} />
             <Reply className={styles.reply} topicId={topicId} parentId={id} />
           </div>
         </Space>

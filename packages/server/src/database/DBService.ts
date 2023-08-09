@@ -7,6 +7,7 @@ import { Comment } from '../app/models/comment'
 import { User } from '../app/models/user'
 import { Theme } from '../app/models/theme'
 import { Lang } from '../app/models/lang'
+import { Like } from '../app/models/like'
 import { UserSettings } from '../app/models/userSettings'
 
 import type { ILoggerService } from '../app/services/loggerService'
@@ -27,7 +28,7 @@ export class DBService {
       password: config.get('POSTGRES_PASSWORD'),
       database: config.get('POSTGRES_DB'),
       dialect: 'postgres',
-      models: [Topic, Comment, User, Theme, Lang, UserSettings],
+      models: [Topic, Comment, User, Theme, Lang, UserSettings, Like],
       repositoryMode: true,
     }
 
@@ -49,7 +50,7 @@ export class DBService {
     }
   }
 
-  async seeds(): Promise<void> {
+  private async seeds(): Promise<void> {
     await this.client.getRepository(Theme).bulkCreate(
       [
         { name: 'dark', description: 'Dark theme' },
