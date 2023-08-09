@@ -1,0 +1,97 @@
+{
+  "pages": {
+    "play": "Play",
+    "guide": "Guide",
+    "about": "About",
+    "rating": "Rating",
+    "forum": "Forum",
+    "login": "Login",
+    "signup": "Signup",
+    "profile": "Profile"
+  },
+  "forum": {
+    "title": "Forum",
+    "themes": {
+      "my": "My themes",
+      "all": "All themes"
+    },
+    "addTheme": "Add theme",
+    "table": {
+      "header": {
+        "name": "Theme",
+        "author": "Author",
+        "commentsCount": "Answers"
+      }
+    },
+    "operationsWithSelected": {
+      "title": "Operations with selected",
+      "options": {
+        "open": "Open",
+        "convertToDraft": "Convert to draft",
+        "remove": "Delete"
+      }
+    }
+  },
+  "theme": {
+    "info": {
+      "author": "Author"
+    },
+    "editTheme": "Edit",
+    "titles": {
+      "newTheme": "New theme",
+      "editTheme": "Edit theme"
+    },
+    "form": {
+      "name": "Name",
+      "tags": "Tags",
+      "content": "Content",
+      "save": "Save",
+      "create": "Create",
+      "cancel": "Cancel"
+    }
+  },
+  "reply": {
+    "comment": "Comment",
+    "submit": "Reply",
+    "cancel": "Cancel"
+  },
+  "table": {
+    "loader": {
+      "more": "Loading more...",
+      "new": "Load Newer",
+      "finish": "Nothing more to load",
+      "error": "Data not loaded, please try again or contact support",
+      "retry": "Repeat request"
+    }
+  },
+  "errorBoundary": {
+    "list": {
+      "notFound": "This page doesn't exist",
+      "notAuthorized": "You aren't authorized to see this",
+      "serverError": "Looks like our API is down",
+      "defaultError": "Something went wrong"
+    },
+    "reset": "Reset"
+  },
+  "startGame": {
+    "pageTitle": "Start the game",
+    "countTitle": "The game will start after",
+    "chooseGameMode": "Choose game mode",
+    "chooseMode": "Choose mode",
+    "chooseYourCharacter": "Choose your character",
+    "play": "Play",
+    "modeOptions": {
+      "againstTheComputer": "Against the computer"
+    }
+  },
+  "rating": {
+    "title": "Players Rating",
+     "user": "User",
+     "scores": "Scores",
+     "spinnerTip": "Loading"
+  },
+  "notification": {
+    "attention": "Attention!",
+    "dontGoFar": "Don't go far, the game is in full swing!"
+  }
+}

@@ -2,6 +2,6 @@
   "singleQuote": true,
   "semi": false,
   "arrowParens": "avoid",
-  "bracketSameLine": true,
-  "width": 50
+  "bracketSameLine": false,
+  "width": 80
 }

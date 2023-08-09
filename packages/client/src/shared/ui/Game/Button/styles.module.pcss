@@ -1,0 +1,33 @@
+.button {
+  @mixin shadow;
+
+  cursor: pointer;
+
+  width: 130px;
+
+  font-weight: 600;
+  color: $text;
+
+  background-color: $greenCold;
+  border: 1px solid $white;
+  border-radius: 6px;
+
+  transition: box-shadow 0.2s, transform 0.15s;
+
+  &:active {
+    @mixin shadow 0;
+
+    transform: translate(0, 5px);
+    outline: 0;
+  }
+}
+
+.normal {
+  height: 70px;
+}
+
+.small {
+  height: 30px;
+  margin-bottom: 10px;
+  font-size: 12px;
+}

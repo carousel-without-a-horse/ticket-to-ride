@@ -1,0 +1,97 @@
+{
+  "pages": {
+    "play": "Играть",
+    "guide": "Гайд",
+    "about": "Об игре",
+    "rating": "Рейтинг игроков",
+    "forum": "Форум",
+    "login": "Войти",
+    "signup": "Регистрация",
+    "profile": "Профиль"
+  },
+  "forum": {
+    "title": "Форум",
+    "themes": {
+      "my": "Мои темы",
+      "all": "Все темы"
+    },
+    "addTheme": "Добавить тему",
+    "table": {
+      "header": {
+        "name": "Темы",
+        "author": "Автор",
+        "commentsCount": "Ответы"
+      }
+    },
+    "operationsWithSelected": {
+      "title": "Операции с выделенным",
+      "options": {
+        "open": "Открыть",
+        "convertToDraft": "Перевести в черновик",
+        "remove": "Удалить"
+      }
+    }
+  },
+  "theme": {
+    "info": {
+      "author": "Автор"
+    },
+    "editTheme": "Редактировать",
+    "titles": {
+      "newTheme": "Новая тема",
+      "editTheme": "Редактирование темы"
+    },
+    "form": {
+      "name": "Название",
+      "tags": "Теги",
+      "content": "Содержимое",
+      "save": "Сохранить",
+      "create": "Создать",
+      "cancel": "Отменить"
+    }
+  },
+  "reply": {
+    "comment": "Добавить комментарий",
+    "submit": "Ответить",
+    "cancel": "Отменить"
+  },
+  "table": {
+    "loader": {
+      "more": "Загрузить еще...",
+      "new": "Загрузить новее",
+      "finish": "Больше нечего загружать",
+      "error": "Данные не загружены, повторите запрос или обратитесь в службу поддержки",
+      "retry": "Повторить запрос"
+    }
+  },
+  "errorBoundary": {
+    "list": {
+      "notFound": "Страница не найдена",
+      "notAuthorized": "Нет доступа",
+      "serverError": "Похоже, наш API не работает",
+      "defaultError": "Что-то пошло не так"
+    },
+    "reset": "Сбросить"
+  },
+  "startGame": {
+    "pageTitle": "Начало игры",
+    "countTitle": "Игра начнется через",
+    "chooseGameMode": "Выберите режим игры",
+    "chooseMode": "Выбрать режим",
+    "chooseYourCharacter": "Выберите своего персонажа",
+    "play": "Играть",
+    "modeOptions": {
+      "againstTheComputer": "Против компьютера"
+    }
+  },
+  "rating": {
+    "title": "Рейтинг Игроков",
+     "user": "Пользователь",
+     "scores": "Баллы",
+     "spinnerTip": "Загрузка"
+  },
+  "notification": {
+    "attention": "Внимание!",
+    "dontGoFar": "Не уходите далеко, игра в самом разгаре!"
+  }
+}
