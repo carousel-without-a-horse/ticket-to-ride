@@ -9,7 +9,9 @@ import express, { Express } from 'express'
 import { AuthMiddleware } from '../../middlewares'
 
 import { STUBS_IN_TEMPLATE } from './constants'
+import { getInitialState } from './utils/getInitialState'
 
+import type { UserSettings } from '../../models/userSettings'
 import type { TRender } from './types'
 
 const distPath = path.resolve(
@@ -17,7 +19,10 @@ const distPath = path.resolve(
   '../dist',
 )
 
-export const productionServer = (app: Express): void => {
+export const productionServer = (
+  app: Express,
+  getUserSettings: (userId: number) => Promise<UserSettings>,
+): void => {
   app.use('/assets', express.static(path.resolve(distPath, 'assets')))
 
   app.use('*', AuthMiddleware, async (req, res, next) => {
@@ -29,7 +34,7 @@ export const productionServer = (app: Express): void => {
         'utf-8',
       )
 
-      const initialState = req.user || null
+      const initialState = await getInitialState(req.user, getUserSettings)
       const { html, style } = await (render as TRender)({
         url,
         initialState,

@@ -8,7 +8,7 @@ export const withStore = (component: () => ReactNode) => () => {
   }
 
   if (window.__INITIAL_STATE__) {
-    store.userStore.setUser(window.__INITIAL_STATE__)
+    store.setInitialData(window.__INITIAL_STATE__)
     delete window.__INITIAL_STATE__
   }
 
