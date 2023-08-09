@@ -2,6 +2,8 @@ import path from 'path'
 import fs from 'fs'
 import { createHash } from 'crypto'
 
+// @ts-ignore
+import { render } from '@carousel-without-a-horse/client'
 import express, { Express } from 'express'
 
 import { AuthMiddleware } from '../../middlewares'
@@ -10,12 +12,14 @@ import { STUBS_IN_TEMPLATE } from './constants'
 
 import type { TRender } from './types'
 
-const distPath = path.dirname(require.resolve('client/dist/index.html'))
-const distSsrPath = require.resolve('client/dist-ssr/client.cjs')
+const distPath = path.resolve(
+  path.dirname(require.resolve('@carousel-without-a-horse/client')),
+  '../dist',
+)
+
 export const productionServer = (app: Express): void => {
   app.use('/assets', express.static(path.resolve(distPath, 'assets')))
 
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   app.use('*', AuthMiddleware, async (req, res, next) => {
     const url = req.originalUrl
 
@@ -24,9 +28,9 @@ export const productionServer = (app: Express): void => {
         path.resolve(distPath, 'index.html'),
         'utf-8',
       )
-      const { render } = (await import(distSsrPath)) as { render: TRender }
+
       const initialState = req.user || null
-      const { html, style } = await render({
+      const { html, style } = await (render as TRender)({
         url,
         initialState,
         isPlainStyle: true,

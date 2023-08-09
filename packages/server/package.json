@@ -1,6 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "private": true,
   "description": "",
   "scripts": {
     "build": "rimraf ./dist && tsc --p ./tsconfig.prod.json",
@@ -11,6 +12,7 @@
     "test": "jest ."
   },
   "dependencies": {
+    "@carousel-without-a-horse/client": "^1.0.4",
     "axios": "^1.4.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
@@ -28,13 +30,15 @@
     "rimraf": "^5.0.1",
     "sequelize": "^6.32.1",
     "sequelize-typescript": "^2.1.5",
-    "tslog": "^4.8.2"
+    "tslog": "^4.8.2",
+    "vite": "^4.4.8"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.3",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/jest": "^28.1.8",
+    "@types/node": "^20.4.6",
     "@types/pg": "^8.6.5",
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "@typescript-eslint/parser": "^5.35.1",

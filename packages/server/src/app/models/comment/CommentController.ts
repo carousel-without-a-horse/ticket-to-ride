@@ -4,6 +4,7 @@ import { BaseController } from '../../common/BaseController'
 import { ValidateMiddleware } from '../../common/ValidateMiddleware'
 import { HTTPError } from '../../errors'
 import { TYPES } from '../../../types'
+import { UserService } from '../user'
 
 import { CommentCreateDto } from './dto'
 
@@ -20,26 +21,24 @@ export class CommentController
   constructor(
     @inject(TYPES.Logger) private loggerService: ILoggerService,
     @inject(TYPES.CommentService) private commentService: CommentService,
+    @inject(TYPES.UserService) private userService: UserService,
   ) {
     super(loggerService)
     this.bindRoutes([
       {
         path: '/',
         method: 'post',
-        // eslint-disable-next-line @typescript-eslint/unbound-method,@typescript-eslint/no-misused-promises
         func: this.create,
         middlewares: [new ValidateMiddleware(CommentCreateDto)],
       },
       {
         path: '/:id',
         method: 'delete',
-        // eslint-disable-next-line @typescript-eslint/unbound-method,@typescript-eslint/no-misused-promises
         func: this.delete,
       },
       {
         path: '/:topicId',
         method: 'get',
-        // eslint-disable-next-line @typescript-eslint/unbound-method,@typescript-eslint/no-misused-promises
         func: this.getAllByTopicId,
       },
     ])
@@ -53,7 +52,8 @@ export class CommentController
     this.loggerService.info(
       `[CommentController] create comment with content: ${body.content}`,
     )
-    const result = await this.commentService.create(body, user.id)
+    const userData = await this.userService.upsert(user)
+    const result = await this.commentService.create(body, userData.id)
     if (!result) {
       return next(
         new HTTPError(422, 'Комментарий не создан', 'CommentController'),

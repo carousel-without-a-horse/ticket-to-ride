@@ -1,3 +1,4 @@
+import type { QueryMeta } from '@tanstack/react-query'
 import type { TableProps } from 'antd'
 import type { TInfiniteQuery } from '@/shared/types/query'
 
@@ -8,5 +9,9 @@ export type TQueryTableProps<Data extends TDefaultData> = Omit<
   'dataSource'
 > & {
   queryKey: string[]
-  queryFn: (props: { pageParam?: number }) => Promise<TInfiniteQuery<Data>>
+  queryFn: (props: {
+    pageParam?: number
+    meta?: QueryMeta
+  }) => Promise<TInfiniteQuery<Data>>
+  meta?: QueryMeta
 }

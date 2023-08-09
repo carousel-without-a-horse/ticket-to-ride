@@ -1,6 +1,11 @@
 {
-  "name": "client",
-  "version": "0.0.0",
+  "name": "@carousel-without-a-horse/client",
+  "version": "1.0.6",
+  "main": "dist-ssr/client.cjs",
+  "files": [
+    "dist",
+    "dist-ssr"
+  ],
   "type": "module",
   "scripts": {
     "start": "vite",
@@ -76,5 +81,9 @@
     "vite": "^4.3.9",
     "vite-tsconfig-paths": "^4.2.0"
   },
-  "license": "MIT"
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "gitHead": "467318b3d49bd62ea559b60aed9e220686e56c15"
 }

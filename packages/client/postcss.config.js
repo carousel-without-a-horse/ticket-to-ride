@@ -1,6 +1,6 @@
 import * as path from "path";
 import { fileURLToPath } from 'url';
-import { colors } from 'client/src/shared/constants/colors.js'
+import { colors } from '@carousel-without-a-horse/client/src/shared/constants/colors.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

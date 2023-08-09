@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-const REDIRECT_URI = 'http://localhost:3000'
-const API_ROOT = `${REDIRECT_URI}/api`
+const API_ROOT = '/api'
 
 export const httpService = axios.create({
   baseURL: API_ROOT,

@@ -2,8 +2,8 @@ import { inject, injectable } from 'inversify'
 
 import { BaseController } from '../../common/BaseController'
 import { ValidateMiddleware } from '../../common/ValidateMiddleware'
-import { HTTPError } from '../../errors'
 import { TYPES } from '../../../types'
+import { UserService } from '../user'
 
 import { TopicGetAllDto, TopicCreateOrEditDto } from './dto'
 
@@ -20,13 +20,13 @@ export class TopicController
   constructor(
     @inject(TYPES.Logger) private loggerService: ILoggerService,
     @inject(TYPES.TopicService) private topicService: TopicService,
+    @inject(TYPES.UserService) private userService: UserService,
   ) {
     super(loggerService)
     this.bindRoutes([
       {
         path: '/',
         method: 'get',
-        // eslint-disable-next-line @typescript-eslint/unbound-method,@typescript-eslint/no-misused-promises
         func: this.getAll,
         middlewares: [
           new ValidateMiddleware(TopicGetAllDto, { isBodyValidate: false }),
@@ -35,27 +35,23 @@ export class TopicController
       {
         path: '/:id',
         method: 'get',
-        // eslint-disable-next-line @typescript-eslint/unbound-method,@typescript-eslint/no-misused-promises
         func: this.read,
       },
       {
         path: '/',
         method: 'post',
-        // eslint-disable-next-line @typescript-eslint/unbound-method,@typescript-eslint/no-misused-promises
         func: this.create,
         middlewares: [new ValidateMiddleware(TopicCreateOrEditDto)],
       },
       {
         path: '/:id',
         method: 'put',
-        // eslint-disable-next-line @typescript-eslint/unbound-method,@typescript-eslint/no-misused-promises
         func: this.update,
         middlewares: [new ValidateMiddleware(TopicCreateOrEditDto)],
       },
       {
         path: '/:id',
         method: 'delete',
-        // eslint-disable-next-line @typescript-eslint/unbound-method,@typescript-eslint/no-misused-promises
         func: this.delete,
       },
     ])
@@ -66,10 +62,12 @@ export class TopicController
     res: Response,
   ): Promise<void> => {
     const cursor = req.query.cursor ? parseInt(req.query.cursor.toString()) : 0
+    const userId =
+      req.query.isMy && req.query.isMy === 'true' ? req.user.id : undefined
     this.loggerService.info(
       `[TopicController] get topics with cursor: ${cursor}`,
     )
-    const data = await this.topicService.all(cursor)
+    const data = await this.topicService.all(cursor, userId)
 
     this.ok(res, data)
   }
@@ -81,7 +79,8 @@ export class TopicController
     this.loggerService.info(
       `[TopicController] create topic with title: ${body.title}`,
     )
-    const result = await this.topicService.create(body, user.id)
+    const userData = await this.userService.upsert(user)
+    const result = await this.topicService.create(body, userData.id)
     this.ok(res, result)
   }
 
@@ -90,11 +89,12 @@ export class TopicController
     res: Response,
     next: NextFunction,
   ): Promise<void> => {
-    const result = await this.topicService.read(+req.params.id)
-    if (!result) {
-      return next(new HTTPError(422, 'Топик не найден', 'TopicController'))
+    try {
+      const result = await this.topicService.read(+req.params.id)
+      this.ok(res, result)
+    } catch (e) {
+      return next(e)
     }
-    this.ok(res, result)
   }
 
   override delete = async (
@@ -102,22 +102,28 @@ export class TopicController
     res: Response,
     next: NextFunction,
   ): Promise<void> => {
-    const result = await this.topicService.delete(+req.params.id)
-    if (!result) {
-      return next(new HTTPError(422, 'Топик не найден', 'TopicController'))
+    try {
+      const result = await this.topicService.delete(+req.params.id, req.user.id)
+      this.ok(res, result)
+    } catch (e) {
+      return next(e)
     }
-    this.ok(res, result)
   }
 
   override update = async (
-    { params, body }: Request<{ id?: string }, TObject, TopicCreateOrEditDto>,
+    {
+      params,
+      body,
+      user,
+    }: Request<{ id?: string }, TObject, TopicCreateOrEditDto>,
     res: Response,
     next: NextFunction,
   ): Promise<void> => {
-    const result = await this.topicService.update(+params.id!, body)
-    if (!result) {
-      return next(new HTTPError(422, 'Топик не найден', 'TopicController'))
+    try {
+      const result = await this.topicService.update(+params.id!, body, user.id)
+      this.ok(res, result)
+    } catch (e) {
+      return next(e)
     }
-    this.ok(res, result)
   }
 }

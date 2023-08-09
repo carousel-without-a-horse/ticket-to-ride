@@ -17,6 +17,7 @@ import {
   CommentService,
   CommentRepository,
 } from './app/models/comment'
+import { UserRepository, UserService } from './app/models/user'
 
 import type { TTopicController } from './app/models/topic'
 import type { TBootstrapReturn } from './types'
@@ -37,6 +38,10 @@ export const appBindings = new ContainerModule((bind: interfaces.Bind) => {
   bind<CommentService>(TYPES.CommentService).to(CommentService)
   bind<CommentRepository>(TYPES.CommentRepository)
     .to(CommentRepository)
+    .inSingletonScope()
+  bind<UserService>(TYPES.UserService).to(UserService)
+  bind<UserRepository>(TYPES.UserRepository)
+    .to(UserRepository)
     .inSingletonScope()
   bind<DBService>(TYPES.DBService).to(DBService).inSingletonScope()
   bind<App>(TYPES.Application).to(App)
