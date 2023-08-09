@@ -16,5 +16,7 @@ export const TYPES = {
   CommentController: Symbol.for('CommentController'),
   CommentRepository: Symbol.for('CommentRepository'),
   CommentService: Symbol.for('CommentService'),
+  UserRepository: Symbol.for('UserRepository'),
+  UserService: Symbol.for('UserService'),
   ExceptionFilter: Symbol.for('ExceptionFilter'),
 }

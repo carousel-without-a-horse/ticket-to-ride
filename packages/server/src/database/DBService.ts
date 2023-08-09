@@ -4,6 +4,7 @@ import { inject, injectable } from 'inversify'
 import { TYPES } from '../types'
 import { Topic } from '../app/models/topic'
 import { Comment } from '../app/models/comment'
+import { User } from '../app/models/user'
 
 import type { ILoggerService } from '../app/services/loggerService'
 import type { IConfigService } from '../app/services/configService'
@@ -23,7 +24,7 @@ export class DBService {
       password: config.get('POSTGRES_PASSWORD'),
       database: config.get('POSTGRES_DB'),
       dialect: 'postgres',
-      models: [Topic, Comment],
+      models: [Topic, Comment, User],
       repositoryMode: true,
     }
 

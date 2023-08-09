@@ -4,6 +4,7 @@ import { BaseController } from '../../common/BaseController'
 import { ValidateMiddleware } from '../../common/ValidateMiddleware'
 import { HTTPError } from '../../errors'
 import { TYPES } from '../../../types'
+import { UserService } from '../user'
 
 import { CommentCreateDto } from './dto'
 
@@ -20,6 +21,7 @@ export class CommentController
   constructor(
     @inject(TYPES.Logger) private loggerService: ILoggerService,
     @inject(TYPES.CommentService) private commentService: CommentService,
+    @inject(TYPES.UserService) private userService: UserService,
   ) {
     super(loggerService)
     this.bindRoutes([
@@ -50,7 +52,8 @@ export class CommentController
     this.loggerService.info(
       `[CommentController] create comment with content: ${body.content}`,
     )
-    const result = await this.commentService.create(body, user.id)
+    const userData = await this.userService.upsert(user)
+    const result = await this.commentService.create(body, userData.id)
     if (!result) {
       return next(
         new HTTPError(422, 'Комментарий не создан', 'CommentController'),

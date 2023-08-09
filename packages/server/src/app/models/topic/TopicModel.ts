@@ -1,6 +1,15 @@
-import { Model, Column, Table, DataType, HasMany } from 'sequelize-typescript'
+import {
+  Model,
+  Column,
+  Table,
+  DataType,
+  HasMany,
+  ForeignKey,
+  BelongsTo,
+} from 'sequelize-typescript'
 
 import { Comment } from '../comment'
+import { User } from '../user'
 
 @Table({
   timestamps: true,
@@ -14,8 +23,12 @@ export class Topic extends Model {
   @Column(DataType.TEXT)
   content: string
 
+  @ForeignKey(() => User)
   @Column(DataType.INTEGER)
   userId: number
+
+  @BelongsTo(() => User)
+  user: User
 
   @HasMany(() => Comment, {
     foreignKey: 'topicId',

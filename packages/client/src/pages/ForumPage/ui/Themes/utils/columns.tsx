@@ -20,11 +20,14 @@ export const getColumnsDefault: () => TTableColumnsType<TTheme> = () => [
   },
   {
     title: t('forum.table.header.author'),
-    dataIndex: 'author',
+    dataIndex: ['user', 'login'],
   },
   {
     title: t('forum.table.header.commentsCount'),
     dataIndex: 'commentsCount',
+    render: (_, record) => {
+      return <>{record.comments.length}</>
+    },
   },
 ]
 
