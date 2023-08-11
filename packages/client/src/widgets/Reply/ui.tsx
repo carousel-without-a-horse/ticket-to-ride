@@ -42,6 +42,9 @@ export const Reply: FC<TReply> = ({
           content: data.content,
         })
         .then(() => {
+          void queryClient.refetchQueries({
+            queryKey: ['themes'],
+          })
           return queryClient.invalidateQueries({
             queryKey: ['comments', topicId],
           })

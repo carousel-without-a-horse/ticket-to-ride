@@ -48,6 +48,12 @@
       "save": "Save",
       "create": "Create",
       "cancel": "Cancel"
+    },
+    "actions": {
+      "deleteConfirm": {
+        "title": "Delete the theme",
+        "description": "Are you sure to delete this theme?"
+      }
     }
   },
   "reply": {
@@ -62,6 +68,14 @@
       "finish": "Nothing more to load",
       "error": "Data not loaded, please try again or contact support",
       "retry": "Repeat request"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "confirm": {
+        "yes": "Yes",
+        "no": "No"
+      }
     }
   },
   "errorBoundary": {

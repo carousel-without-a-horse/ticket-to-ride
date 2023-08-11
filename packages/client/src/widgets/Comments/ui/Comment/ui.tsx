@@ -3,6 +3,7 @@ import { useMemo } from 'react'
 import { Avatar } from '@/shared/ui/Avatar'
 import { Space } from '@/shared/ui/Space'
 import { Reply } from '@/widgets/Reply'
+import { FormattedDate } from '@/features/FormattedDate'
 
 import styles from './styles.module.pcss'
 
@@ -11,7 +12,7 @@ import type { FC } from 'react'
 
 export const Comment: FC<TComment> = ({
   id,
-  userId,
+  user,
   createdAt,
   content,
   topicId,
@@ -19,16 +20,22 @@ export const Comment: FC<TComment> = ({
   const header = useMemo(() => {
     return (
       <Space>
-        <span>{userId}</span>
-        <span>{createdAt}</span>
+        <span>{user.login}</span>
+        <span>
+          <FormattedDate date={new Date(createdAt)} />
+        </span>
       </Space>
     )
-  }, [createdAt, userId])
+  }, [createdAt, user.login])
+
+  const avatar = user.avatar
+    ? `/api/v2/resources/${user.avatar}`
+    : 'http://placekitten.com/g/200/200'
 
   return (
     <div className={styles.wrapper}>
       <Space align="baseline">
-        <Avatar src="http://placekitten.com/g/200/200" />
+        <Avatar src={avatar} />
         <Space direction="vertical" size="large">
           {header}
           <div>{content}</div>

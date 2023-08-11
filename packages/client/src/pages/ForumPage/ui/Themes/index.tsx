@@ -21,18 +21,13 @@ import type { FC, Key } from 'react'
 import type { TThemes } from './types'
 
 const iconPlus = <PlusCircleOutlined rev={undefined} />
-const queryKey = ['themes']
 
 export const Themes: FC<TThemes> = ({ type }) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const [isMyThemes, setIsMyThemes] = useState(false)
   const [selectedItems, setSelectedItems] = useState<TId[]>([])
   const columnsDefault = useTranslationRefresh(getColumnsDefault)
-
-  useEffect(() => {
-    setIsMyThemes(type === 'my')
-  }, [type])
+  const isMyThemes = type === 'my'
 
   const rowSelection = useMemo(() => {
     if (!isMyThemes) return
@@ -43,6 +38,9 @@ export const Themes: FC<TThemes> = ({ type }) => {
       },
     }
   }, [isMyThemes])
+
+  const queryKey = useMemo(() => ['themes', type], [type])
+  const meta = useMemo(() => ({ isMy: isMyThemes }), [isMyThemes])
 
   const handleAddTheme = useCallback(() => {
     navigate(ROUTES.themeNew)
@@ -66,6 +64,7 @@ export const Themes: FC<TThemes> = ({ type }) => {
         rowSelection={rowSelection}
         queryKey={queryKey}
         queryFn={themeServices.getAll}
+        meta={meta}
         columns={columns}
         className={styles.table}
       />

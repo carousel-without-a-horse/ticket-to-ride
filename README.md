@@ -19,15 +19,17 @@
 
 1. Убедитесь что у вас установлен `node` и `docker`
 2. Выполните команду `yarn bootstrap` - это обязательный шаг, без него ничего работать не будет :)
-3. Выполните команду `yarn dev`
-4. Выполните команду `yarn dev:client` чтобы запустить только клиент
+3. Команда `yarn dev` для локальной разработки (не забудьте запустить БД командой `docker-compose up -- postgres`
+   ), а `yarn docker:dev` для разработки в docker
+
+Для поддержания системы в чистоте от артефактов docker `yarn docker:prune`
 
 
 ## Как добавить зависимости?
 В этом проекте используется `monorepo` на основе [`lerna`](https://github.com/lerna/lerna)
 
 Чтобы добавить зависимость для клиента
-```yarn lerna add {your_dep} --scope client```
+```yarn lerna add {your_dep} --scope @carousel-without-a-horse/client```
 
 Для сервера
 ```yarn lerna add {your_dep} --scope server```
@@ -40,7 +42,7 @@
 ```yarn lerna add {your_dep} --dev --scope server```
 
 Чтобы удалить зависимость для клиента
-```lerna exec 'yarn remove {your_dep}' --scope client```
+```lerna exec 'yarn remove {your_dep}' --scope @carousel-without-a-horse/client```
 
 
 ### Тесты

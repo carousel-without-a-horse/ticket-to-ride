@@ -53,21 +53,19 @@ export class App {
         target: 'https://ya-praktikum.tech',
       }),
     )
-    this.app.use(cookieParser() as express.RequestHandler)
+    this.app.use(cookieParser())
     this.app.use(json())
   }
 
   private useRoutes(): void {
     this.app.use(
       '/api/themes',
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       AuthMiddleware,
       AuthGuardMiddleware,
       this.topicController.router,
     )
     this.app.use(
       '/api/comments',
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       AuthMiddleware,
       AuthGuardMiddleware,
       this.commentController.router,

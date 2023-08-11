@@ -14,6 +14,7 @@ import type { TQueryTableProps, TDefaultData } from './types'
 export const QueryTable = <Data extends TDefaultData>({
   queryKey,
   queryFn,
+  meta,
   ...props
 }: TQueryTableProps<Data>) => {
   const { ref, inView } = useInView()
@@ -30,6 +31,7 @@ export const QueryTable = <Data extends TDefaultData>({
   } = useInfiniteQuery({
     queryKey,
     queryFn,
+    meta,
     staleTime: 10 * 60 * 1000,
     getPreviousPageParam: firstPage => firstPage.previousId ?? undefined,
     getNextPageParam: lastPage => lastPage.nextId ?? undefined,

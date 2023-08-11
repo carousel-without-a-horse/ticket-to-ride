@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
 
 import authServices from '@/shared/services/authServices'
 import { Form, FormInput } from '@/shared/ui/Form'
@@ -25,6 +26,7 @@ import type { TUseForm } from './types'
 const ProfileForm = () => {
   const navigate = useNavigate()
   const { userStore } = useStore()
+  const queryClient = useQueryClient()
 
   const [fileList, setFileList] = useState<TUploadFile[]>([])
 
@@ -39,8 +41,9 @@ const ProfileForm = () => {
   const handleLogOut = () => {
     authServices
       .logOut()
-      .then(() => {
+      .then(async () => {
         userStore.clearUser()
+        void (await queryClient.resetQueries())
         navigate(ROUTES.signIn)
       })
       .catch((err: AxiosError) => {

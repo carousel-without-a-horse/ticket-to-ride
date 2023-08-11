@@ -5,7 +5,6 @@ import { useQueryClient } from '@tanstack/react-query'
 
 import { useForm } from '@/shared/hooks'
 import { themeServices } from '@/entities/theme'
-import { ROUTES } from '@/app/router/config'
 
 import ThemeForm from '../../ui/ThemeForm'
 
@@ -28,12 +27,12 @@ const CreateThemePage = () => {
       void themeServices
         .create(data)
         .then(() =>
-          queryClient.resetQueries({
+          queryClient.refetchQueries({
             queryKey: ['themes'],
           })
         )
         .then(() => {
-          navigate(ROUTES.forum)
+          navigate(-1)
         })
         .finally(() => setLoading(false))
     },
