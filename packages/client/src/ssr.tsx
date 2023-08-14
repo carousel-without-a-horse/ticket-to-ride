@@ -6,11 +6,11 @@ import { createStore, StoreContext } from '@/shared/store'
 
 import App from './app'
 
-import type { TUser } from '@/shared/store/user'
+import type { TInitialData } from '@/shared/store'
 
 type TRender = {
   url: string
-  initialState: TUser | null
+  initialState: TInitialData
   isPlainStyle: boolean
 }
 
@@ -18,8 +18,7 @@ export function render({ url, initialState, isPlainStyle }: TRender) {
   const cache = createCache()
 
   const store = createStore()
-
-  store.userStore.setUser(initialState)
+  store.setInitialData(initialState)
 
   const html = renderToString(
     <StyleProvider mock="server" cache={cache}>

@@ -24,7 +24,7 @@ const EditThemePage = observer(() => {
   const { userStore } = useStore()
   const navigate = useNavigate()
   const queryClient = useQueryClient()
-  const [isFormLoading, seFormLoading] = useState(false)
+  const [isFormLoading, setFormLoading] = useState(false)
 
   const { data, isLoading } = useQuery({
     queryKey: ['theme', id],
@@ -42,7 +42,7 @@ const EditThemePage = observer(() => {
     schema,
     onSubmit: data => {
       if (!data) return
-      seFormLoading(true)
+      setFormLoading(true)
       void themeServices
         .update({ id: +id!, ...data })
         .then(() =>
@@ -54,7 +54,7 @@ const EditThemePage = observer(() => {
           const url = generateUrl(ROUTES.themeDetail, { id: id! })
           navigate(url)
         })
-        .finally(() => seFormLoading(false))
+        .finally(() => setFormLoading(false))
     },
   })
 

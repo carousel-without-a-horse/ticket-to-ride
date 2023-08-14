@@ -6,16 +6,21 @@ import { createServer as createViteServer } from 'vite'
 import { AuthMiddleware } from '../../middlewares'
 
 import { STUBS_IN_TEMPLATE } from './constants'
+import { getInitialState } from './utils/getInitialState'
 
 import type { Express } from 'express'
 import type { TRender } from './types'
+import type { UserSettings } from '../../models/userSettings'
 
 const srcPath = path.resolve(
   path.dirname(require.resolve('@carousel-without-a-horse/client')),
   '..',
 )
 
-export const developmentServer = async (app: Express): Promise<void> => {
+export const developmentServer = async (
+  app: Express,
+  getUserSettings: (userId: number) => Promise<UserSettings>,
+): Promise<void> => {
   const vite = await createViteServer({
     server: { middlewareMode: true },
     root: srcPath,
@@ -39,7 +44,7 @@ export const developmentServer = async (app: Express): Promise<void> => {
         await vite.ssrLoadModule(path.resolve(srcPath, 'src/ssr.tsx'))
       ).render as TRender
 
-      const initialState = req.user || null
+      const initialState = await getInitialState(req.user, getUserSettings)
 
       const { html, style } = await render({
         url,
