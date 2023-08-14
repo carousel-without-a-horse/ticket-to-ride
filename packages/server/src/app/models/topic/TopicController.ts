@@ -29,7 +29,7 @@ export class TopicController
         method: 'get',
         func: this.getAll,
         middlewares: [
-          new ValidateMiddleware(TopicGetAllDto, { isBodyValidate: false }),
+          new ValidateMiddleware(TopicGetAllDto, { isQueryValidate: true }),
         ],
       },
       {
