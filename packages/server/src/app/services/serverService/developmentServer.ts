@@ -44,7 +44,7 @@ export const developmentServer = async (
         await vite.ssrLoadModule(path.resolve(srcPath, 'src/ssr.tsx'))
       ).render as TRender
 
-      const initialState = await getInitialState(req.user, getUserSettings)
+      const initialState = await getInitialState(getUserSettings, req.user)
 
       const { html, style } = await render({
         url,

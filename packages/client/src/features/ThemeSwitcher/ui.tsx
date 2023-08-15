@@ -13,13 +13,14 @@ const iconBulbOutlined = <BulbOutlined rev={undefined} />
 const iconBulbFilled = <BulbFilled rev={undefined} />
 
 export const ThemeSwitcher = observer(() => {
-  const { isDarkMode, setTheme, settings } = useStore()
+  const { isDarkMode, themeMode, setTheme, settings, userStore } = useStore()
 
   const queryClient = useQueryClient()
   const { data } = useQuery({
     queryKey: ['settings'],
     queryFn: settingsServices.read,
     staleTime: Infinity,
+    enabled: !!userStore.user,
   })
 
   const { mutateAsync } = useMutation({
@@ -30,17 +31,25 @@ export const ThemeSwitcher = observer(() => {
     },
   })
 
-  useDebounce(() => mutateAsync(), 500, [settings.themeId])
+  useDebounce(
+    () => {
+      if (!userStore.user) return
+      void mutateAsync()
+    },
+    500,
+    [settings.themeId]
+  )
 
   useEffect(() => {
     if (!data?.themeId) return
     setTheme(data?.themeId)
-  }, [data?.themeId, setTheme])
+  }, [data?.themeId, setTheme, userStore.user])
 
   const handleToggleTheme = useCallback(() => {
-    const nextThemeId = data?.themeId === Theme.dark ? Theme.light : Theme.dark
+    const prevTheme = data?.themeId || themeMode
+    const nextThemeId = prevTheme === Theme.dark ? Theme.light : Theme.dark
     setTheme(nextThemeId)
-  }, [data?.themeId, setTheme])
+  }, [data?.themeId, setTheme, themeMode])
 
   return (
     <Switch

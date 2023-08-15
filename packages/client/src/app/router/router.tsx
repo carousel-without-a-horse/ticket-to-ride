@@ -3,7 +3,6 @@ import compose from 'compose-function'
 
 import { ROUTES } from '@/app/router/config'
 import BaseLayout from '@/app/layouts/BaseLayout'
-import GuideCmp from '@/pages/GuidePage'
 import AboutCmp from '@/pages/AboutPage'
 import RatingCmp from '@/pages/RatingPage'
 import SignInCmp from '@/pages/SignInPage'
@@ -13,6 +12,7 @@ import ErrorPageCmp from '@/pages/ErrorPage'
 import StartGameCmp from '@/pages/StartGamePage'
 import EndGameCmp from '@/pages/EndGamePage'
 import GameCmp from '@/pages/GamePage'
+import ArcadePage from '@/pages/ArcadePage'
 import { withErrorBoundary } from '@/features/ErrorBoundary'
 import { forumRoutes } from '@/app/router/forum'
 
@@ -22,7 +22,6 @@ const withCommonWrappers = compose(withErrorBoundary)
 
 // TODO: Разобраться как использовать Suspense совместно с SSR(CAR-48)
 const Game = withCommonWrappers(() => <GameCmp />)
-const Guide = withCommonWrappers(() => <GuideCmp />)
 const About = withCommonWrappers(() => <AboutCmp />)
 const Rating = withCommonWrappers(() => <RatingCmp />)
 const SignIn = withCommonWrappers(() => <SignInCmp />)
@@ -31,6 +30,7 @@ const Profile = withCommonWrappers(() => <ProfileCmp />)
 const ErrorPage = withCommonWrappers(() => <ErrorPageCmp />)
 const StartGame = withCommonWrappers(() => <StartGameCmp />)
 const EndGame = withCommonWrappers(() => <EndGameCmp />)
+const Arcade = withCommonWrappers(() => <ArcadePage />)
 
 export const privateRouter: RouteObject[] = [
   {
@@ -50,8 +50,8 @@ export const privateRouter: RouteObject[] = [
         element: <EndGame />,
       },
       {
-        index: true,
-        element: <Guide />,
+        path: ROUTES.arcade,
+        element: <Arcade />,
       },
       {
         path: ROUTES.about,
@@ -89,6 +89,10 @@ export const publicRouter = [
       {
         path: ROUTES.signUp,
         element: <SignUp />,
+      },
+      {
+        path: ROUTES.arcade,
+        element: <Arcade />,
       },
       {
         path: '*',

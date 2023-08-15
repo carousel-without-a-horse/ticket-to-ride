@@ -1,11 +1,11 @@
 import type { UserSettings } from '../../../models/userSettings'
 
 export async function getInitialState(
-  user: TUser,
   getUserSettings: (userId: number) => Promise<UserSettings>,
+  user?: TUser,
 ): Promise<Record<string, any>> {
   let settings: UserSettings | null = null
-  if (user.id) {
+  if (user?.id) {
     settings = await getUserSettings(user.id)
   }
 

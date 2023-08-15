@@ -107,5 +107,20 @@
   "notification": {
     "attention": "Внимание!",
     "dontGoFar": "Не уходите далеко, игра в самом разгаре!"
+  },
+  "arcade": {
+    "homeScreen": {
+      "title": "Головоломки",
+      "startButton": "Начать игру"
+    },
+    "gameOverScreen": {
+      "title": "Игра закончена",
+      "resetButton": "Играть еще"
+    },
+    "successScreen": {
+      "title": "Квест выполнен!",
+      "resetButton": "Играть еще"
+    },
+    "score": "Счет"
   }
 }

@@ -10,19 +10,20 @@ import type { PropsWithChildren, ReactNode } from 'react'
 
 const { defaultAlgorithm, darkAlgorithm } = theme
 
+export const Theme = (isDarkMode: boolean) => ({
+  algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
+  token: {
+    colorBgLayout: isDarkMode ? colors.black : colors.blueMedium,
+    colorPrimary: isDarkMode ? colors.greenCold : colors.blue,
+    colorBgContainer: isDarkMode ? colors.totalBlack : colors.white,
+    fontFamily: 'inherit',
+    borderRadius: 0,
+  },
+})
+
 const ThemeProvider = observer(({ children }: PropsWithChildren) => {
   const { isDarkMode } = useStore()
-  const theme = useMemo(
-    () => ({
-      algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
-      token: {
-        colorBgLayout: isDarkMode ? colors.black : colors.blueMedium,
-        colorPrimary: isDarkMode ? colors.greenCold : colors.blue,
-        colorBgContainer: isDarkMode ? colors.totalBlack : colors.white,
-      },
-    }),
-    [isDarkMode]
-  )
+  const theme = useMemo(() => Theme(isDarkMode), [isDarkMode])
 
   return (
     <ConfigProvider locale={ruRu} theme={theme}>

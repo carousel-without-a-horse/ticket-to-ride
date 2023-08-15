@@ -1,9 +1,10 @@
 import { theme } from 'antd'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useEffect, useMemo, useState } from 'react'
 import { t } from 'i18next'
 import { observer } from 'mobx-react-lite'
 
+import player from 'public/assets/images/thief.gif'
 import { Header as LayoutHeader } from '@/shared/ui/Layout'
 import { Space } from '@/shared/ui/Space'
 import { Menu } from '@/shared/ui/Menu'
@@ -12,6 +13,7 @@ import { LangSelect } from '@/features/LangSelect'
 import { ROUTES } from '@/app/router/config'
 import { useTranslationRefresh } from '@/shared/hooks'
 import { useStore } from '@/shared/store'
+import { Image } from '@/widgets/Arcade/ui/Image'
 
 import styles from './styles.module.pcss'
 
@@ -35,10 +37,6 @@ const getPrivateItems = () => {
     {
       key: ROUTES.startGame,
       label: t('pages.play'),
-    },
-    {
-      key: ROUTES.root,
-      label: t('pages.guide'),
     },
     {
       key: ROUTES.about,
@@ -90,7 +88,9 @@ export const Header = observer(() => {
 
   return (
     <LayoutHeader className={styles.header} style={style}>
-      <div>Logo</div>
+      <Link to={ROUTES.arcade} className={styles.logo}>
+        <Image src={player} alt={player} size="small" />
+      </Link>
       <div className={styles.content}>
         <Menu
           mode="horizontal"
