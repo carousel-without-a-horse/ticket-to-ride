@@ -6,7 +6,7 @@
     "build": "lerna run build --scope=@carousel-without-a-horse/client && lerna run build --scope=server",
     "docker:dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build",
     "docker:prune": "docker system prune",
-    "docker:build": "docker up --build",
+    "docker:build": "docker-compose up --build",
     "dev": "lerna run dev",
     "test": "lerna run test",
     "lint": "lerna run lint",
