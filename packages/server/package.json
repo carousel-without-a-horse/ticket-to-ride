@@ -12,7 +12,7 @@
     "test": "jest ."
   },
   "dependencies": {
-    "@carousel-without-a-horse/client": "^1.0.4",
+    "@carousel-without-a-horse/client": "^1.0.8",
     "axios": "^1.4.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
