@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  server:
+    container_name: ticket-to-ride-server
+    image: ghcr.io/carousel-without-a-horse/ticket-to-ride/server:d9c703b7ddf57eef0918090991db09f42229a941
+    environment:
+      SERVER_PORT: 3000
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    build:
+      context: .
+      dockerfile: packages/server/Dockerfile.prod
+      args:
+        SERVER_PORT: 3000
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    networks:
+      - awesome
+  postgres:
+    container_name: ticket-to-ride-postgres
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./tmp/pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    networks:
+      - awesome
+
+networks:
+  awesome:
+    driver: bridge
