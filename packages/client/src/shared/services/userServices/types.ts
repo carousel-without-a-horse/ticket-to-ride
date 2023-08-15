@@ -1,4 +1,5 @@
-import type { TUploadFile } from '@/shared/ui/Upload'
+import type { TUser } from '@/shared/store/user'
+import type { AxiosResponse } from 'axios'
 
 export type TPasswordSent = {
   oldPassword: string
@@ -7,15 +8,17 @@ export type TPasswordSent = {
 
 export type TUserSent = {
   login: string
-  firstName: string
-  secondName?: string
+  first_name: string
+  second_name?: string
   email: string
   phone: string
+  id: number
+  display_name: string
 }
 
 export type TUserService = {
   changeUserProfile: (data: TUserSent) => Promise<unknown>
   changeUserPassword: (data: TPasswordSent) => Promise<unknown>
-  changeAvatar: (data: TUploadFile) => Promise<unknown>
+  changeAvatar: (data: FormData) => Promise<AxiosResponse<TUser, unknown>>
   getUser: (id: number) => Promise<unknown>
 }

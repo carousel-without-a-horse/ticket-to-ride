@@ -4,22 +4,24 @@ import type { TUserService } from './types'
 
 const userServices: TUserService = {
   changeUserProfile: async data => {
-    return httpService.put('/v2/profile', {
-      data: JSON.stringify(data),
+    return httpService.put('/v2/user/profile', {
+      ...data,
     })
   },
   changeUserPassword: async data => {
-    return httpService.put('/v2/password', {
-      data: JSON.stringify(data),
+    return httpService.put('/v2/user/password', {
+      ...data,
     })
   },
-  changeAvatar: async data => {
-    return httpService.put('/v2/profile/avatar', {
-      data,
+  changeAvatar: async form => {
+    return httpService.put('/v2/user/profile/avatar', form, {
+      headers: {
+        'Content-Type': `multipart/form-data`,
+      },
     })
   },
   getUser: async id => {
-    return httpService.get(`/v2/sign-up/${id}`)
+    return httpService.get(`/v2/user/${id}`)
   },
 }
 

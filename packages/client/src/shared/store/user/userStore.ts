@@ -16,10 +16,12 @@ export class UserStore {
       initialized: observable,
       fetchUser: action,
       setUser: action,
+      setUserAvatar: action,
     })
     this.fetchUser = this.fetchUser.bind(this)
     this.clearUser = this.clearUser.bind(this)
     this.setUser = this.setUser.bind(this)
+    this.setUserAvatar = this.setUserAvatar.bind(this)
   }
 
   async fetchUser() {
@@ -40,6 +42,19 @@ export class UserStore {
 
   setUser(user: TUser | null) {
     this.user = user
+  }
+
+  setUserAvatar(path: string) {
+    this.user = {
+      id: this.user?.id as number,
+      first_name: this.user?.first_name as string,
+      second_name: this.user?.second_name as string,
+      display_name: this.user?.display_name,
+      login: this.user?.login as string,
+      email: this.user?.email as string,
+      phone: this.user?.phone as string,
+      avatar: path,
+    }
   }
 
   clearUser() {

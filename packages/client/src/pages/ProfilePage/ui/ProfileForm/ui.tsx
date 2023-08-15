@@ -8,11 +8,11 @@ import userServices from '@/shared/services/userServices'
 import { Upload } from '@/shared/ui/Upload'
 import { Space } from '@/shared/ui/Space'
 import { useForm } from '@/shared/hooks'
-import { useStore } from '@/shared/store'
+import { store, useStore } from '@/shared/store'
 import { ROUTES } from '@/app/router/config'
-import { error } from '@/shared/utils/notification'
+import { error, success } from '@/shared/utils/notification'
+import { REDIRECT_URI } from '@/shared/constants/apiConsts'
 
-import { user } from './data'
 import schema from './schema'
 
 import styles from './styles.module.pcss'
@@ -30,10 +30,22 @@ const ProfileForm = () => {
 
   const handleChangeAvatar: TUpload['onChange'] = ({ fileList }) => {
     setFileList(fileList)
-    userServices
-      .changeAvatar(fileList[0])
-      .then(console.debug)
-      .catch(console.error)
+    if (fileList[0]) {
+      const fmData = new FormData()
+      fmData.append('avatar', fileList[0].originFileObj as Blob)
+      userServices
+        .changeAvatar(fmData)
+        .then(res => {
+          if (res.data.avatar) {
+            store.userStore.setUserAvatar(res.data.avatar)
+          }
+        })
+        .catch(() => error())
+        .finally(() => {
+          setFileList([])
+          success()
+        })
+    }
   }
 
   const handleLogOut = () => {
@@ -55,9 +67,20 @@ const ProfileForm = () => {
     onSubmit: data => {
       if (data) {
         userServices
-          .changeUserProfile(data)
+          .changeUserProfile({
+            first_name: data.firstName,
+            second_name: data.secondName,
+            email: data.email,
+            phone: data.phone,
+            login: data.login,
+            id: userStore.user?.id as number,
+            display_name: `${userStore.user?.first_name as string} ${
+              userStore.user?.second_name as string
+            }`,
+          })
           .then(console.debug)
-          .catch(console.error)
+          .catch(() => error())
+          .finally(() => success())
       }
     },
   })
@@ -66,24 +89,28 @@ const ProfileForm = () => {
     <Space direction="horizontal">
       <Form layout="vertical" className={styles.form} {...formProps}>
         <FormInput
-          initialValue={user.first_name}
+          initialValue={userStore.user?.first_name}
           label="Имя"
           name="firstName"
         />
         <FormInput
-          initialValue={user.second_name}
+          initialValue={userStore.user?.second_name}
           label="Фамилия"
           name="secondName"
         />
-        <FormInput initialValue={user.login} label="Логин" name="login" />
         <FormInput
-          initialValue={user.email}
+          initialValue={userStore.user?.login}
+          label="Логин"
+          name="login"
+        />
+        <FormInput
+          initialValue={userStore.user?.email}
           label="Почта"
           name="email"
           type="email"
         />
         <FormInput
-          initialValue={user.phone}
+          initialValue={userStore.user?.phone}
           label="Телефон"
           name="phone"
           type="tel"
@@ -101,13 +128,25 @@ const ProfileForm = () => {
       <div>
         <Upload
           name="avatar"
+          className={styles.upload}
           listType="picture-card"
           accept="image/png, image/jpeg"
           fileList={fileList}
           onChange={handleChangeAvatar}
           maxCount={1}
         >
-          {fileList.length < 1 && '+ Upload'}
+          {userStore.user?.avatar ? (
+            <>
+              <img
+                src={`${REDIRECT_URI}/api/v2/resources${userStore.user?.avatar}`}
+                alt="avatar"
+                className={styles.avatar}
+              />
+              <span className={styles.addAvatar}>Загрузить новый аватар</span>
+            </>
+          ) : (
+            '+ Загрузить'
+          )}
         </Upload>
       </div>
     </Space>

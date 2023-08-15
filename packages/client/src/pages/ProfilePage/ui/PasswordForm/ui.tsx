@@ -4,6 +4,7 @@ import { Form, FormInput } from '@/shared/ui/Form'
 import { Button } from '@/shared/ui/Button'
 import userServices from '@/shared/services/userServices'
 import { useForm } from '@/shared/hooks'
+import { error, success } from '@/shared/utils/notification'
 
 import schema from './schema'
 
@@ -22,7 +23,8 @@ const PasswordForm = () => {
         userServices
           .changeUserPassword(data)
           .then(console.debug)
-          .catch(console.error)
+          .catch(() => error())
+          .finally(() => success())
       }
     },
   })
