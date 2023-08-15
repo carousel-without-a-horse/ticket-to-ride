@@ -41,7 +41,7 @@ const GamePage = () => {
         if (element?.requestFullscreen) {
           element
             .requestFullscreen()
-            .then(() => console.log('in full screen'))
+            .then(() => console.log('In full screen'))
             .catch(err => console.log(err))
         }
       }
