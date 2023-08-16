@@ -34,7 +34,7 @@ export const productionServer = (
         'utf-8',
       )
 
-      const initialState = await getInitialState(req.user, getUserSettings)
+      const initialState = await getInitialState(getUserSettings, req.user)
       const { html, style } = await (render as TRender)({
         url,
         initialState,

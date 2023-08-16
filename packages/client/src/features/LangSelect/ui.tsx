@@ -13,12 +13,14 @@ import { useDebounce } from '@/shared/hooks'
 export const LangSelect = observer(() => {
   const { i18n } = useTranslation()
   const queryClient = useQueryClient()
-  const { langId, setLangId, settings } = useStore()
+  const { langId, setLangId, settings, userStore } = useStore()
+  const { user } = userStore
 
   const { data } = useQuery({
     queryKey: ['settings'],
     queryFn: settingsServices.read,
     staleTime: Infinity,
+    enabled: !!userStore.user,
   })
 
   const { mutateAsync } = useMutation({
@@ -29,21 +31,29 @@ export const LangSelect = observer(() => {
     },
   })
 
-  useDebounce(() => mutateAsync(), 500, [settings.langId])
+  useDebounce(
+    () => {
+      if (!user) return
+      void mutateAsync()
+    },
+    500,
+    [settings.langId]
+  )
 
   useEffect(() => {
     if (!data?.langId) return
     setLangId(data?.langId)
-  }, [data?.langId, setLangId])
+  }, [data?.langId, setLangId, user])
 
   useEffect(() => {
     void i18n.changeLanguage(Lang[langId])
   }, [langId, i18n])
 
   const handleChange = useCallback(() => {
-    const nextLangId = data?.langId === Lang.ru ? Lang.en : Lang.ru
+    const prevLang = data?.langId || langId
+    const nextLangId = prevLang === Lang.ru ? Lang.en : Lang.ru
     setLangId(nextLangId)
-  }, [data?.langId, setLangId])
+  }, [data?.langId, langId, setLangId])
 
   return (
     <Tooltip placement="bottom" title="English / Русский">
