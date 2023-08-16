@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
@@ -11,7 +12,6 @@ import { useForm } from '@/shared/hooks'
 import { store, useStore } from '@/shared/store'
 import { ROUTES } from '@/app/router/config'
 import { error, success } from '@/shared/utils/notification'
-import { REDIRECT_URI } from '@/shared/constants/apiConsts'
 
 import schema from './schema'
 
@@ -25,27 +25,28 @@ import type { TUseForm } from './types'
 const ProfileForm = () => {
   const navigate = useNavigate()
   const { userStore } = useStore()
+  const { t } = useTranslation()
 
   const [fileList, setFileList] = useState<TUploadFile[]>([])
 
   const handleChangeAvatar: TUpload['onChange'] = ({ fileList }) => {
     setFileList(fileList)
-    if (fileList[0]) {
-      const fmData = new FormData()
-      fmData.append('avatar', fileList[0].originFileObj as Blob)
-      userServices
-        .changeAvatar(fmData)
-        .then(res => {
-          if (res.data.avatar) {
-            store.userStore.setUserAvatar(res.data.avatar)
-          }
-        })
-        .catch(() => error())
-        .finally(() => {
-          setFileList([])
-          success()
-        })
+    if (!fileList[0]) {
+      return
     }
+    const fmData = new FormData()
+    fmData.append('avatar', fileList[0].originFileObj as Blob)
+    userServices
+      .changeAvatar(fmData)
+      .then(res => {
+        if (res.data.avatar) {
+          store.userStore.setUserAvatar(res.data.avatar)
+        }
+      })
+      .catch(() => error())
+      .finally(() => {
+        setFileList([])
+      })
   }
 
   const handleLogOut = () => {
@@ -90,39 +91,39 @@ const ProfileForm = () => {
       <Form layout="vertical" className={styles.form} {...formProps}>
         <FormInput
           initialValue={userStore.user?.first_name}
-          label="Имя"
+          label={t('profile.name')}
           name="firstName"
         />
         <FormInput
           initialValue={userStore.user?.second_name}
-          label="Фамилия"
+          label={t('profile.secondName')}
           name="secondName"
         />
         <FormInput
           initialValue={userStore.user?.login}
-          label="Логин"
+          label={t('profile.login')}
           name="login"
         />
         <FormInput
           initialValue={userStore.user?.email}
-          label="Почта"
+          label={t('profile.email')}
           name="email"
           type="email"
         />
         <FormInput
           initialValue={userStore.user?.phone}
-          label="Телефон"
+          label={t('profile.phone')}
           name="phone"
           type="tel"
         />
         <Button type="primary" htmlType="submit">
-          Сохранить
+          {t('profile.save')}
         </Button>
         <Button type="link" onClick={() => navigate(-1)}>
-          &lt; Назад
+          &lt; {t('profile.back')}
         </Button>
         <Button danger onClick={handleLogOut}>
-          Выйти
+          {t('profile.logOut')}
         </Button>
       </Form>
       <div>
@@ -138,11 +139,13 @@ const ProfileForm = () => {
           {userStore.user?.avatar ? (
             <>
               <img
-                src={`${REDIRECT_URI}/api/v2/resources${userStore.user?.avatar}`}
+                src={`/api/v2/resources${userStore.user?.avatar}`}
                 alt="avatar"
                 className={styles.avatar}
               />
-              <span className={styles.addAvatar}>Загрузить новый аватар</span>
+              <span className={styles.addAvatar}>
+                {t('profile.changeAvatar')}
+              </span>
             </>
           ) : (
             '+ Загрузить'

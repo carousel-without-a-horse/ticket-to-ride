@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { REDIRECT_URI } from '../constants/apiConsts'
+export const REDIRECT_URI = 'http://localhost:3000'
 
 const API_ROOT = `${REDIRECT_URI}/api`
 

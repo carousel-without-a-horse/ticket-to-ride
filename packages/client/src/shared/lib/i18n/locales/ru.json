@@ -93,5 +93,21 @@
   "notification": {
     "attention": "Внимание!",
     "dontGoFar": "Не уходите далеко, игра в самом разгаре!"
+  },
+  "profile": {
+    "profileTitle": "Профиль",
+    "passwordTitle": "Изменить пароль",
+     "name": "Имя",
+     "secondName": "Фамилия",
+     "login": "Логин",
+     "email": "Почта",
+     "phone": "Телефон",
+     "save": "Сохранить",
+     "back": "Назад",
+     "logOut": "Выйти",
+     "oldPassword": "Старый пароль",
+     "newPassword": "Новый пароль",
+     "passwordRepeat": "Подтвердите пароль",
+     "changeAvatar": "Загрузить новый аватар"
   }
 }

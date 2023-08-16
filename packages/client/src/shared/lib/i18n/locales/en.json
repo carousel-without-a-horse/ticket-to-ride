@@ -93,5 +93,21 @@
   "notification": {
     "attention": "Attention!",
     "dontGoFar": "Don't go far, the game is in full swing!"
+  },
+  "profile": {
+    "profileTitle": "Profile",
+    "passwordTitle": "Change password",
+     "name": "Name",
+     "secondName": "Second name",
+     "login": "Login",
+     "email": "Email",
+     "phone": "Phone",
+     "save": "Save",
+     "back": "Back",
+     "logOut": "Log out",
+     "oldPassword": "Old password",
+     "newPassword": "New password",
+     "passwordRepeat": "Confirm password",
+     "changeAvatar": "Upload new avatar"
   }
 }

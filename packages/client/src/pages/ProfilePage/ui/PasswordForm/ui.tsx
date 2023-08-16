@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { Form, FormInput } from '@/shared/ui/Form'
@@ -14,6 +15,7 @@ import type { TUseForm } from './types'
 
 const PasswordForm = () => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const formProps = useForm<TUseForm>({
     name: 'password-form',
@@ -32,21 +34,25 @@ const PasswordForm = () => {
   return (
     <Form layout="vertical" className={styles.form} {...formProps}>
       <FormInput
-        label="Старый пароль"
+        label={t('profile.oldPassword')}
         name="oldPassword"
         inputType="password"
       />
-      <FormInput label="Пароль" name="newPassword" inputType="password" />
+      <FormInput
+        label={t('profile.newPassword')}
+        name="newPassword"
+        inputType="password"
+      />
       <FormInput
         name="passwordRepeat"
-        label="Подтвердите пароль"
+        label={t('profile.passwordRepeat')}
         inputType="password"
       />
       <Button type="primary" htmlType="submit">
-        Сохранить
+        {t('profile.save')}
       </Button>
       <Button type="link" onClick={() => navigate(-1)}>
-        &lt; Назад
+        &lt; {t('profile.back')}
       </Button>
     </Form>
   )
