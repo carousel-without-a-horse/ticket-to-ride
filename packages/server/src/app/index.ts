@@ -7,8 +7,9 @@ import cookieParser from 'cookie-parser'
 import { DBService } from '../database/DBService'
 import { TYPES } from '../types'
 
-import { developmentServer, productionServer } from './services/serverService'
+import { server } from './services/serverService'
 import { AuthMiddleware, AuthGuardMiddleware } from './middlewares'
+import { UserSettingsService } from './models/userSettings'
 
 import type { Express } from 'express'
 import type { Server } from 'http'
@@ -17,6 +18,8 @@ import type { IConfigService } from './services/configService'
 import type { IExceptionFilter } from './errors/types'
 import type { TTopicController } from './models/topic'
 import type { TCommentController } from './models/comment'
+import type { TUserSettingsController } from './models/userSettings'
+import type { TLikeController } from './models/like/types'
 
 @injectable()
 export class App {
@@ -24,7 +27,6 @@ export class App {
   server: Server | undefined
 
   port: number
-  isDev: boolean
 
   constructor(
     @inject(TYPES.Logger) private logger: ILoggerService,
@@ -32,13 +34,18 @@ export class App {
     @inject(TYPES.TopicController) private topicController: TTopicController,
     @inject(TYPES.CommentController)
     private commentController: TCommentController,
+    @inject(TYPES.UserSettingsController)
+    private userSettingsController: TUserSettingsController,
+    @inject(TYPES.LikeController)
+    private likeController: TLikeController,
     @inject(TYPES.DBService) private dbService: DBService,
     @inject(TYPES.ExceptionFilter) private exceptionFilter: IExceptionFilter,
+    @inject(TYPES.UserSettingsService)
+    private userSettingsService: UserSettingsService,
   ) {
     this.app = express()
     const port = this.config.get('SERVER_PORT')
     this.port = port ? Number(port) : 3000
-    this.isDev = process.env.NODE_ENV === 'development'
   }
 
   private useMiddleware(): void {
@@ -70,6 +77,18 @@ export class App {
       AuthGuardMiddleware,
       this.commentController.router,
     )
+    this.app.use(
+      '/api/settings',
+      AuthMiddleware,
+      AuthGuardMiddleware,
+      this.userSettingsController.router,
+    )
+    this.app.use(
+      '/api/likes',
+      AuthMiddleware,
+      AuthGuardMiddleware,
+      this.likeController.router,
+    )
   }
 
   private useExceptionFilters(): void {
@@ -80,11 +99,11 @@ export class App {
     this.useMiddleware()
     this.useRoutes()
     await this.dbService.connect()
-    if (this.isDev) {
-      await developmentServer(this.app)
-    } else {
-      productionServer(this.app)
-    }
+    // TODO CAR-66 переписать подключение сервера, уйти от зависимости userSettingsService
+    await server(
+      this.app,
+      this.userSettingsService.findOrCreate.bind(this.userSettingsService),
+    )
     this.useExceptionFilters()
     this.server = this.app.listen(this.port)
     this.logger.info(`[App] 🎸 Server is listening on port: ${this.port}`)

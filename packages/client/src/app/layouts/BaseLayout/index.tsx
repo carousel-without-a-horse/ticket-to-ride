@@ -11,7 +11,7 @@ const BaseLayout: FC = () => {
   return (
     <Layout className={styles.layout}>
       <Header />
-      <Content>
+      <Content className={styles.content}>
         <Outlet />
       </Content>
     </Layout>

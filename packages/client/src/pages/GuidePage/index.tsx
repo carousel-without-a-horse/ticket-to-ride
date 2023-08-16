@@ -13,7 +13,7 @@ import { Upload } from '@/shared/ui/Upload'
 import { Table } from '@/shared/ui/Table'
 import { Content } from '@/shared/ui/Layout'
 import { Reply } from '@/widgets/Reply'
-import { Likes } from '@/shared/ui/Likes'
+import { Likes } from '@/features/Likes'
 import { success, error, warning } from '@/shared/utils/notification'
 
 import styles from './styles.module.pcss'
@@ -138,7 +138,7 @@ const GuidePage = () => {
           </Upload>
           <h2>Like and reply</h2>
           <Space align="start" size="large">
-            <Likes onChange={data => console.log('data', data)} />
+            <Likes type="topic" id={1} />
             <Reply topicId={1} />
           </Space>
         </Card>

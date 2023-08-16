@@ -7,11 +7,15 @@ import type { NextFunction, Request, Response } from 'express'
 export class ValidateMiddleware implements IMiddleware {
   constructor(
     private classToValidate: ClassConstructor<object>,
-    private options: { isBodyValidate: boolean } = { isBodyValidate: true },
+    private options?: {
+      isBodyValidate?: boolean
+      isParamValidate?: boolean
+      isQueryValidate?: boolean
+    },
   ) {}
 
-  execute({ body, query }: Request, res: Response, next: NextFunction): void {
-    const plain: unknown = this.options.isBodyValidate ? body : query
+  execute(req: Request, res: Response, next: NextFunction): void {
+    const plain: unknown = this.getRequestValidatePart(req)
     const instance = plainToInstance(this.classToValidate, plain)
 
     void validate(instance).then(errors => {
@@ -21,5 +25,21 @@ export class ValidateMiddleware implements IMiddleware {
         next()
       }
     })
+  }
+
+  private getRequestValidatePart({
+    body,
+    query,
+    params,
+  }: Request): Request['params'] | Request['body'] | Request['query'] {
+    if (this.options?.isParamValidate) {
+      return params
+    }
+
+    if (this.options?.isQueryValidate) {
+      return query
+    }
+
+    return body
   }
 }

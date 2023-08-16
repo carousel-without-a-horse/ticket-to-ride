@@ -18,12 +18,20 @@ import {
   CommentRepository,
 } from './app/models/comment'
 import { UserRepository, UserService } from './app/models/user'
+import {
+  UserSettingsRepository,
+  UserSettingsService,
+  UserSettingsController,
+} from './app/models/userSettings'
+import { LikeController, LikeService, LikeRepository } from './app/models/like'
 
 import type { TTopicController } from './app/models/topic'
 import type { TBootstrapReturn } from './types'
 import type { ILoggerService } from './app/services/loggerService'
 import type { IExceptionFilter } from './app/errors/types'
 import type { TCommentController } from './app/models/comment'
+import type { TUserSettingsController } from './app/models/userSettings'
+import type { TLikeController } from './app/models/like/types'
 
 export const appBindings = new ContainerModule((bind: interfaces.Bind) => {
   bind<ILoggerService>(TYPES.Logger).to(LoggerService).inSingletonScope()
@@ -43,6 +51,19 @@ export const appBindings = new ContainerModule((bind: interfaces.Bind) => {
   bind<UserRepository>(TYPES.UserRepository)
     .to(UserRepository)
     .inSingletonScope()
+  bind<TUserSettingsController>(TYPES.UserSettingsController).to(
+    UserSettingsController,
+  )
+  bind<UserSettingsService>(TYPES.UserSettingsService).to(UserSettingsService)
+  bind<UserSettingsRepository>(TYPES.UserSettingsRepository)
+    .to(UserSettingsRepository)
+    .inSingletonScope()
+  bind<TLikeController>(TYPES.LikeController).to(LikeController)
+  bind<LikeService>(TYPES.LikeService).to(LikeService)
+  bind<LikeRepository>(TYPES.LikeRepository)
+    .to(LikeRepository)
+    .inSingletonScope()
+
   bind<DBService>(TYPES.DBService).to(DBService).inSingletonScope()
   bind<App>(TYPES.Application).to(App)
 })

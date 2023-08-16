@@ -107,5 +107,20 @@
   "notification": {
     "attention": "Attention!",
     "dontGoFar": "Don't go far, the game is in full swing!"
+  },
+  "arcade": {
+    "homeScreen": {
+      "title": "Puzzles",
+      "startButton": "Start Game"
+    },
+    "gameOverScreen": {
+      "title": "Game Over",
+      "resetButton": "Restart"
+    },
+    "successScreen": {
+      "title": "Game Complete",
+      "resetButton": "Restart"
+    },
+    "score": "Score"
   }
 }
